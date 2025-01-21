@@ -6,6 +6,7 @@ const connectDB = require("./configuration/db.config");
 
 // Routes
 const userRoutes = require("./routes/user.routes");
+const chatRoutes = require("./routes/chat.routes");
 
 dotenv.config();
 connectDB();
@@ -14,7 +15,8 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.use("/users", userRoutes);
+app.use("/user", userRoutes);
+app.use("/chat", chatRoutes);
 
 // Global error handler
 app.use((err, req, res, next) => {
