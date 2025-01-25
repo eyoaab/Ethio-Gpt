@@ -36,7 +36,7 @@ class FaqRemoteDataSourceImpl implements FaqRemoteDataSource {
         throw ServerException(errorMessage);
       }
     } catch (e) {
-      throw ServerException('Failed to delete user.${e.toString()}');
+      throw ServerException('Failed to load  faqs.${e.toString()}');
     }
   }
 }

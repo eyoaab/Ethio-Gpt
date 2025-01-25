@@ -1,4 +1,3 @@
-part of 'faq_bloc.dart';
+class FaqEvent {}
 
-@immutable
-sealed class FaqEvent {}
+class LoadFaqsEvent extends FaqEvent {}
