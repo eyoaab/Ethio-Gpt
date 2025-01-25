@@ -1,25 +1,13 @@
 import 'package:ethio_gpt/feutures/user/domain/entity/user-entity.dart';
 
 class UserModel extends UserEntity {
-  String email;
-  String password;
+  UserModel({required super.token});
 
-  UserModel({
-    required this.email,
-    required this.password,
-  }) : super(email: email, password: password);
-
-  Map<String, dynamic> toJson() {
-    return {
-      'email': email,
-      'password': password,
-    };
+  factory UserModel.fromJson(Map<String, dynamic> json) {
+    return UserModel(token: json['token']);
   }
 
   UserEntity toEntity() {
-    return UserEntity(
-      email: email,
-      password: password,
-    );
+    return UserEntity(token: token);
   }
 }

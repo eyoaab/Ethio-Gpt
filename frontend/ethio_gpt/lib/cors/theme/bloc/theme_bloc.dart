@@ -6,8 +6,6 @@ part 'theme_state.dart';
 
 class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
   ThemeBloc() : super(ThemeInitial()) {
-    on<ThemeEvent>((event, emit) {
-      // TODO: implement event handler
-    });
+    on<ThemeEvent>((event, emit) {});
   }
 }
