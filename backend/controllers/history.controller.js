@@ -1,4 +1,4 @@
-const ChatRoom = require("../models/chatRoom.model");
+const ChatRoom = require("../models/chat.model");
 const Message = require("../models/message.model");
 
 // Helper function to get the date range for today, yesterday, and old
