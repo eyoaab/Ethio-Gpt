@@ -87,11 +87,13 @@ exports.getRecentRooms = async (req, res) => {
 exports.getOlderChatRooms = async (req, res) => {
   try {
     // Pagination parameters: page and limit
+    const userId = req.userId;
     const page = parseInt(req.query.page) || 1;
     const limit = 5; // You can adjust this as needed
 
     // Fetch older chat rooms (rooms older than yesterday)
     const roomsOld = await ChatRoom.find({
+      userId: userId,
       updatedAt: {
         $lt: new Date(new Date().setDate(new Date().getDate() - 1)),
       }, // Rooms older than yesterday
@@ -114,6 +116,61 @@ exports.getOlderChatRooms = async (req, res) => {
     console.error("Error fetching older chat rooms:", error);
     res.status(500).json({
       message: "An error occurred while fetching older chat rooms.",
+      error: error.message,
+    });
+  }
+};
+
+// Function to fetch messages in a specific chat room with pagination
+exports.getMessagesInRoom = async (req, res) => {
+  try {
+    const { roomId } = req.params; // Assuming the roomId is passed as a parameter
+    const { page = 1, pageSize = 5 } = req.query; // Default to page 1 and 5 messages per page
+
+    // Validate the page and pageSize to ensure they are numbers
+    const pageNumber = parseInt(page, 10);
+    const pageSizeNumber = parseInt(pageSize, 10);
+
+    if (
+      isNaN(pageNumber) ||
+      isNaN(pageSizeNumber) ||
+      pageNumber <= 0 ||
+      pageSizeNumber <= 0
+    ) {
+      return res.status(400).json({
+        message: "Invalid page or pageSize. Please provide valid numbers.",
+      });
+    }
+
+    // Find the chat room by roomId
+    const chatRoom = await ChatRoom.findOne({ roomId }).populate({
+      path: "messages",
+      options: {
+        skip: (pageNumber - 1) * pageSizeNumber, // Skip messages based on page
+        limit: pageSizeNumber, // Limit the number of messages
+        sort: { timestamp: -1 }, // Sort by timestamp in descending order (latest first)
+      },
+      select: "content timestamp isBot", // Select relevant fields for messages
+    });
+
+    if (!chatRoom) {
+      return res.status(404).json({
+        message: "Chat room not found.",
+      });
+    }
+
+    // Return the paginated messages
+    res.status(200).json({
+      messages: chatRoom.messages,
+      page: pageNumber,
+      pageSize: pageSizeNumber,
+      totalMessages: chatRoom.messages.length, // Total number of messages (not necessarily correct for pagination)
+      totalPages: Math.ceil(chatRoom.messages.length / pageSizeNumber), // Total pages based on pagination
+    });
+  } catch (error) {
+    console.error("Error fetching messages for chat room:", error);
+    res.status(500).json({
+      message: "An error occurred while fetching the messages.",
       error: error.message,
     });
   }
