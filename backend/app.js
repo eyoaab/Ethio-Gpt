@@ -9,6 +9,7 @@ const userRoutes = require("./routes/user.routes");
 const chatRoutes = require("./routes/chat.routes");
 const feedbackRoutes = require("./routes/feedback.routes");
 const faqRoutes = require("./routes/faq.routes");
+const historyRoutes = require("./routes/history.routes");
 
 dotenv.config();
 connectDB();
@@ -21,6 +22,7 @@ app.use("/user", userRoutes);
 app.use("/chat", chatRoutes);
 app.use("/feedback", feedbackRoutes);
 app.use("/faq", faqRoutes);
+app.use("/history", historyRoutes);
 
 // Global error handler
 app.use((err, req, res, next) => {

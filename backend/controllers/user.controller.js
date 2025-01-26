@@ -167,7 +167,8 @@ exports.updateUserPassword = async (req, res) => {
 // Function to delete a user
 exports.deleteUser = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const email = req.email;
+    const { password } = req.body;
 
     if (!email || !password) {
       return res.status(400).json({

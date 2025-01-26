@@ -5,12 +5,14 @@ const {
   updateUserPassword,
   deleteUser,
 } = require("../controllers/user.controller");
+const authenticateToken = require("../middlewares/auth.middleware");
+
 const router = require("express").Router();
 
 router.post("/register", createUser);
 router.post("/login", loginUser);
-router.put("/updateEmail", updateUserEmail);
-router.put("/updatePassword", updateUserPassword);
-router.delete("/delete", deleteUser);
+router.put("/updateEmail", authenticateToken, updateUserEmail);
+router.put("/updatePassword", authenticateToken, updateUserPassword);
+router.delete("/delete", authenticateToken, deleteUser);
 
 module.exports = router;
