@@ -27,25 +27,21 @@ exports.getAmharicResponse = async (req, res) => {
   try {
     const { prompt, roomId } = req.body;
 
-    // Validate input
     if (!prompt || typeof prompt !== "string") {
       return res.status(400).json({ message: "ትክክለኛ ጥያቄ ያስፈልጋል" });
     }
 
-    // Validate roomId (if provided)
     if (roomId && !mongoose.Types.ObjectId.isValid(roomId)) {
       return res.status(400).json({ message: "Invalid room ID." });
     }
 
     try {
-      // Step 1: Translate the prompt from Amharic to English
       const { translation: englishPrompt } = await translate(
         prompt,
         "am",
         "en"
       );
 
-      // Step 2: Get AI response in English
       const aiResponse = await herc.question({
         model: "v3",
         content: englishPrompt,
@@ -57,44 +53,38 @@ exports.getAmharicResponse = async (req, res) => {
 
       const aiReplyInEnglish = aiResponse.reply;
 
-      // Step 3: Translate the AI response from English back to Amharic
       const { translation: replyInAmharic } = await translate(
         aiReplyInEnglish,
         "en",
         "am"
       );
 
-      // Step 4: Handle Chat Room logic
       let room;
 
       if (!roomId) {
-        // Create a new room if roomId is not provided
         room = new ChatRoom({ messages: [] });
         room = await room.save();
       } else {
-        // Use the provided roomId
         room = await ChatRoom.findById(roomId);
 
         if (!room) {
-          return res.status(404).json({ error: "Chat room not found." });
+          return res.status(404).json({ message: "Chat room not found." });
         }
       }
-
-      // Save the messages in the room
+      // save message
       await saveMessage(room._id, prompt, replyInAmharic);
 
-      // Respond with the translated reply
       res.status(200).json({ response: replyInAmharic });
     } catch (error) {
       console.error("Error:", error);
       res.status(500).json({
-        error: error.message || "ጥያቄዎን በማስኬድ ላይ ስህተት አጋጥሟል።",
+        message: error.message || "ጥያቄዎን በማስኬድ ላይ ስህተት አጋጥሟል።",
       });
     }
   } catch (error) {
     console.error("Error:", error);
     res.status(500).json({
-      error: error.message || "ጥያቄዎን በማስኬድ ላይ ስህተት አጋጥሟል።",
+      message: error.message || "ጥያቄዎን በማስኬድ ላይ ስህተት አጋጥሟል።",
     });
   }
 };
@@ -102,15 +92,16 @@ exports.getAmharicResponse = async (req, res) => {
 // to english prompts
 exports.getEnglishResponse = async (req, res) => {
   try {
-    const { prompt } = req.body;
+    const { prompt, roomId } = req.body;
 
-    // Validate the input
     if (!prompt || typeof prompt !== "string") {
       return res.status(400).json({ error: "Valid prompt is required." });
     }
+    if (roomId && !mongoose.Types.ObjectId.isValid(roomId)) {
+      return res.status(400).json({ message: "Invalid room ID." });
+    }
 
     try {
-      // Step 2: Get AI response in English
       const aiResponse = await herc.question({
         model: "v3",
         content: prompt,
@@ -120,6 +111,22 @@ exports.getEnglishResponse = async (req, res) => {
         throw new Error("Failed to get a valid response from AI.");
       }
       const aiReplyInEnglish = aiResponse.reply;
+
+      let room;
+
+      if (!roomId) {
+        room = new ChatRoom({ messages: [] });
+        room = await room.save();
+      } else {
+        room = await ChatRoom.findById(roomId);
+
+        if (!room) {
+          return res.status(404).json({ message: "Chat room not found." });
+        }
+      }
+
+      // save message
+      await saveMessage(room._id, prompt, aiReplyInEnglish);
 
       // Respond with the translated reply
       res.status(200).json({ response: aiReplyInEnglish });
