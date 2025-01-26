@@ -1,16 +1,40 @@
 const { Hercai } = require("hercai");
 const { translate } = require("bing-translate-api");
+const ChatRoom = require("../models/chat.model");
+const Message = require("../models/message.model");
 
-const herc = new Hercai(); // Ensure `Hercai` is properly instantiated
+const herc = new Hercai();
 
-// Protect the /gpt route
+// Function to create and save a message in the database
+async function saveMessage(roomId, prompt, replyInAmharic) {
+  const message = new Message({
+    isBot: false,
+    content: prompt,
+    roomId: roomId,
+  });
+
+  const botMessage = new Message({
+    isBot: true,
+    content: replyInAmharic,
+    roomId: roomId,
+  });
+
+  await message.save();
+  await botMessage.save();
+}
+
 exports.getAmharicResponse = async (req, res) => {
   try {
-    const { prompt } = req.body;
+    const { prompt, roomId } = req.body;
 
-    // Validate the input
+    // Validate input
     if (!prompt || typeof prompt !== "string") {
-      return res.status(400).json({ error: "ትክክለኛ ጥያቄ ያስፈልጋል" });
+      return res.status(400).json({ message: "ትክክለኛ ጥያቄ ያስፈልጋል" });
+    }
+
+    // Validate roomId (if provided)
+    if (roomId && !mongoose.Types.ObjectId.isValid(roomId)) {
+      return res.status(400).json({ message: "Invalid room ID." });
     }
 
     try {
@@ -30,6 +54,7 @@ exports.getAmharicResponse = async (req, res) => {
       if (!aiResponse || !aiResponse.reply) {
         throw new Error("ትክክለኛ ምላሽ ከ AI ማግኘት አልተሳካም እባክዎ እንደገና ይሞክሩ.");
       }
+
       const aiReplyInEnglish = aiResponse.reply;
 
       // Step 3: Translate the AI response from English back to Amharic
@@ -38,6 +63,25 @@ exports.getAmharicResponse = async (req, res) => {
         "en",
         "am"
       );
+
+      // Step 4: Handle Chat Room logic
+      let room;
+
+      if (!roomId) {
+        // Create a new room if roomId is not provided
+        room = new ChatRoom({ messages: [] });
+        room = await room.save();
+      } else {
+        // Use the provided roomId
+        room = await ChatRoom.findById(roomId);
+
+        if (!room) {
+          return res.status(404).json({ error: "Chat room not found." });
+        }
+      }
+
+      // Save the messages in the room
+      await saveMessage(room._id, prompt, replyInAmharic);
 
       // Respond with the translated reply
       res.status(200).json({ response: replyInAmharic });
@@ -56,7 +100,6 @@ exports.getAmharicResponse = async (req, res) => {
 };
 
 // to english prompts
-
 exports.getEnglishResponse = async (req, res) => {
   try {
     const { prompt } = req.body;
