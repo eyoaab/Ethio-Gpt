@@ -13,6 +13,11 @@ const chatRoomSchema = new mongoose.Schema({
       ref: "Message",
     },
   ],
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
   createdAt: {
     type: Date,
     default: Date.now,

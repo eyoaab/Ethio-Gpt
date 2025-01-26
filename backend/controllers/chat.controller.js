@@ -26,6 +26,7 @@ async function saveMessage(roomId, prompt, replyInAmharic) {
 exports.getAmharicResponse = async (req, res) => {
   try {
     const { prompt, roomId } = req.body;
+    const userId = req.userId;
 
     if (!prompt || typeof prompt !== "string") {
       return res.status(400).json({ message: "ትክክለኛ ጥያቄ ያስፈልጋል" });
@@ -62,7 +63,7 @@ exports.getAmharicResponse = async (req, res) => {
       let room;
 
       if (!roomId) {
-        room = new ChatRoom({ messages: [] });
+        room = new ChatRoom({ messages: [], userId: userId });
         room = await room.save();
       } else {
         room = await ChatRoom.findById(roomId);
@@ -93,6 +94,7 @@ exports.getAmharicResponse = async (req, res) => {
 exports.getEnglishResponse = async (req, res) => {
   try {
     const { prompt, roomId } = req.body;
+    const userId = req.userId;
 
     if (!prompt || typeof prompt !== "string") {
       return res.status(400).json({ error: "Valid prompt is required." });
@@ -115,7 +117,7 @@ exports.getEnglishResponse = async (req, res) => {
       let room;
 
       if (!roomId) {
-        room = new ChatRoom({ messages: [] });
+        room = new ChatRoom({ messages: [], userId: userId });
         room = await room.save();
       } else {
         room = await ChatRoom.findById(roomId);
