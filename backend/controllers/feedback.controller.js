@@ -26,3 +26,15 @@ exports.createFeedback = async (req, res) => {
     });
   }
 };
+
+// Retrieve all Feedbacks from the database.
+exports.getAllFeedbacks = async (req, res) => {
+  try {
+    const data = await Feedback.find();
+    res.status(200).json(data);
+  } catch (err) {
+    res.status(500).send({
+      message: err.message || "Some error occurred while retrieving feedbacks.",
+    });
+  }
+};
