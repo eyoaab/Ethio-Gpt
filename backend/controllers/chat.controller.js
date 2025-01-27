@@ -10,17 +10,19 @@ async function saveMessage(roomId, prompt, replyInAmharic) {
   const message = new Message({
     isBot: false,
     content: prompt,
-    roomId: roomId,
   });
 
   const botMessage = new Message({
     isBot: true,
     content: replyInAmharic,
-    roomId: roomId,
   });
 
   await message.save();
   await botMessage.save();
+  const chatRoom = await ChatRoom.findById({ roomId });
+  chatRoom.messages.push(message);
+  chatRoom.messages.push(botMessage);
+  await chatRoom.save();
 }
 
 exports.getAmharicResponse = async (req, res) => {

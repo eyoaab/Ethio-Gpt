@@ -13,11 +13,6 @@ const messageSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  roomId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "ChatRoom",
-    required: true,
-  },
 });
 
 module.exports = mongoose.model("Message", messageSchema);

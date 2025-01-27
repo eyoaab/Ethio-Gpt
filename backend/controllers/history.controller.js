@@ -124,7 +124,7 @@ exports.getOlderChatRooms = async (req, res) => {
 // Function to fetch messages in a specific chat room with pagination
 exports.getMessagesInRoom = async (req, res) => {
   try {
-    const { roomId } = req.params; // Assuming the roomId is passed as a parameter
+    const { roomId } = req.params;
     const { page = 1, pageSize = 5 } = req.query; // Default to page 1 and 5 messages per page
 
     // Validate the page and pageSize to ensure they are numbers
@@ -164,7 +164,7 @@ exports.getMessagesInRoom = async (req, res) => {
       messages: chatRoom.messages,
       page: pageNumber,
       pageSize: pageSizeNumber,
-      totalMessages: chatRoom.messages.length, // Total number of messages (not necessarily correct for pagination)
+      totalMessages: chatRoom.messages.length, // Total number of messages
       totalPages: Math.ceil(chatRoom.messages.length / pageSizeNumber), // Total pages based on pagination
     });
   } catch (error) {
@@ -172,6 +172,22 @@ exports.getMessagesInRoom = async (req, res) => {
     res.status(500).json({
       message: "An error occurred while fetching the messages.",
       error: error.message,
+    });
+  }
+};
+
+// Controller to delete a chat hisstory
+exports.delteChatRoom = async (req, res) => {
+  try {
+    const cahtRoomId = req.body;
+    await ChatRoom.findByIdAndDelete({ cahtRoomId });
+    res.status(200).json({
+      message: "Chat Historoy Deleted Successfully",
+    });
+  } catch (error) {
+    console.log("error occured while deleting the chat room", error);
+    res.status(500).json({
+      message: "error occured while deleting the chat room",
     });
   }
 };
