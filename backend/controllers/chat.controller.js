@@ -19,7 +19,7 @@ async function saveMessage(roomId, prompt, replyInAmharic) {
 
   await message.save();
   await botMessage.save();
-  const chatRoom = await ChatRoom.findById({ roomId });
+  const chatRoom = await ChatRoom.findById(roomId);
   chatRoom.messages.push(message);
   chatRoom.messages.push(botMessage);
   await chatRoom.save();

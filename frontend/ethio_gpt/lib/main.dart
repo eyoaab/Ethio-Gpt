@@ -1,19 +1,23 @@
+import 'package:device_preview/device_preview.dart';
+import 'package:ethio_gpt/feutures/user/presentation/screens/login-page.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
-
   runApp(
-    EasyLocalization(
-      supportedLocales: const [
-        Locale('en', 'US'),
-        Locale('am', 'ET'),
-      ],
-      path: 'assets/translations',
-      fallbackLocale: const Locale('en', 'US'),
-      child: const MyApp(),
+    DevicePreview(
+      enabled: true,
+      builder: (context) => EasyLocalization(
+        supportedLocales: const [
+          Locale('en', 'US'),
+          Locale('am', 'ET'),
+        ],
+        path: 'assets/translations',
+        fallbackLocale: const Locale('en', 'US'),
+        child: const MyApp(),
+      ),
     ),
   );
 }
@@ -28,8 +32,9 @@ class MyApp extends StatelessWidget {
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
+      builder: DevicePreview.appBuilder,
       debugShowCheckedModeBanner: false,
-      home: const Placeholder(),
+      home: const LoginScreen(),
     );
   }
 }
