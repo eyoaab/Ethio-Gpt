@@ -1,15 +1,92 @@
+import 'package:ethio_gpt/feutures/feedback/presentation/widget/feedback-form.dart';
+import 'package:ethio_gpt/feutures/user/presentation/widget/common-widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-class FeedBackScreen extends StatefulWidget {
-  const FeedBackScreen({super.key});
+class FeedbackScreen extends StatefulWidget {
+  const FeedbackScreen({super.key});
 
   @override
-  _FeedBackScreenState createState() => _FeedBackScreenState();
+  _FeedbackScreenState createState() => _FeedbackScreenState();
 }
 
-class _FeedBackScreenState extends State<FeedBackScreen> {
+class _FeedbackScreenState extends State<FeedbackScreen> {
+  TextEditingController feedbackController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      body: Container(
+        height: double.infinity,
+        width: double.infinity,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/backgroun.png'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child:
+            // Content
+            Padding(
+          padding: EdgeInsets.only(
+              left: 16,
+              right: 16,
+              bottom: 20,
+              top: MediaQuery.of(context).size.height * 0.05),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.5,
+                  child: Text(
+                    textAlign: TextAlign.left,
+                    'How was your experience',
+                    style: GoogleFonts.inter(
+                      fontSize: 24,
+                      color: Colors.white,
+                      shadows: [
+                        const Shadow(
+                          blurRadius: 4.0,
+                          color: Colors.black26,
+                          offset: Offset(2, 2),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Text('This will help us please try to be more descriptive ',
+                    textAlign: TextAlign.left,
+                    style: GoogleFonts.inter(
+                      fontSize: 16,
+                      color: Colors.white,
+                      shadows: [
+                        const Shadow(
+                          blurRadius: 4.0,
+                          color: Colors.black26,
+                          offset: Offset(2, 2),
+                        ),
+                      ],
+                    )),
+                const SizedBox(height: 20),
+                feedbackForm(controller: feedbackController),
+                // submit Button
+                const SizedBox(height: 30),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      submitButton(
+                        onPressed: () {},
+                      ),
+                    ])
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
