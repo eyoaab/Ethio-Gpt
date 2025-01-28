@@ -1,6 +1,7 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:ethio_gpt/feutures/feedback/presentation/screens/feedback-screen.dart';
 import 'package:ethio_gpt/feutures/user/presentation/screens/login-page.dart';
+import 'package:ethio_gpt/feutures/user/presentation/screens/splash-screen.dart';
 import 'package:ethio_gpt/feutures/user/presentation/screens/update-password-page.dart';
 import 'package:ethio_gpt/feutures/user/presentation/screens/update-username-page.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +38,7 @@ class MyApp extends StatelessWidget {
       locale: context.locale,
       builder: DevicePreview.appBuilder,
       debugShowCheckedModeBanner: false,
-      home: const FeedbackScreen(),
+      home: const SplashScreen(),
     );
   }
 }
