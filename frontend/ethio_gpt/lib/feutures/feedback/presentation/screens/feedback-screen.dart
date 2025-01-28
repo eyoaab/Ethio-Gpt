@@ -80,6 +80,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                     children: [
                       submitButton(
                         onPressed: () {},
+                        label: 'Submit',
                       ),
                     ])
               ],

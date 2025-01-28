@@ -78,9 +78,7 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
 
               const SizedBox(height: 40),
 
-              submitButton(
-                onPressed: () {},
-              )
+              submitButton(onPressed: () {}, label: 'Update')
             ],
           ),
         ),

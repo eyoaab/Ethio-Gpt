@@ -66,6 +66,7 @@ Widget commonInputField({
 
 Widget submitButton({
   required VoidCallback onPressed,
+  required String label,
 }) {
   return Container(
     height: 50,
@@ -91,9 +92,9 @@ Widget submitButton({
         ),
         shadowColor: Colors.transparent, // Remove shadow
       ),
-      child: const Text(
-        'Update',
-        style: TextStyle(
+      child: Text(
+        label,
+        style: GoogleFonts.inter(
           fontSize: 18,
           fontWeight: FontWeight.bold,
           color: Colors.white, // Text color
