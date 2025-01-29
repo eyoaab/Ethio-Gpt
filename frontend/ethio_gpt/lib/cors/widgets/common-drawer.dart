@@ -1,6 +1,7 @@
 import 'package:ethio_gpt/cors/constant/colors.dart';
 import 'package:ethio_gpt/cors/widgets/drawer-row.dart';
 import 'package:ethio_gpt/feutures/chat/presentation/screens/chat-history-page.dart';
+import 'package:ethio_gpt/feutures/chat/presentation/screens/make-caht-page.dart';
 import 'package:ethio_gpt/feutures/feedback/presentation/screens/feedback-screen.dart';
 import 'package:ethio_gpt/feutures/meta-features/FAQ/presentation/pages/faq-screen.dart';
 import 'package:ethio_gpt/feutures/meta-features/about-developers/about-developers-page.dart';
@@ -91,7 +92,7 @@ class CommonDrawer extends StatelessWidget {
                             title: 'Home',
                             icon: Icons.home,
                             onTap: () =>
-                                _onTapItem(context, 0, const SettingScreen()),
+                                _onTapItem(context, 0, const ChatScreen()),
                             isSelected: state.index == 0,
                           ),
                           commonListTile(

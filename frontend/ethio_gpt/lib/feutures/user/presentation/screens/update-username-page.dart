@@ -1,4 +1,5 @@
 import 'package:ethio_gpt/cors/widgets/common-app-bar.dart';
+import 'package:ethio_gpt/cors/widgets/common-drawer.dart';
 import 'package:ethio_gpt/feutures/user/presentation/widget/common-widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -24,6 +25,7 @@ class _UpdateUserNameScreenState extends State<UpdateUserNameScreen> {
     return Scaffold(
       key: _scaffoldKey,
       appBar: commonAppBar(action: showSide),
+      drawer: const CommonDrawer(),
       body: Container(
         height: double.infinity,
         width: double.infinity,

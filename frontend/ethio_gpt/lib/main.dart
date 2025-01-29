@@ -1,4 +1,5 @@
 import 'package:device_preview/device_preview.dart';
+import 'package:ethio_gpt/feutures/chat/presentation/screens/make-caht-page.dart';
 import 'package:ethio_gpt/feutures/meta-features/FAQ/presentation/bloc/faq_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -49,7 +50,7 @@ class MyApp extends StatelessWidget {
       locale: context.locale,
       builder: DevicePreview.appBuilder,
       debugShowCheckedModeBanner: false,
-      home: const ChatHistoryScreen(),
+      home: const ChatScreen(),
     );
   }
 }

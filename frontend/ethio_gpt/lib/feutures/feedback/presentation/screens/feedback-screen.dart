@@ -18,7 +18,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
     _scaffoldKey.currentState?.openDrawer();
   }
 
-  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -38,11 +38,12 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
         child:
             // Content
             Padding(
-          padding: EdgeInsets.only(
-              left: 16,
-              right: 16,
-              bottom: 20,
-              top: MediaQuery.of(context).size.height * 0.05),
+          padding: const EdgeInsets.only(
+            left: 16,
+            right: 16,
+            bottom: 20,
+            // top: MediaQuery.of(context).size.height * 0.05
+          ),
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
