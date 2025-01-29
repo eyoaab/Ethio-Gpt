@@ -1,4 +1,5 @@
 import 'package:ethio_gpt/cors/widgets/common-app-bar.dart';
+import 'package:ethio_gpt/cors/widgets/common-drawer.dart';
 import 'package:flutter/material.dart';
 
 class FaqScreen extends StatefulWidget {
@@ -17,7 +18,8 @@ class _FaqScreenState extends State<FaqScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      appBar: commonAppBar(action: () {}),
+      drawer: const CommonDrawer(),
+      appBar: commonAppBar(action: showSide),
     );
   }
 }

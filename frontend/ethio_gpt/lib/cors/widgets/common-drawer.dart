@@ -2,7 +2,8 @@ import 'package:ethio_gpt/cors/constant/colors.dart';
 import 'package:ethio_gpt/cors/widgets/drawer-row.dart';
 import 'package:ethio_gpt/feutures/chat/presentation/screens/chat-history-page.dart';
 import 'package:ethio_gpt/feutures/feedback/presentation/screens/feedback-screen.dart';
-import 'package:ethio_gpt/feutures/meta-features/FAQ/presentation/pages/faq-page.dart';
+import 'package:ethio_gpt/feutures/meta-features/FAQ/presentation/pages/faq-screen.dart';
+import 'package:ethio_gpt/feutures/meta-features/about-developers/about-developers-page.dart';
 import 'package:ethio_gpt/feutures/meta-features/setting/bloc/setting_bloc.dart';
 import 'package:ethio_gpt/feutures/meta-features/setting/bloc/setting_event.dart';
 import 'package:ethio_gpt/feutures/meta-features/setting/bloc/setting_state.dart';
@@ -117,8 +118,8 @@ class CommonDrawer extends StatelessWidget {
                           commonListTile(
                             title: 'About Developer',
                             icon: Icons.code,
-                            onTap: () =>
-                                _onTapItem(context, 4, const SizedBox.shrink()),
+                            onTap: () => _onTapItem(
+                                context, 4, const AboutDevelopersScreen()),
                             isSelected: state.index == 4,
                           ),
                           commonListTile(

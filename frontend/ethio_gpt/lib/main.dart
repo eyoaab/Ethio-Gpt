@@ -25,9 +25,6 @@ void main() async {
             BlocProvider<SettingBloc>(
               create: (context) => SettingBloc(),
             ),
-            BlocProvider<SettingBloc>(
-              create: (context) => SettingBloc(),
-            ),
           ],
           child: const MyApp(),
         ),

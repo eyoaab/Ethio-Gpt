@@ -1,6 +1,9 @@
 import 'package:ethio_gpt/cors/constant/colors.dart';
 import 'package:ethio_gpt/cors/widgets/common-app-bar.dart';
 import 'package:ethio_gpt/cors/widgets/common-drawer.dart';
+import 'package:ethio_gpt/feutures/meta-features/Privecy-Policy/privecy-and-policy-Screen.dart';
+import 'package:ethio_gpt/feutures/meta-features/about-developers/about-developers-page.dart';
+import 'package:ethio_gpt/feutures/meta-features/about-ethio-Gpt/about-ethio-gpt.dart';
 import 'package:ethio_gpt/feutures/meta-features/setting/setting-widgets.dart';
 import 'package:ethio_gpt/feutures/user/presentation/screens/update-password-page.dart';
 import 'package:ethio_gpt/feutures/user/presentation/screens/update-username-page.dart';
@@ -133,11 +136,23 @@ class _SettingScreenState extends State<SettingScreen> {
                             height: 15,
                           ),
                           settingRow(
-                              action: () {},
+                              action: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const AboutEthioGptScreen()));
+                              },
                               label: 'About Ethio-Gpt',
                               icon: const Icon(Icons.info)),
                           settingRow(
-                              action: () {},
+                              action: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const AboutDevelopersScreen()));
+                              },
                               label: 'About Developer',
                               icon: const Icon(Icons.info)),
                           const SizedBox(
@@ -151,7 +166,13 @@ class _SettingScreenState extends State<SettingScreen> {
                                     fontSize: 18, color: primaryColor)),
                           ),
                           settingRow(
-                              action: () {},
+                              action: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const PrivacyAndPolicyScreen()));
+                              },
                               label: 'Privacy Policy',
                               icon: const Icon(Icons.privacy_tip)),
                         ]))
