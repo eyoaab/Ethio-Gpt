@@ -1,3 +1,5 @@
+import 'package:ethio_gpt/cors/widgets/common-app-bar.dart';
+import 'package:ethio_gpt/cors/widgets/common-drawer.dart';
 import 'package:ethio_gpt/feutures/feedback/presentation/widget/feedback-form.dart';
 import 'package:ethio_gpt/feutures/user/presentation/widget/common-widgets.dart';
 import 'package:flutter/material.dart';
@@ -12,10 +14,18 @@ class FeedbackScreen extends StatefulWidget {
 
 class _FeedbackScreenState extends State<FeedbackScreen> {
   TextEditingController feedbackController = TextEditingController();
+  void showSide() {
+    _scaffoldKey.currentState?.openDrawer();
+  }
+
+  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
+      appBar: commonAppBar(action: showSide),
+      drawer: const CommonDrawer(),
       body: Container(
         height: double.infinity,
         width: double.infinity,

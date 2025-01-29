@@ -1,4 +1,5 @@
 import 'package:device_preview/device_preview.dart';
+import 'package:ethio_gpt/cors/widgets/common-drawer.dart';
 import 'package:ethio_gpt/feutures/feedback/presentation/screens/feedback-screen.dart';
 import 'package:ethio_gpt/feutures/meta-features/setting/setting-screen.dart';
 import 'package:ethio_gpt/feutures/user/presentation/screens/login-page.dart';
@@ -14,8 +15,7 @@ void main() async {
   runApp(
     DevicePreview(
       enabled: true,
-      builder: (context) => 
-      EasyLocalization(
+      builder: (context) => EasyLocalization(
         supportedLocales: const [
           Locale('en', 'US'),
           Locale('am', 'ET'),
@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
       locale: context.locale,
       builder: DevicePreview.appBuilder,
       debugShowCheckedModeBanner: false,
-      home: const SettingScreen(),
+      home: const FeedbackScreen(),
     );
   }
 }
