@@ -1,6 +1,9 @@
 import 'package:ethio_gpt/cors/constant/colors.dart';
 import 'package:ethio_gpt/cors/widgets/common-app-bar.dart';
+import 'package:ethio_gpt/cors/widgets/common-drawer.dart';
 import 'package:ethio_gpt/feutures/meta-features/setting/setting-widgets.dart';
+import 'package:ethio_gpt/feutures/user/presentation/screens/update-password-page.dart';
+import 'package:ethio_gpt/feutures/user/presentation/screens/update-username-page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -17,13 +20,13 @@ class _SettingScreenState extends State<SettingScreen> {
   }
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  TextEditingController feedbackController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      appBar: commonAppBar(action: () {}),
+      appBar: commonAppBar(action: showSide),
+      drawer: const CommonDrawer(),
       body: Container(
         height: double.infinity,
         width: double.infinity,
@@ -89,11 +92,23 @@ class _SettingScreenState extends State<SettingScreen> {
                             height: 10,
                           ),
                           settingRow(
-                              action: () {},
+                              action: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const UpdateUserNameScreen()));
+                              },
                               label: 'Change Username',
                               icon: const Icon(Icons.person)),
                           settingRow(
-                              action: () {},
+                              action: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const UpdatePasswordScreen()));
+                              },
                               label: 'Change Password',
                               icon: const Icon(Icons.lock)),
                           settingRow(

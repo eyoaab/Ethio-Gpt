@@ -1,18 +1,15 @@
 import 'package:device_preview/device_preview.dart';
-import 'package:ethio_gpt/cors/widgets/common-drawer.dart';
-import 'package:ethio_gpt/feutures/chat/presentation/screens/chat-history-page.dart';
-import 'package:ethio_gpt/feutures/feedback/presentation/screens/feedback-screen.dart';
-import 'package:ethio_gpt/feutures/meta-features/setting/setting-screen.dart';
-import 'package:ethio_gpt/feutures/user/presentation/screens/login-page.dart';
-import 'package:ethio_gpt/feutures/user/presentation/screens/splash-screen.dart';
-import 'package:ethio_gpt/feutures/user/presentation/screens/update-password-page.dart';
-import 'package:ethio_gpt/feutures/user/presentation/screens/update-username-page.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:ethio_gpt/feutures/chat/presentation/screens/chat-history-page.dart';
+import 'package:ethio_gpt/feutures/meta-features/setting/bloc/setting_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+
   runApp(
     DevicePreview(
       enabled: true,
@@ -23,7 +20,17 @@ void main() async {
         ],
         path: 'assets/translations',
         fallbackLocale: const Locale('en', 'US'),
-        child: const MyApp(),
+        child: MultiBlocProvider(
+          providers: [
+            BlocProvider<SettingBloc>(
+              create: (context) => SettingBloc(),
+            ),
+            BlocProvider<SettingBloc>(
+              create: (context) => SettingBloc(),
+            ),
+          ],
+          child: const MyApp(),
+        ),
       ),
     ),
   );
@@ -35,7 +42,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Ethio-Gpt',
+      title: 'Ethio-GPT',
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,

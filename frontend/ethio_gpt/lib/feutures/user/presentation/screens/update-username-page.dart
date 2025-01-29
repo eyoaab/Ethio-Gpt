@@ -15,7 +15,7 @@ class _UpdateUserNameScreenState extends State<UpdateUserNameScreen> {
     _scaffoldKey.currentState?.openDrawer();
   }
 
-  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   TextEditingController newUserNameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -23,7 +23,7 @@ class _UpdateUserNameScreenState extends State<UpdateUserNameScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      appBar: commonAppBar(action: () {}),
+      appBar: commonAppBar(action: showSide),
       body: Container(
         height: double.infinity,
         width: double.infinity,

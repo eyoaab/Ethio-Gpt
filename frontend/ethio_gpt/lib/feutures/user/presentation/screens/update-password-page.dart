@@ -29,7 +29,7 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
     return Scaffold(
       key: _scaffoldKey,
       drawer: const CommonDrawer(),
-      appBar: commonAppBar(action: () {}),
+      appBar: commonAppBar(action: showSide),
       body: Container(
         height: double.infinity,
         width: double.infinity,
