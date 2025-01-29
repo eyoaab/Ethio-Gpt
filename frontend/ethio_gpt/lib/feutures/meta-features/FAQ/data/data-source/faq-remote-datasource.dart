@@ -18,7 +18,7 @@ class FaqRemoteDataSourceImpl implements FaqRemoteDataSource {
   Future<List<FaqModel>> getAllFaqs() async {
     try {
       final response = await client.get(
-        Uri.parse('${Url().baseUrl()}/faqs'),
+        Uri.parse('${Url().baseUrl()}/faq'),
         headers: {
           'Content-Type': 'application/json',
         },
@@ -26,7 +26,7 @@ class FaqRemoteDataSourceImpl implements FaqRemoteDataSource {
 
       if (response.statusCode == 200) {
         final List<FaqModel> faqs = [];
-        final List<dynamic> faqList = jsonDecode(response.body);
+        final List<dynamic> faqList = jsonDecode(response.body)['faqs'];
         for (var element in faqList) {
           faqs.add(FaqModel.fromJson(element));
         }
