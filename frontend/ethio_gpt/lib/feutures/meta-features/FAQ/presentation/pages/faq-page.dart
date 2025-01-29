@@ -1,3 +1,4 @@
+import 'package:ethio_gpt/cors/widgets/common-app-bar.dart';
 import 'package:flutter/material.dart';
 
 class FaqScreen extends StatefulWidget {
@@ -7,8 +8,16 @@ class FaqScreen extends StatefulWidget {
 }
 
 class _FaqScreenState extends State<FaqScreen> {
+  void showSide() {
+    _scaffoldKey.currentState?.openDrawer();
+  }
+
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      key: _scaffoldKey,
+      appBar: commonAppBar(action: () {}),
+    );
   }
 }

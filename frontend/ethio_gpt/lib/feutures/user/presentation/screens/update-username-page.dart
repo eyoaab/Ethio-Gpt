@@ -1,3 +1,4 @@
+import 'package:ethio_gpt/cors/widgets/common-app-bar.dart';
 import 'package:ethio_gpt/feutures/user/presentation/widget/common-widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -10,12 +11,19 @@ class UpdateUserNameScreen extends StatefulWidget {
 }
 
 class _UpdateUserNameScreenState extends State<UpdateUserNameScreen> {
+  void showSide() {
+    _scaffoldKey.currentState?.openDrawer();
+  }
+
+  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   TextEditingController newUserNameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
+      appBar: commonAppBar(action: () {}),
       body: Container(
         height: double.infinity,
         width: double.infinity,

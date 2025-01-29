@@ -1,5 +1,6 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:ethio_gpt/cors/widgets/common-drawer.dart';
+import 'package:ethio_gpt/feutures/chat/presentation/screens/chat-history-page.dart';
 import 'package:ethio_gpt/feutures/feedback/presentation/screens/feedback-screen.dart';
 import 'package:ethio_gpt/feutures/meta-features/setting/setting-screen.dart';
 import 'package:ethio_gpt/feutures/user/presentation/screens/login-page.dart';
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget {
       locale: context.locale,
       builder: DevicePreview.appBuilder,
       debugShowCheckedModeBanner: false,
-      home: const FeedbackScreen(),
+      home: const ChatHistoryScreen(),
     );
   }
 }
