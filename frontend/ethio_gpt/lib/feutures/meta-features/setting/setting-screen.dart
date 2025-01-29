@@ -41,143 +41,138 @@ class _SettingScreenState extends State<SettingScreen> {
         ),
         child:
             // whole page
-            Padding(
-          padding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).size.height * 0.05),
-          child: SingleChildScrollView(
-            // profile part
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  height: 80,
-                  width: 80,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(100),
-                    image: const DecorationImage(
-                      image: AssetImage('/images/eyob.png'),
-                      fit: BoxFit.cover,
-                    ),
+            SingleChildScrollView(
+          // profile part
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                height: 80,
+                width: 80,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(100),
+                  image: const DecorationImage(
+                    image: AssetImage('/images/eyob.png'),
+                    fit: BoxFit.cover,
                   ),
                 ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Text('eyob@gmail.com',
-                    textAlign: TextAlign.center,
-                    style:
-                        GoogleFonts.rubik(fontSize: 20, color: Colors.white)),
-                const SizedBox(
-                  height: 5,
-                ),
-                // for the black part
-                Container(
-                    padding: const EdgeInsets.only(top: 20, bottom: 40),
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20),
-                        topRight: Radius.circular(20),
-                      ),
-                      color: Colors.black,
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              Text('eyob@gmail.com',
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.rubik(fontSize: 20, color: Colors.white)),
+              const SizedBox(
+                height: 15,
+              ),
+              // for the black part
+              Container(
+                  padding: const EdgeInsets.only(top: 30, bottom: 40),
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20),
                     ),
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 15),
-                            child: Text('Account Settings',
-                                textAlign: TextAlign.left,
-                                style: GoogleFonts.rubik(
-                                    fontSize: 18, color: primaryColor)),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          settingRow(
-                              action: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const UpdateUserNameScreen()));
-                              },
-                              label: 'Change Username',
-                              icon: const Icon(Icons.person)),
-                          settingRow(
-                              action: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const UpdatePasswordScreen()));
-                              },
-                              label: 'Change Password',
-                              icon: const Icon(Icons.lock)),
-                          settingRow(
-                              action: () {},
-                              label: 'Delete Account',
-                              icon: const Icon(Icons.delete)),
-                          settingRow(
-                              action: () {},
-                              label: 'Logout',
-                              icon: const Icon(Icons.logout_sharp)),
-                          const SizedBox(
-                            height: 15,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 15),
-                            child: Text('About',
-                                textAlign: TextAlign.left,
-                                style: GoogleFonts.rubik(
-                                    fontSize: 18, color: primaryColor)),
-                          ),
-                          const SizedBox(
-                            height: 15,
-                          ),
-                          settingRow(
-                              action: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const AboutEthioGptScreen()));
-                              },
-                              label: 'About Ethio-Gpt',
-                              icon: const Icon(Icons.info)),
-                          settingRow(
-                              action: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const AboutDevelopersScreen()));
-                              },
-                              label: 'About Developer',
-                              icon: const Icon(Icons.info)),
-                          const SizedBox(
-                            height: 15,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 15),
-                            child: Text('About',
-                                textAlign: TextAlign.left,
-                                style: GoogleFonts.rubik(
-                                    fontSize: 18, color: primaryColor)),
-                          ),
-                          settingRow(
-                              action: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const PrivacyAndPolicyScreen()));
-                              },
-                              label: 'Privacy Policy',
-                              icon: const Icon(Icons.privacy_tip)),
-                        ]))
-              ],
-            ),
+                    color: Colors.black,
+                  ),
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 15),
+                          child: Text('Account Settings',
+                              textAlign: TextAlign.left,
+                              style: GoogleFonts.rubik(
+                                  fontSize: 18, color: primaryColor)),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        settingRow(
+                            action: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const UpdateUserNameScreen()));
+                            },
+                            label: 'Change Username',
+                            icon: const Icon(Icons.person)),
+                        settingRow(
+                            action: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const UpdatePasswordScreen()));
+                            },
+                            label: 'Change Password',
+                            icon: const Icon(Icons.lock)),
+                        settingRow(
+                            action: () {},
+                            label: 'Delete Account',
+                            icon: const Icon(Icons.delete)),
+                        settingRow(
+                            action: () {},
+                            label: 'Logout',
+                            icon: const Icon(Icons.logout_sharp)),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 15),
+                          child: Text('About',
+                              textAlign: TextAlign.left,
+                              style: GoogleFonts.rubik(
+                                  fontSize: 18, color: primaryColor)),
+                        ),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        settingRow(
+                            action: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const AboutEthioGptScreen()));
+                            },
+                            label: 'About Ethio-Gpt',
+                            icon: const Icon(Icons.info)),
+                        settingRow(
+                            action: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const AboutDevelopersScreen()));
+                            },
+                            label: 'About Developer',
+                            icon: const Icon(Icons.code)),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 15),
+                          child: Text('About',
+                              textAlign: TextAlign.left,
+                              style: GoogleFonts.rubik(
+                                  fontSize: 18, color: primaryColor)),
+                        ),
+                        settingRow(
+                            action: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const PrivacyAndPolicyScreen()));
+                            },
+                            label: 'Privacy Policy',
+                            icon: const Icon(Icons.privacy_tip)),
+                      ]))
+            ],
           ),
         ),
       ),
