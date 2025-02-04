@@ -1,6 +1,16 @@
-part of 'theme_bloc.dart';
+import 'package:flutter/material.dart';
+import 'package:equatable/equatable.dart';
 
-@immutable
-sealed class ThemeState {}
+/// State representing the current theme and mode (light or dark).
+class ThemeState extends Equatable {
+  final ThemeData themeData;
+  final bool isDarkMode;
 
-final class ThemeInitial extends ThemeState {}
+  const ThemeState({
+    required this.themeData,
+    required this.isDarkMode,
+  });
+
+  @override
+  List<Object?> get props => [themeData, isDarkMode];
+}

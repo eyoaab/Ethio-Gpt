@@ -1,8 +1,13 @@
+import 'package:ethio_gpt/cors/theme/bloc/theme_bloc.dart';
+import 'package:ethio_gpt/cors/theme/bloc/theme_event.dart';
+import 'package:ethio_gpt/cors/theme/bloc/theme_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 AppBar commonAppBar({
   required VoidCallback action,
+  required BuildContext context,
 }) =>
     AppBar(
       backgroundColor: Colors.transparent,
@@ -27,8 +32,20 @@ AppBar commonAppBar({
         ),
       ),
       centerTitle: true,
-      actions: const [
-        Icon(Icons.light_mode, color: Colors.white),
-        SizedBox(width: 10),
+      actions: [
+        IconButton(
+          icon: BlocBuilder<ThemeBloc, ThemeState>(
+            builder: (context, state) {
+              return Icon(
+                state.isDarkMode ? Icons.nightlight_round : Icons.wb_sunny,
+                color: state.isDarkMode ? Colors.white : Colors.black,
+              );
+            },
+          ),
+          onPressed: () {
+            context.read<ThemeBloc>().add(ToggleThemeEvent());
+          },
+        ),
+        const SizedBox(width: 10),
       ],
     );

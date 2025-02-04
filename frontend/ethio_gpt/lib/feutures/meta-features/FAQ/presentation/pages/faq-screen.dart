@@ -27,7 +27,7 @@ class _FaqScreenState extends State<FaqScreen> {
     return Scaffold(
         key: _scaffoldKey,
         drawer: const CommonDrawer(),
-        appBar: commonAppBar(action: showSide),
+        appBar: commonAppBar(action: showSide, context: context),
         body: Container(
           height: double.infinity,
           width: double.infinity,

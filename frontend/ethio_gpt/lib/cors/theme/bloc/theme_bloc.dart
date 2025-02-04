@@ -1,11 +1,28 @@
-import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
+import 'package:ethio_gpt/cors/theme/theme.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-part 'theme_event.dart';
-part 'theme_state.dart';
+import 'theme_event.dart';
+import 'theme_state.dart';
 
+/// Bloc to handle theme switching between light and dark modes.
 class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
-  ThemeBloc() : super(ThemeInitial()) {
-    on<ThemeEvent>((event, emit) {});
+  ThemeBloc()
+      : super(
+          ThemeState(
+            themeData: EthioGptTheme.lightTheme,
+            isDarkMode: false,
+          ),
+        ) {
+    on<ToggleThemeEvent>(_onToggleTheme);
+  }
+
+  void _onToggleTheme(ToggleThemeEvent event, Emitter<ThemeState> emit) {
+    final isCurrentlyDark = state.isDarkMode;
+
+    emit(ThemeState(
+      themeData:
+          isCurrentlyDark ? EthioGptTheme.lightTheme : EthioGptTheme.darkTheme,
+      isDarkMode: !isCurrentlyDark,
+    ));
   }
 }

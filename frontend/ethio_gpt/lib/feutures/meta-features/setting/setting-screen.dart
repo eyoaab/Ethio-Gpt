@@ -28,7 +28,7 @@ class _SettingScreenState extends State<SettingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      appBar: commonAppBar(action: showSide),
+      appBar: commonAppBar(action: showSide, context: context),
       drawer: const CommonDrawer(),
       body: Container(
         height: double.infinity,
