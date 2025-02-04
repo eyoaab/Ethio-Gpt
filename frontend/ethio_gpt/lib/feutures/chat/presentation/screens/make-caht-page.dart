@@ -31,6 +31,8 @@ class _ChatScreenState extends State<ChatScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final bool isDarkMod =
+        Theme.of(context).scaffoldBackgroundColor == Colors.black;
     return SafeArea(
       child: Scaffold(
         key: _scaffoldKey,
@@ -53,6 +55,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 child: Padding(
                   padding: const EdgeInsets.all(0),
                   child: searchArea(
+                    isDarkMod: isDarkMod,
                     controller: _messageController,
                     action: _sendMessage,
                   ),

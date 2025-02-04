@@ -2,12 +2,12 @@ import 'package:ethio_gpt/cors/constant/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-Widget commomSocialIcon(String label) {
+Widget commomSocialIcon(String label, bool isDarkMod) {
   return Container(
     height: 70,
     width: 70,
     decoration: BoxDecoration(
-      color: lightGray,
+      color: isDarkMod ? darkGray : lightGray,
       borderRadius: BorderRadius.circular(15),
       boxShadow: const [
         BoxShadow(
@@ -23,7 +23,7 @@ Widget commomSocialIcon(String label) {
         style: GoogleFonts.inter(
           fontSize: 22,
           fontWeight: FontWeight.bold,
-          color: Colors.white,
+          color: isDarkMod ? Colors.white : Colors.black,
         ),
       ),
     ),
@@ -31,15 +31,15 @@ Widget commomSocialIcon(String label) {
 }
 
 // Reusable Input Field
-Widget commonInputField({
-  required TextEditingController controller,
-  required String hintText,
-  required IconData icon,
-}) {
+Widget commonInputField(
+    {required TextEditingController controller,
+    required String hintText,
+    required IconData icon,
+    required bool isDarkMod}) {
   return Container(
     padding: const EdgeInsets.symmetric(horizontal: 10),
     decoration: BoxDecoration(
-      color: lightGray,
+      color: isDarkMod ? darkGray : lightGray,
       borderRadius: BorderRadius.circular(12),
       boxShadow: const [
         BoxShadow(
@@ -51,7 +51,7 @@ Widget commonInputField({
     ),
     child: TextField(
       controller: controller,
-      style: GoogleFonts.inter(color: Colors.white),
+      style: GoogleFonts.inter(color: isDarkMod ? Colors.white : Colors.black),
       decoration: InputDecoration(
         prefixIcon: Icon(icon, color: primaryColor),
         hintText: hintText,

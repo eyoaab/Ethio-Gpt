@@ -17,6 +17,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final bool isDarkMod =
+        Theme.of(context).scaffoldBackgroundColor == Colors.black;
     return Scaffold(
       body: Container(
         height: double.infinity,
@@ -47,7 +49,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   'Ethio-Gpt',
                   style: GoogleFonts.inter(
                     fontSize: 52,
-                    color: Colors.white,
+                    color: isDarkMod ? Colors.white : Colors.black,
                     shadows: [
                       const Shadow(
                         blurRadius: 4.0,
@@ -68,9 +70,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    commomSocialIcon('G'), // Google Icon
-                    commomSocialIcon('F'), // Facebook Icon
-                    commomSocialIcon('A'), // Apple Icon
+                    commomSocialIcon('G', isDarkMod), // Google Icon
+                    commomSocialIcon('F', isDarkMod), // Facebook Icon
+                    commomSocialIcon('A', isDarkMod), // Apple Icon
                   ],
                 ),
                 const SizedBox(height: 20),
@@ -104,6 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                 // Email Input
                 commonInputField(
+                  isDarkMod: isDarkMod,
                   controller: emailController,
                   hintText: 'Enter Your Email',
                   icon: Icons.person,
@@ -112,6 +115,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                 // Password Input
                 commonInputField(
+                  isDarkMod: isDarkMod,
                   controller: passwordController,
                   hintText: 'Enter Your Password',
                   icon: Icons.lock,
@@ -147,7 +151,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     Text(
                       'Don\'t have an account?',
-                      style: GoogleFonts.inter(color: Colors.white),
+                      style: GoogleFonts.inter(
+                          color: Theme.of(context).scaffoldBackgroundColor ==
+                                  Colors.black
+                              ? Colors.white
+                              : Colors.black),
                     ),
                     TextButton(
                       onPressed: () {

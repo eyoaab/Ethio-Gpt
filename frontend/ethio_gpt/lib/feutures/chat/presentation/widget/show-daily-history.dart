@@ -7,12 +7,13 @@ import 'package:ethio_gpt/feutures/chat/presentation/widget/chat-row.dart';
 class ShowDailyContainer extends StatefulWidget {
   final String title;
   final List<ChatRoomEntity> listChatRoomEntity;
+  final bool isDarkMod;
 
-  const ShowDailyContainer({
-    super.key,
-    required this.title,
-    required this.listChatRoomEntity,
-  });
+  const ShowDailyContainer(
+      {super.key,
+      required this.title,
+      required this.listChatRoomEntity,
+      required this.isDarkMod});
 
   @override
   _ShowDailyContainerState createState() => _ShowDailyContainerState();
@@ -37,7 +38,9 @@ class _ShowDailyContainerState extends State<ShowDailyContainer> {
               children: [
                 Text(
                   widget.title,
-                  style: GoogleFonts.inter(fontSize: 14, color: Colors.white),
+                  style: GoogleFonts.inter(
+                      fontSize: 14,
+                      color: widget.isDarkMod ? Colors.white : Colors.black),
                 ),
                 if (widget.listChatRoomEntity.length > 2)
                   TextButton(

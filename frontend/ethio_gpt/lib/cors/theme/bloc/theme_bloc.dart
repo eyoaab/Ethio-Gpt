@@ -9,8 +9,8 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
   ThemeBloc()
       : super(
           ThemeState(
-            themeData: EthioGptTheme.lightTheme,
-            isDarkMode: false,
+            themeData: EthioGptTheme.darkTheme,
+            isDarkMode: true,
           ),
         ) {
     on<ToggleThemeEvent>(_onToggleTheme);

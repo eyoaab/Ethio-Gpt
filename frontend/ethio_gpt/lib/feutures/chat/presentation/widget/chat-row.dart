@@ -10,15 +10,22 @@ Container chatHistoryRow(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         margin: const EdgeInsets.symmetric(vertical: 5),
         decoration: BoxDecoration(
-            color: darkGray, borderRadius: BorderRadius.circular(10)),
+            color: Theme.of(context).scaffoldBackgroundColor == Colors.black
+                ? darkGray
+                : Colors.grey,
+            borderRadius: BorderRadius.circular(10)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Icon(Icons.message, color: Color(0xffC7C7C7)),
-                const SizedBox(width: 5),
+                Icon(
+                  Icons.message,
+                  color: primaryColor,
+                  size: 25,
+                ),
+                const SizedBox(width: 8),
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.65,
                   child: SingleChildScrollView(

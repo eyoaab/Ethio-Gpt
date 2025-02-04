@@ -18,6 +18,8 @@ class SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final bool isDarkMod =
+        Theme.of(context).scaffoldBackgroundColor == Colors.black;
     return Scaffold(
       body: Container(
         height: double.infinity,
@@ -48,7 +50,10 @@ class SignUpScreenState extends State<SignUpScreen> {
                   'Ethio-Gpt',
                   style: GoogleFonts.inter(
                     fontSize: 52,
-                    color: Colors.white,
+                    color: Theme.of(context).scaffoldBackgroundColor ==
+                            Colors.black
+                        ? Colors.white
+                        : Colors.black,
                     shadows: [
                       const Shadow(
                         blurRadius: 4.0,
@@ -68,9 +73,9 @@ class SignUpScreenState extends State<SignUpScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    commomSocialIcon('G'), // Google Icon
-                    commomSocialIcon('F'), // Facebook Icon
-                    commomSocialIcon('A'), // Apple Icon
+                    commomSocialIcon('G', isDarkMod), // Google Icon
+                    commomSocialIcon('F', isDarkMod), // Facebook Icon
+                    commomSocialIcon('A', isDarkMod), // Apple Icon
                   ],
                 ),
                 const SizedBox(height: 20),
@@ -104,6 +109,7 @@ class SignUpScreenState extends State<SignUpScreen> {
 
                 // Email Input
                 commonInputField(
+                  isDarkMod: isDarkMod,
                   controller: emailController,
                   hintText: 'Enter Your Email',
                   icon: Icons.person,
@@ -112,6 +118,7 @@ class SignUpScreenState extends State<SignUpScreen> {
 
                 // Password Input
                 commonInputField(
+                  isDarkMod: isDarkMod,
                   controller: passwordController,
                   hintText: 'Enter Your Password',
                   icon: Icons.lock,
@@ -120,6 +127,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                 // Confirm input
                 // Password Input
                 commonInputField(
+                  isDarkMod: isDarkMod,
                   controller: confirmController,
                   hintText: 'Confirm Your Password',
                   icon: Icons.lock,
@@ -155,7 +163,11 @@ class SignUpScreenState extends State<SignUpScreen> {
                   children: [
                     Text(
                       'Already Have Account?',
-                      style: GoogleFonts.inter(color: Colors.white),
+                      style: GoogleFonts.inter(
+                          color: Theme.of(context).scaffoldBackgroundColor ==
+                                  Colors.black
+                              ? Colors.white
+                              : Colors.black),
                     ),
                     TextButton(
                       onPressed: () {

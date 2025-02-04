@@ -26,6 +26,8 @@ class _SettingScreenState extends State<SettingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final bool isDarkMod =
+        Theme.of(context).scaffoldBackgroundColor == Colors.black;
     return Scaffold(
       key: _scaffoldKey,
       appBar: commonAppBar(action: showSide, context: context),
@@ -36,9 +38,7 @@ class _SettingScreenState extends State<SettingScreen> {
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage(
-                Theme.of(context).scaffoldBackgroundColor == Colors.black
-                    ? '/images/backgroun.png'
-                    : '/images/whitebg.png'),
+                isDarkMod ? '/images/backgroun.png' : '/images/whitebg.png'),
             fit: BoxFit.cover,
           ),
         ),
@@ -66,19 +66,27 @@ class _SettingScreenState extends State<SettingScreen> {
               ),
               Text('eyob@gmail.com',
                   textAlign: TextAlign.center,
-                  style: GoogleFonts.rubik(fontSize: 20, color: Colors.white)),
+                  style: GoogleFonts.rubik(
+                      fontSize: 20,
+                      color: Theme.of(context).scaffoldBackgroundColor ==
+                              Colors.black
+                          ? Colors.white
+                          : Colors.black)),
               const SizedBox(
                 height: 15,
               ),
               // for the black part
               Container(
                   padding: const EdgeInsets.only(top: 30, bottom: 40),
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.only(
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(20),
                       topRight: Radius.circular(20),
                     ),
-                    color: Colors.black,
+                    color: Theme.of(context).scaffoldBackgroundColor !=
+                            Colors.black
+                        ? Colors.white
+                        : Colors.black,
                   ),
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -94,6 +102,7 @@ class _SettingScreenState extends State<SettingScreen> {
                           height: 10,
                         ),
                         settingRow(
+                            isDarkMod: isDarkMod,
                             action: () {
                               Navigator.push(
                                   context,
@@ -104,6 +113,7 @@ class _SettingScreenState extends State<SettingScreen> {
                             label: 'Change Username',
                             icon: const Icon(Icons.person)),
                         settingRow(
+                            isDarkMod: isDarkMod,
                             action: () {
                               Navigator.push(
                                   context,
@@ -114,10 +124,12 @@ class _SettingScreenState extends State<SettingScreen> {
                             label: 'Change Password',
                             icon: const Icon(Icons.lock)),
                         settingRow(
+                            isDarkMod: isDarkMod,
                             action: () {},
                             label: 'Delete Account',
                             icon: const Icon(Icons.delete)),
                         settingRow(
+                            isDarkMod: isDarkMod,
                             action: () {},
                             label: 'Logout',
                             icon: const Icon(Icons.logout_sharp)),
@@ -135,6 +147,7 @@ class _SettingScreenState extends State<SettingScreen> {
                           height: 15,
                         ),
                         settingRow(
+                            isDarkMod: isDarkMod,
                             action: () {
                               Navigator.push(
                                   context,
@@ -145,6 +158,7 @@ class _SettingScreenState extends State<SettingScreen> {
                             label: 'About Ethio-Gpt',
                             icon: const Icon(Icons.info)),
                         settingRow(
+                            isDarkMod: isDarkMod,
                             action: () {
                               Navigator.push(
                                   context,
@@ -165,6 +179,7 @@ class _SettingScreenState extends State<SettingScreen> {
                                   fontSize: 18, color: primaryColor)),
                         ),
                         settingRow(
+                            isDarkMod: isDarkMod,
                             action: () {
                               Navigator.push(
                                   context,

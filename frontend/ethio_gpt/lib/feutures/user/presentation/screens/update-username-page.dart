@@ -22,6 +22,8 @@ class _UpdateUserNameScreenState extends State<UpdateUserNameScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final bool isDarkMod =
+        Theme.of(context).scaffoldBackgroundColor == Colors.black;
     return Scaffold(
       key: _scaffoldKey,
       appBar: commonAppBar(action: showSide, context: context),
@@ -50,7 +52,10 @@ class _UpdateUserNameScreenState extends State<UpdateUserNameScreen> {
                 'Update UserName',
                 style: GoogleFonts.inter(
                   fontSize: 24,
-                  color: Colors.white,
+                  color:
+                      Theme.of(context).scaffoldBackgroundColor == Colors.black
+                          ? Colors.white
+                          : Colors.black,
                   shadows: [
                     const Shadow(
                       blurRadius: 4.0,
@@ -64,6 +69,7 @@ class _UpdateUserNameScreenState extends State<UpdateUserNameScreen> {
 
               // Old Password Input
               commonInputField(
+                isDarkMod: isDarkMod,
                 controller: newUserNameController,
                 hintText: 'Enter Your New Email',
                 icon: Icons.person,
@@ -72,6 +78,7 @@ class _UpdateUserNameScreenState extends State<UpdateUserNameScreen> {
 
               // New Password Input
               commonInputField(
+                isDarkMod: isDarkMod,
                 controller: passwordController,
                 hintText: 'Enter Your Password',
                 icon: Icons.lock,

@@ -26,6 +26,8 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final bool isDarkMod =
+        Theme.of(context).scaffoldBackgroundColor == Colors.black;
     return Scaffold(
       key: _scaffoldKey,
       drawer: const CommonDrawer(),
@@ -54,7 +56,10 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
                 'Update Password',
                 style: GoogleFonts.inter(
                   fontSize: 24,
-                  color: Colors.white,
+                  color:
+                      Theme.of(context).scaffoldBackgroundColor == Colors.black
+                          ? Colors.white
+                          : Colors.black,
                   shadows: [
                     const Shadow(
                       blurRadius: 4.0,
@@ -68,6 +73,7 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
 
               // Old Password Input
               commonInputField(
+                isDarkMod: isDarkMod,
                 controller: oldnewPasswordController,
                 hintText: 'Enter Your Email',
                 icon: Icons.person,
@@ -76,6 +82,7 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
 
               // New Password Input
               commonInputField(
+                isDarkMod: isDarkMod,
                 controller: newpasswordController,
                 hintText: 'Enter Your Password',
                 icon: Icons.lock,
@@ -84,6 +91,7 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
               // Confirm Password Input
 
               commonInputField(
+                isDarkMod: isDarkMod,
                 controller: confirmpasswordController,
                 hintText: 'Confirm Your Password',
                 icon: Icons.lock,

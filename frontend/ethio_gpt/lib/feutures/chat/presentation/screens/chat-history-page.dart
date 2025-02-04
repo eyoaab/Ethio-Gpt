@@ -22,6 +22,8 @@ class _ChatHistoryScreenState extends State<ChatHistoryScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final bool isDarkMod =
+        Theme.of(context).scaffoldBackgroundColor == Colors.black;
     return Scaffold(
       key: _scaffoldKey,
       appBar: commonAppBar(action: showSide, context: context),
@@ -45,18 +47,28 @@ class _ChatHistoryScreenState extends State<ChatHistoryScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Text(
-                  'Chat History',
-                  textAlign: TextAlign.start,
-                  style: GoogleFonts.inter(fontSize: 18, color: Colors.white),
-                ),
+                Text('Chat History',
+                    textAlign: TextAlign.start,
+                    style: GoogleFonts.inter(
+                      fontSize: 18,
+                      color: Theme.of(context).scaffoldBackgroundColor ==
+                              Colors.black
+                          ? Colors.white
+                          : Colors.black,
+                    )),
                 const SizedBox(height: 10),
                 ShowDailyContainer(
-                    title: days[0], listChatRoomEntity: dummylistChatRoom),
+                    isDarkMod: isDarkMod,
+                    title: days[0],
+                    listChatRoomEntity: dummylistChatRoom),
                 ShowDailyContainer(
-                    title: days[1], listChatRoomEntity: dummylistChatRoom),
+                    isDarkMod: isDarkMod,
+                    title: days[1],
+                    listChatRoomEntity: dummylistChatRoom),
                 ShowDailyContainer(
-                    title: days[2], listChatRoomEntity: dummylistChatRoom),
+                    isDarkMod: isDarkMod,
+                    title: days[2],
+                    listChatRoomEntity: dummylistChatRoom),
               ],
             ),
           ),
