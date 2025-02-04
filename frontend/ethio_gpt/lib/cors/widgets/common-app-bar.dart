@@ -13,22 +13,30 @@ AppBar commonAppBar({
       backgroundColor: Colors.transparent,
       elevation: 0,
       flexibleSpace: Container(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('/images/backgroun.png'),
+            image: AssetImage(
+                Theme.of(context).scaffoldBackgroundColor == Colors.black
+                    ? '/images/backgroun.png'
+                    : '/images/whitebg.png'),
             fit: BoxFit.cover,
           ),
         ),
       ),
       leading: IconButton(
         onPressed: action,
-        icon: const Icon(Icons.menu, color: Colors.white),
+        icon: Icon(Icons.menu,
+            color: Theme.of(context).scaffoldBackgroundColor == Colors.black
+                ? Colors.white
+                : Colors.black),
       ),
       title: Text(
         'Ethio-Gpt',
         style: GoogleFonts.inter(
           fontSize: 20,
-          color: Colors.white,
+          color: Theme.of(context).scaffoldBackgroundColor == Colors.black
+              ? Colors.white
+              : Colors.black,
         ),
       ),
       centerTitle: true,

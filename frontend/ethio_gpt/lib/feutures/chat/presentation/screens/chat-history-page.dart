@@ -29,9 +29,12 @@ class _ChatHistoryScreenState extends State<ChatHistoryScreen> {
       body: Container(
         height: double.infinity,
         width: double.infinity,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/backgroun.png'),
+            image: AssetImage(
+                Theme.of(context).scaffoldBackgroundColor == Colors.black
+                    ? '/images/backgroun.png'
+                    : '/images/whitebg.png'),
             fit: BoxFit.cover,
           ),
         ),

@@ -5,11 +5,15 @@ import 'package:google_fonts/google_fonts.dart';
 // Reusable feedback form
 Widget feedbackForm({
   required TextEditingController controller,
+  required BuildContext context,
 }) {
   return Container(
     padding: const EdgeInsets.symmetric(horizontal: 10),
     decoration: BoxDecoration(
-      color: lightGray,
+      color: Theme.of(context).scaffoldBackgroundColor == Colors.black
+          ? darkGray
+          : lightGray,
+      // color: lightGray,
       borderRadius: BorderRadius.circular(12),
       boxShadow: const [
         BoxShadow(
@@ -23,7 +27,11 @@ Widget feedbackForm({
       controller: controller,
       maxLines: 15, // Allows multiple lines of text
 
-      style: GoogleFonts.inter(color: Colors.white),
+      style: GoogleFonts.inter(
+        color: Theme.of(context).scaffoldBackgroundColor == Colors.black
+            ? Colors.white
+            : Colors.black,
+      ),
       decoration: InputDecoration(
         hintText: 'add your  feedback\'s here.......  ',
         hintStyle: GoogleFonts.inter(

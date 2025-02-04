@@ -29,9 +29,12 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
       body: Container(
         height: double.infinity,
         width: double.infinity,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/backgroun.png'),
+            image: AssetImage(
+                Theme.of(context).scaffoldBackgroundColor == Colors.black
+                    ? '/images/backgroun.png'
+                    : '/images/whitebg.png'),
             fit: BoxFit.cover,
           ),
         ),
@@ -56,7 +59,10 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                     'How was your experience',
                     style: GoogleFonts.inter(
                       fontSize: 24,
-                      color: Colors.white,
+                      color: Theme.of(context).scaffoldBackgroundColor ==
+                              Colors.black
+                          ? Colors.white
+                          : Colors.black,
                       shadows: [
                         const Shadow(
                           blurRadius: 4.0,
@@ -72,7 +78,10 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                     textAlign: TextAlign.left,
                     style: GoogleFonts.inter(
                       fontSize: 16,
-                      color: Colors.white,
+                      color: Theme.of(context).scaffoldBackgroundColor ==
+                              Colors.black
+                          ? Colors.white
+                          : Colors.black,
                       shadows: [
                         const Shadow(
                           blurRadius: 4.0,
@@ -82,7 +91,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                       ],
                     )),
                 const SizedBox(height: 20),
-                feedbackForm(controller: feedbackController),
+                feedbackForm(controller: feedbackController, context: context),
                 // submit Button
                 const SizedBox(height: 30),
                 Row(

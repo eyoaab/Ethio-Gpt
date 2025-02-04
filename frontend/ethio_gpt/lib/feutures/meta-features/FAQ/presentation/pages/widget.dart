@@ -5,11 +5,9 @@ import 'package:google_fonts/google_fonts.dart';
 
 class FaqCard extends StatefulWidget {
   final FaqEntity faq;
+  final bool isDarkMode;
 
-  const FaqCard({
-    super.key,
-    required this.faq,
-  });
+  const FaqCard({super.key, required this.faq, required this.isDarkMode});
 
   @override
   _FaqCardState createState() => _FaqCardState();
@@ -45,7 +43,8 @@ class _FaqCardState extends State<FaqCard> with SingleTickerProviderStateMixin {
     return Text(
       widget.faq.question,
       textAlign: TextAlign.center,
-      style: GoogleFonts.inter(fontSize: 14, color: Colors.white),
+      style: GoogleFonts.inter(
+          fontSize: 14, color: widget.isDarkMode ? Colors.white : Colors.black),
     );
   }
 
@@ -63,7 +62,9 @@ class _FaqCardState extends State<FaqCard> with SingleTickerProviderStateMixin {
                 ? Text(
                     widget.faq.answer,
                     textAlign: TextAlign.center,
-                    style: GoogleFonts.inter(fontSize: 13, color: Colors.white),
+                    style: GoogleFonts.inter(
+                        fontSize: 13,
+                        color: widget.isDarkMode ? Colors.white : Colors.black),
                     maxLines: isExpanded ? null : 0,
                     overflow: TextOverflow.fade,
                   )
@@ -99,7 +100,9 @@ class _FaqCardState extends State<FaqCard> with SingleTickerProviderStateMixin {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
         ),
-        color: lightGray,
+        color: Theme.of(context).scaffoldBackgroundColor == Colors.black
+            ? darkGray
+            : lightGray,
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(

@@ -40,7 +40,9 @@ class CommonDrawer extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           decoration: BoxDecoration(
-            color: darkGray,
+            color: Theme.of(context).scaffoldBackgroundColor == Colors.black
+                ? darkGray
+                : lightGray,
             borderRadius: const BorderRadius.only(
               topRight: Radius.circular(20),
               bottomRight: Radius.circular(20),
@@ -70,7 +72,10 @@ class CommonDrawer extends StatelessWidget {
                       'Ethio-Gpt',
                       style: GoogleFonts.inter(
                         fontSize: 22,
-                        color: Colors.white,
+                        color: Theme.of(context).scaffoldBackgroundColor ==
+                                Colors.black
+                            ? Colors.white
+                            : Colors.black,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -78,7 +83,12 @@ class CommonDrawer extends StatelessWidget {
                 ),
               ),
 
-              const Divider(color: Colors.white30, thickness: 0.5),
+              Divider(
+                  color:
+                      Theme.of(context).scaffoldBackgroundColor == Colors.black
+                          ? Colors.white30
+                          : Colors.black38,
+                  thickness: 0.5),
 
               BlocBuilder<SettingBloc, SettingState>(
                 builder: (context, state) {
@@ -89,6 +99,7 @@ class CommonDrawer extends StatelessWidget {
                         padding: EdgeInsets.zero,
                         children: [
                           commonListTile(
+                            context: context,
                             title: 'Home',
                             icon: Icons.home,
                             onTap: () =>
@@ -96,6 +107,7 @@ class CommonDrawer extends StatelessWidget {
                             isSelected: state.index == 0,
                           ),
                           commonListTile(
+                            context: context,
                             title: 'Feedback',
                             icon: Icons.feedback_outlined,
                             onTap: () =>
@@ -103,6 +115,7 @@ class CommonDrawer extends StatelessWidget {
                             isSelected: state.index == 1,
                           ),
                           commonListTile(
+                            context: context,
                             title: 'Chat History',
                             icon: Icons.chat_outlined,
                             onTap: () => _onTapItem(
@@ -110,6 +123,7 @@ class CommonDrawer extends StatelessWidget {
                             isSelected: state.index == 2,
                           ),
                           commonListTile(
+                            context: context,
                             title: 'Rate Our App',
                             icon: Icons.rate_review_outlined,
                             onTap: () =>
@@ -117,6 +131,7 @@ class CommonDrawer extends StatelessWidget {
                             isSelected: state.index == 3,
                           ),
                           commonListTile(
+                            context: context,
                             title: 'About Developer',
                             icon: Icons.code,
                             onTap: () => _onTapItem(
@@ -124,6 +139,7 @@ class CommonDrawer extends StatelessWidget {
                             isSelected: state.index == 4,
                           ),
                           commonListTile(
+                            context: context,
                             title: 'FAQ Page',
                             icon: Icons.question_answer_outlined,
                             onTap: () =>
@@ -131,6 +147,7 @@ class CommonDrawer extends StatelessWidget {
                             isSelected: state.index == 5,
                           ),
                           commonListTile(
+                            context: context,
                             title: 'Settings',
                             icon: Icons.settings,
                             onTap: () =>
@@ -146,7 +163,12 @@ class CommonDrawer extends StatelessWidget {
                 },
               ),
 
-              const Divider(color: Colors.white30, thickness: 0.5),
+              Divider(
+                  color:
+                      Theme.of(context).scaffoldBackgroundColor == Colors.black
+                          ? Colors.white30
+                          : Colors.black38,
+                  thickness: 0.5),
 
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16),

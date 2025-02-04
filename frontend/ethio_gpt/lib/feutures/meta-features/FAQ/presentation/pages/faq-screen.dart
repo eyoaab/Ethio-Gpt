@@ -24,6 +24,8 @@ class _FaqScreenState extends State<FaqScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final bool isDarkMode =
+        Theme.of(context).scaffoldBackgroundColor == Colors.black;
     return Scaffold(
         key: _scaffoldKey,
         drawer: const CommonDrawer(),
@@ -31,9 +33,12 @@ class _FaqScreenState extends State<FaqScreen> {
         body: Container(
           height: double.infinity,
           width: double.infinity,
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('assets/images/backgroun.png'),
+              image: AssetImage(
+                  Theme.of(context).scaffoldBackgroundColor == Colors.black
+                      ? '/images/backgroun.png'
+                      : '/images/whitebg.png'),
               fit: BoxFit.cover,
             ),
           ),
@@ -44,12 +49,21 @@ class _FaqScreenState extends State<FaqScreen> {
               children: [
                 // Search Field
                 TextField(
-                  style: GoogleFonts.inter(color: Colors.white),
+                  style: GoogleFonts.inter(
+                      color: Theme.of(context).scaffoldBackgroundColor ==
+                              Colors.black
+                          ? Colors.white
+                          : Colors.black),
                   decoration: InputDecoration(
                     hintText: 'Search FAQs',
-                    hintStyle: GoogleFonts.inter(color: Colors.grey),
+                    hintStyle: GoogleFonts.inter(
+                      color: Colors.grey,
+                    ),
                     suffixIcon: Icon(Icons.search, color: primaryColor),
-                    fillColor: lightGray,
+                    fillColor: Theme.of(context).scaffoldBackgroundColor ==
+                            Colors.black
+                        ? darkGray
+                        : lightGray,
                     filled: true,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8),
@@ -84,7 +98,8 @@ class _FaqScreenState extends State<FaqScreen> {
                       return ListView.builder(
                         itemCount: filteredFaqs.length,
                         itemBuilder: (context, index) {
-                          return FaqCard(faq: filteredFaqs[index]);
+                          return FaqCard(
+                              faq: filteredFaqs[index], isDarkMode: isDarkMode);
                         },
                       );
                     },

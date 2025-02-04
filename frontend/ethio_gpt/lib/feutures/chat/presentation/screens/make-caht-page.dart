@@ -37,9 +37,12 @@ class _ChatScreenState extends State<ChatScreen> {
         appBar: commonAppBar(action: showSide, context: context),
         drawer: const CommonDrawer(),
         body: Container(
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('assets/images/backgroun.png'),
+              image: AssetImage(
+                  Theme.of(context).scaffoldBackgroundColor == Colors.black
+                      ? '/images/backgroun.png'
+                      : '/images/whitebg.png'),
               fit: BoxFit.cover,
             ),
           ),

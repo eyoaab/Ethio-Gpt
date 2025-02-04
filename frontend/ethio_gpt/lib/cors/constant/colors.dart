@@ -2,7 +2,7 @@ import 'dart:ui';
 
 Color primaryColor = const Color(0xFF9643FF);
 Color abAb = const Color(0xffABABAB);
-Color lightGray = const Color(0xff434343);
+Color lightGray = const Color(0xffE4E4E4);
 Color darkBg = const Color(0xff1F1F1F);
 Color darkGray = const Color(0xff434343);
 Color inputField = const Color(0xff202020);
