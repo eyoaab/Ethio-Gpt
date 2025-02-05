@@ -1,8 +1,6 @@
 import 'dart:convert';
-import 'dart:developer';
 import 'package:ethio_gpt/cors/error/exception.dart';
 import 'package:ethio_gpt/cors/urls/urls.dart';
-import 'package:ethio_gpt/cors/utility-functions/token-validation.dart';
 import 'package:ethio_gpt/feutures/user/data/model/user-model.dart';
 import 'package:http/http.dart' as http;
 
