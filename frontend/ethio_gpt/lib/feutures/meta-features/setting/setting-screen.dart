@@ -1,6 +1,7 @@
 import 'package:ethio_gpt/cors/constant/colors.dart';
 import 'package:ethio_gpt/cors/widgets/common-app-bar.dart';
 import 'package:ethio_gpt/cors/widgets/common-drawer.dart';
+import 'package:ethio_gpt/cors/widgets/common-snackbar.dart';
 import 'package:ethio_gpt/feutures/meta-features/Privecy-Policy/privecy-and-policy-Screen.dart';
 import 'package:ethio_gpt/feutures/meta-features/about-developers/about-developers-page.dart';
 import 'package:ethio_gpt/feutures/meta-features/about-ethio-Gpt/about-ethio-gpt.dart';
@@ -137,11 +138,14 @@ class _SettingScreenState extends State<SettingScreen> {
                             action: () {
                               // emit a logout event to a user bloc
                               context.read<UserBloc>().add(UserLogoutEvent());
-                              Navigator.pushReplacement(
+                              showQuestionDialog(
                                   context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const LoginScreen()));
+                                  'Are you Sure To Log Out',
+                                  () => Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const LoginScreen())));
                             },
                             label: 'Logout',
                             icon: const Icon(Icons.logout_sharp)),

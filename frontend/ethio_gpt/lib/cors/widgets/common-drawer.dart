@@ -126,8 +126,8 @@ class CommonDrawer extends StatelessWidget {
                             context: context,
                             title: 'Rate Our App',
                             icon: Icons.rate_review_outlined,
-                            onTap: () =>
-                                _onTapItem(context, 3, const SizedBox.shrink()),
+                            onTap: () => _onTapItem(context, 3,
+                                const ChatScreen()), // should be fixed later
                             isSelected: state.index == 3,
                           ),
                           commonListTile(
