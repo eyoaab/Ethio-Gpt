@@ -32,9 +32,9 @@ class FeedbackRemoteDataSourceImpl implements FeedbackRemoteDataSource {
           // 'Content-Type': 'application/json',
           'Authorization': 'Bearer $token',
         },
-        body: {
+        body: jsonEncode({
           'content': feedback.content,
-        },
+        }),
       );
       log('Response: ${response.body}');
       if (response.statusCode == 200 || response.statusCode == 201) {

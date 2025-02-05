@@ -3,7 +3,7 @@ const Feedback = require("../models/feedback.model");
 // Create and Save a new Feedback
 exports.createFeedback = async (req, res) => {
   try {
-    const content = req.body.content;
+    const { content } = req.body.content;
     if (!content) {
       return res.status(400).send({
         message: "Fedback can not be empty",
