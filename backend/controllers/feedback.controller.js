@@ -18,7 +18,7 @@ exports.createFeedback = async (req, res) => {
 
     // Save Feedback in the database
     const data = await feedback.save();
-    res.send(data);
+    res.status(201).send(data);
   } catch (err) {
     res.status(500).send({
       message:

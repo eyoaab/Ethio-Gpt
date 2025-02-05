@@ -20,6 +20,7 @@ class _UpdateUserNameScreenState extends State<UpdateUserNameScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   TextEditingController newUserNameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +92,8 @@ class _UpdateUserNameScreenState extends State<UpdateUserNameScreen> {
 
               const SizedBox(height: 40),
 
-              submitButton(onPressed: () {}, label: 'Update')
+              submitButton(
+                  onPressed: () {}, label: 'Update', isLoading: isLoading),
             ],
           ),
         ),

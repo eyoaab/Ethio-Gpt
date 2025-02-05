@@ -1,13 +1,17 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:ethio_gpt/cors/error/exception.dart';
 import 'package:ethio_gpt/cors/urls/urls.dart';
+import 'package:ethio_gpt/cors/utility-functions/token-validation.dart';
 import 'package:ethio_gpt/feutures/feedback/domain/entity/feedback-entity.dart';
 import 'package:http/http.dart' as http;
 
 abstract class FeedbackRemoteDataSource {
   Future<bool> addFeedback(FeedbackEntity feedback);
 }
+
+TokenValidation tokenValidation = TokenValidation();
 
 class FeedbackRemoteDataSourceImpl implements FeedbackRemoteDataSource {
   final http.Client client;
@@ -16,28 +20,37 @@ class FeedbackRemoteDataSourceImpl implements FeedbackRemoteDataSource {
   @override
   Future<bool> addFeedback(FeedbackEntity feedback) async {
     try {
-      const String token = '';
+      String token = '';
+      token = (await tokenValidation.getToken())!;
+      if (token == '') {
+        throw ServerException('Token is empty');
+      }
+      log('Token: $token');
       final response = await client.post(
-        Uri.parse('${Url().baseUrl()}/feedbacks'),
+        Uri.parse('${Url().baseUrl()}feedback'),
         headers: {
-          'Content-Type': 'application/json',
+          // 'Content-Type': 'application/json',
           'Authorization': 'Bearer $token',
         },
         body: {
           'content': feedback.content,
         },
       );
-      if (response.statusCode == 200) {
+      log('Response: ${response.body}');
+      if (response.statusCode == 200 || response.statusCode == 201) {
         return true;
-      } else if (response.statusCode == 404) {
+      } else if (response.statusCode == 400 ||
+          response.statusCode == 500 ||
+          response.statusCode == 401 ||
+          response.statusCode == 403) {
         final String errorMessage = jsonDecode(response.body)['message'];
 
         throw ServerException(errorMessage);
       } else {
-        throw ServerException('Failed to add feedback');
+        throw ServerException('Failed to add feedback please try again');
       }
     } catch (e) {
-      throw ServerException('Failed to add feedback ${e.toString()}');
+      throw ServerException(e.toString());
     }
   }
 }

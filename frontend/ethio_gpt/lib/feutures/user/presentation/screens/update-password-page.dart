@@ -23,6 +23,7 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
   TextEditingController oldnewPasswordController = TextEditingController();
   TextEditingController newpasswordController = TextEditingController();
   TextEditingController confirmpasswordController = TextEditingController();
+  bool isLoading = false;
 
   void makeUpdate() {
     if (newpasswordController.text != confirmpasswordController.text) {
@@ -107,7 +108,8 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
 
               const SizedBox(height: 40),
 
-              submitButton(onPressed: makeUpdate, label: 'Update')
+              submitButton(
+                  onPressed: makeUpdate, label: 'Update', isLoading: isLoading),
             ],
           ),
         ),

@@ -44,6 +44,7 @@ Widget changeLanduadge({
 Widget submitButton({
   required VoidCallback onPressed,
   required String label,
+  required bool isLoading,
 }) {
   return Container(
     height: 50,
@@ -69,14 +70,16 @@ Widget submitButton({
         ),
         shadowColor: Colors.transparent, // Remove shadow
       ),
-      child: Text(
-        label,
-        style: GoogleFonts.inter(
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
-          color: Colors.white, // Text color
-        ),
-      ),
+      child: isLoading
+          ? const CircularProgressIndicator(color: Colors.white)
+          : Text(
+              label,
+              style: GoogleFonts.inter(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Colors.white, // Text color
+              ),
+            ),
     ),
   );
 }
