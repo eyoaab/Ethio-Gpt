@@ -40,8 +40,8 @@ Future<void> setUp() async {
   // locator.registerLazySingleton(() => InternetConnectionChecker());
 
   //! Data Sources
-  locator.registerLazySingleton<UserRemoteDatasource>(
-      () => UserRemoteDataSourceImpl(locator()));
+  locator.registerLazySingleton<UserRemoteDataSourceImpl>(
+      () => UserRemoteDataSourceImpl(client: locator()));
   locator.registerLazySingleton<FaqRemoteDataSource>(
       () => FaqRemoteDataSourceImpl(locator()));
   locator.registerLazySingleton<FeedbackRemoteDataSource>(

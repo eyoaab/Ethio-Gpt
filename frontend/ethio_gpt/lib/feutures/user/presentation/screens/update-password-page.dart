@@ -1,7 +1,7 @@
-import 'package:ethio_gpt/cors/constant/colors.dart';
 import 'package:ethio_gpt/cors/widgets/common-app-bar.dart';
 import 'package:ethio_gpt/cors/widgets/common-drawer.dart';
-import 'package:ethio_gpt/feutures/user/presentation/screens/signup-page.dart';
+import 'package:ethio_gpt/cors/widgets/common-snackbar.dart';
+import 'package:ethio_gpt/cors/widgets/common-submit-button.dart';
 import 'package:ethio_gpt/feutures/user/presentation/widget/common-widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -23,6 +23,13 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
   TextEditingController oldnewPasswordController = TextEditingController();
   TextEditingController newpasswordController = TextEditingController();
   TextEditingController confirmpasswordController = TextEditingController();
+
+  void makeUpdate() {
+    if (newpasswordController.text != confirmpasswordController.text) {
+      showCustomSnackBar(context, 'Please much the Passwords', false);
+      return;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +107,7 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
 
               const SizedBox(height: 40),
 
-              submitButton(onPressed: () {}, label: 'Update')
+              submitButton(onPressed: makeUpdate, label: 'Update')
             ],
           ),
         ),

@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:ethio_gpt/cors/error/exception.dart';
 import 'package:ethio_gpt/cors/urls/urls.dart';
+import 'package:ethio_gpt/cors/utility-functions/token-validation.dart';
 import 'package:ethio_gpt/feutures/user/data/model/user-model.dart';
 import 'package:http/http.dart' as http;
 
@@ -15,14 +17,14 @@ abstract class UserRemoteDatasource {
 class UserRemoteDataSourceImpl implements UserRemoteDatasource {
   final http.Client client;
 
-  UserRemoteDataSourceImpl(this.client);
+  UserRemoteDataSourceImpl({required this.client});
 
   // login user with email and password
   @override
   Future<UserModel> signInUser(String email, String password) async {
     try {
       final response = await client.post(
-        Uri.parse('${Url().baseUrl()}/user/login'),
+        Uri.parse('${Url().baseUrl()}user/login'),
         body: jsonEncode({'email': email, 'password': password}),
         headers: {'Content-Type': 'application/json'},
       );
@@ -31,10 +33,11 @@ class UserRemoteDataSourceImpl implements UserRemoteDatasource {
         return UserModel.fromJson(jsonDecode(response.body));
       } else {
         String errorMessage = jsonDecode(response.body)['message'];
-        throw ServerException(errorMessage);
+
+        throw ServerException(errorMessage.toString());
       }
     } catch (e) {
-      throw ServerException('Failed to login.${e.toString()}');
+      throw ServerException(e.toString());
     }
   }
 
@@ -43,19 +46,20 @@ class UserRemoteDataSourceImpl implements UserRemoteDatasource {
   Future<UserModel> signUpUser(String email, String password) async {
     try {
       final response = await client.post(
-        Uri.parse('${Url().baseUrl()}/user/signup'),
+        Uri.parse('${Url().baseUrl()}user/register'),
         body: jsonEncode({'email': email, 'password': password}),
         headers: {'Content-Type': 'application/json'},
       );
 
-      if (response.statusCode == 200) {
+      if (response.statusCode == 201) {
         return UserModel.fromJson(jsonDecode(response.body));
       } else {
         String errorMessage = jsonDecode(response.body)['message'];
+
         throw ServerException(errorMessage);
       }
     } catch (e) {
-      throw ServerException('Failed to sign up.${e.toString()}');
+      throw ServerException(e.toString());
     }
   }
 
@@ -64,7 +68,7 @@ class UserRemoteDataSourceImpl implements UserRemoteDatasource {
   Future<bool> updateUser(String email, String password) async {
     try {
       final response = await client.put(
-        Uri.parse('${Url().baseUrl()}/user/update'),
+        Uri.parse('${Url().baseUrl()}user/update'),
         body: jsonEncode({'email': email, 'password': password}),
         headers: {'Content-Type': 'application/json'},
       );
@@ -76,7 +80,7 @@ class UserRemoteDataSourceImpl implements UserRemoteDatasource {
         throw ServerException(errorMessage);
       }
     } catch (e) {
-      throw ServerException('Failed to update user. ${e.toString()}');
+      throw ServerException(e.toString());
     }
   }
 
@@ -87,7 +91,7 @@ class UserRemoteDataSourceImpl implements UserRemoteDatasource {
       String token =
           ''; // You should retrieve this token from secure storage or another source
       final response = await client.delete(
-        Uri.parse('${Url().baseUrl()}/user/delete'),
+        Uri.parse('${Url().baseUrl()}user/delete'),
         headers: {
           'Content-Type': 'application/json',
           'Authorization': 'Bearer $token',
@@ -101,7 +105,7 @@ class UserRemoteDataSourceImpl implements UserRemoteDatasource {
         throw ServerException(errorMessage);
       }
     } catch (e) {
-      throw ServerException('Failed to delete user.${e.toString()}');
+      throw ServerException(e.toString());
     }
   }
 
@@ -117,7 +121,7 @@ class UserRemoteDataSourceImpl implements UserRemoteDatasource {
         throw ServerException('Please try again.');
       }
     } catch (e) {
-      throw ServerException('Failed to logout. ${e.toString()}');
+      throw ServerException(e.toString());
     }
   }
 }

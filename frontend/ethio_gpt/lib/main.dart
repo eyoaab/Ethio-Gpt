@@ -13,8 +13,8 @@ import 'package:ethio_gpt/injection_controller.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await EasyLocalization.ensureInitialized();
   await setUp();
+  await EasyLocalization.ensureInitialized();
 
   runApp(
     DevicePreview(

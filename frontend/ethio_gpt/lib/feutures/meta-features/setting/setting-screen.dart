@@ -5,9 +5,13 @@ import 'package:ethio_gpt/feutures/meta-features/Privecy-Policy/privecy-and-poli
 import 'package:ethio_gpt/feutures/meta-features/about-developers/about-developers-page.dart';
 import 'package:ethio_gpt/feutures/meta-features/about-ethio-Gpt/about-ethio-gpt.dart';
 import 'package:ethio_gpt/feutures/meta-features/setting/setting-widgets.dart';
+import 'package:ethio_gpt/feutures/user/presentation/bloc/user_bloc.dart';
+import 'package:ethio_gpt/feutures/user/presentation/bloc/user_event.dart';
+import 'package:ethio_gpt/feutures/user/presentation/screens/login-page.dart';
 import 'package:ethio_gpt/feutures/user/presentation/screens/update-password-page.dart';
 import 'package:ethio_gpt/feutures/user/presentation/screens/update-username-page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SettingScreen extends StatefulWidget {
@@ -130,7 +134,15 @@ class _SettingScreenState extends State<SettingScreen> {
                             icon: const Icon(Icons.delete)),
                         settingRow(
                             isDarkMod: isDarkMod,
-                            action: () {},
+                            action: () {
+                              // emit a logout event to a user bloc
+                              context.read<UserBloc>().add(UserLogoutEvent());
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const LoginScreen()));
+                            },
                             label: 'Logout',
                             icon: const Icon(Icons.logout_sharp)),
                         const SizedBox(

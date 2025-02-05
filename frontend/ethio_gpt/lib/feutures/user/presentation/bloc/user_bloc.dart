@@ -25,7 +25,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       emit(UserLoginLoadingState());
       final result = await loginUsecase.excute(event.email, event.password);
       result.fold(
-        (left) => emit(UserLoginErrorState(left.message)),
+        (left) => emit(UserLoginErrorState(left.message.toString())),
         (right) => emit(UserLoginSuccessState(right)),
       );
     });

@@ -1,4 +1,5 @@
 import 'package:ethio_gpt/cors/constant/colors.dart';
+import 'package:ethio_gpt/cors/widgets/common-submit-button.dart';
 import 'package:ethio_gpt/cors/widgets/drawer-row.dart';
 import 'package:ethio_gpt/feutures/chat/presentation/screens/chat-history-page.dart';
 import 'package:ethio_gpt/feutures/chat/presentation/screens/make-caht-page.dart';
@@ -9,7 +10,6 @@ import 'package:ethio_gpt/feutures/meta-features/setting/bloc/setting_bloc.dart'
 import 'package:ethio_gpt/feutures/meta-features/setting/bloc/setting_event.dart';
 import 'package:ethio_gpt/feutures/meta-features/setting/bloc/setting_state.dart';
 import 'package:ethio_gpt/feutures/meta-features/setting/setting-screen.dart';
-import 'package:ethio_gpt/feutures/user/presentation/widget/common-widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
