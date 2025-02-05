@@ -29,6 +29,9 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         (right) => emit(UserLoginSuccessState(right)),
       );
     });
+    on<EmitUserLoginState>((event, emit) async {
+      emit(UserLoginSuccessState(event.userEntity));
+    });
 
     // signup event
     on<UserSignUpEvent>((event, emit) async {

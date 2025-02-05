@@ -1,3 +1,5 @@
+import 'package:ethio_gpt/feutures/user/domain/entity/user-entity.dart';
+
 class UserEvent {}
 
 // for login
@@ -35,3 +37,10 @@ class UserUpdateEvent extends UserEvent {
 
 // for delete user
 class UserDeleteEvent extends UserEvent {}
+
+// event to emit user login state
+class EmitUserLoginState extends UserEvent {
+  final UserEntity userEntity;
+
+  EmitUserLoginState({required this.userEntity});
+}

@@ -4,11 +4,13 @@ import 'package:ethio_gpt/cors/error/faliure.dart';
 import 'package:ethio_gpt/feutures/user/data/data-source/remote-data-source.dart';
 import 'package:ethio_gpt/feutures/user/data/model/user-model.dart';
 import 'package:ethio_gpt/feutures/user/domain/repository/user-repository.dart';
+import 'package:ethio_gpt/cors/utility-functions/token-validation.dart';
 
 class UserRepositoryImpl implements UserRepository {
   final UserRemoteDataSourceImpl remoteDataSource;
 
   UserRepositoryImpl({required this.remoteDataSource});
+  final TokenValidation tokenValidation = TokenValidation();
 
   // login a user
   @override
@@ -16,6 +18,7 @@ class UserRepositoryImpl implements UserRepository {
       String email, String password) async {
     try {
       final token = await remoteDataSource.signInUser(email, password);
+      await tokenValidation.saveToken(token.token);
       return Right(token);
     } catch (e) {
       if (e is ServerException) {
@@ -37,6 +40,8 @@ class UserRepositoryImpl implements UserRepository {
         email,
         password,
       );
+      await tokenValidation.saveToken(token.token);
+
       return Right(token);
     } catch (e) {
       if (e is ServerException) {
@@ -94,6 +99,8 @@ class UserRepositoryImpl implements UserRepository {
   Future<Either<Failure, bool>> logOut() async {
     try {
       final response = await remoteDataSource.logOut();
+      await tokenValidation.removeToken();
+
       return Right(response);
     } catch (e) {
       if (e is ServerException) {
