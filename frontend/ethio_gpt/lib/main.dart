@@ -1,17 +1,20 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:ethio_gpt/cors/theme/bloc/theme_bloc.dart';
 import 'package:ethio_gpt/cors/theme/bloc/theme_state.dart';
-import 'package:ethio_gpt/feutures/chat/presentation/screens/make-caht-page.dart';
-import 'package:ethio_gpt/feutures/feedback/presentation/screens/feedback-screen.dart';
-import 'package:ethio_gpt/feutures/user/presentation/screens/login-page.dart';
+import 'package:ethio_gpt/feutures/feedback/presentation/bloc/feedback_bloc.dart';
+import 'package:ethio_gpt/feutures/meta-features/FAQ/presentation/bloc/faq_bloc.dart';
+import 'package:ethio_gpt/feutures/user/presentation/bloc/user_bloc.dart';
+import 'package:ethio_gpt/feutures/user/presentation/screens/splash-screen.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ethio_gpt/feutures/meta-features/setting/bloc/setting_bloc.dart';
+import 'package:ethio_gpt/injection_controller.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+  await setUp();
 
   runApp(
     DevicePreview(
@@ -29,9 +32,11 @@ void main() async {
               create: (context) => SettingBloc(),
             ),
             BlocProvider(create: (context) => ThemeBloc()),
-            // BlocProvider<FaqBloc>(
-            //   create: (context) => FaqBloc(),
-            // ),
+            BlocProvider<UserBloc>(create: (context) => locator<UserBloc>()),
+            BlocProvider<FeedbackBloc>(
+              create: (context) => locator<FeedbackBloc>(),
+            ),
+            BlocProvider<FaqBloc>(create: (context) => locator<FaqBloc>()),
           ],
           child: const MyApp(),
         ),
@@ -54,7 +59,7 @@ class MyApp extends StatelessWidget {
         builder: DevicePreview.appBuilder,
         debugShowCheckedModeBanner: false,
         theme: state.themeData,
-        home: const ChatScreen(),
+        home: const SplashScreen(),
       );
     });
   }
