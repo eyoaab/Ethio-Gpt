@@ -25,16 +25,14 @@ class FeedbackRemoteDataSourceImpl implements FeedbackRemoteDataSource {
       if (token == '') {
         throw ServerException('Token is empty');
       }
-      log('Token: $token');
+      log('Token: ${feedback.content}');
       final response = await client.post(
         Uri.parse('${Url().baseUrl()}feedback'),
         headers: {
           // 'Content-Type': 'application/json',
           'Authorization': 'Bearer $token',
         },
-        body: jsonEncode({
-          'content': feedback.content,
-        }),
+        body: jsonEncode({'content': feedback.content}),
       );
       log('Response: ${response.body}');
       if (response.statusCode == 200 || response.statusCode == 201) {

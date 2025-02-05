@@ -18,7 +18,7 @@ class FaqRemoteDataSourceImpl implements FaqRemoteDataSource {
   Future<List<FaqModel>> getAllFaqs() async {
     try {
       final response = await client.get(
-        Uri.parse('${Url().baseUrl()}/faq'),
+        Uri.parse('${Url().baseUrl()}faq'),
         headers: {
           'Content-Type': 'application/json',
         },
