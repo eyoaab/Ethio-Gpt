@@ -3,7 +3,6 @@ const Feedback = require("../models/feedback.model");
 // Create and Save a new Feedback
 exports.createFeedback = async (req, res) => {
   try {
-    console.log(req.body);
     const content = req.body.content;
     if (!content) {
       return res.status(400).send({
