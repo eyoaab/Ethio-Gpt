@@ -1,4 +1,5 @@
 import 'package:ethio_gpt/cors/constant/colors.dart';
+import 'package:ethio_gpt/cors/utility-functions/token-validation.dart';
 import 'package:ethio_gpt/cors/widgets/common-app-bar.dart';
 import 'package:ethio_gpt/cors/widgets/common-drawer.dart';
 import 'package:ethio_gpt/cors/widgets/common-snackbar.dart';
@@ -28,6 +29,23 @@ class _SettingScreenState extends State<SettingScreen> {
   }
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  TokenValidation tokenValidation = TokenValidation();
+  String email = '--';
+
+  @override
+  void initState() {
+    super.initState();
+    _loadToken();
+  }
+
+  Future<void> _loadToken() async {
+    String? token = await tokenValidation.getToken();
+    if (token != null) {
+      setState(() {
+        email = tokenValidation.getUserEmail(token);
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +87,7 @@ class _SettingScreenState extends State<SettingScreen> {
               const SizedBox(
                 height: 5,
               ),
-              Text('eyob@gmail.com',
+              Text(email,
                   textAlign: TextAlign.center,
                   style: GoogleFonts.rubik(
                       fontSize: 20,
