@@ -42,8 +42,10 @@ exports.getRecentRooms = async (req, res) => {
       .populate({
         path: "messages",
         options: { sort: { timestamp: -1 } }, // Get only the latest message
+        select: "-timestamp -__v -_id", // Get only the latest message
       })
-      .sort({ updatedAt: -1 });
+      .sort({ updatedAt: -1 })
+      .select("-createdAt -updatedAt -__v");
 
     // Query for rooms updated yesterday
     const roomsYesterday = await ChatRoom.find({
@@ -53,7 +55,7 @@ exports.getRecentRooms = async (req, res) => {
       .populate({
         path: "messages",
         options: { sort: { timestamp: -1 } },
-        select: "-timestamp -__v", // Get only the latest message
+        select: "-timestamp -__v -_id", // Get only the latest message
       })
       .sort({ updatedAt: -1 })
       .select("-createdAt -updatedAt -__v");
