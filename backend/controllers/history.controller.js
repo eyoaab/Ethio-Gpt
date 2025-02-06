@@ -52,8 +52,10 @@ exports.getRecentRooms = async (req, res) => {
     })
       .populate({
         path: "messages",
-        options: { sort: { timestamp: -1 } }, // Get only the latest message
+        options: { sort: { timestamp: -1 } },
+        select: "-timestamp -__v", // Get only the latest message
       })
+      .select("-createdAt -updatedAt -__v")
       .sort({ updatedAt: -1 });
 
     // Query for "Old" rooms with pagination (rooms that are older than yesterday)
