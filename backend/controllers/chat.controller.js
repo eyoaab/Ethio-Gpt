@@ -34,9 +34,9 @@ exports.getAmharicResponse = async (req, res) => {
       return res.status(400).json({ message: "ትክክለኛ ጥያቄ ያስፈልጋል" });
     }
 
-    if (roomId && !mongoose.Types.ObjectId.isValid(roomId)) {
-      return res.status(400).json({ message: "Invalid room ID." });
-    }
+    // if (roomId && !mongoose.Types.ObjectId.isValid(roomId)) {
+    //   return res.status(400).json({ message: "Invalid room ID." });
+    // }
 
     try {
       const { translation: englishPrompt } = await translate(
@@ -77,7 +77,7 @@ exports.getAmharicResponse = async (req, res) => {
       // save message
       await saveMessage(room._id, prompt, replyInAmharic);
 
-      res.status(200).json({ response: replyInAmharic });
+      res.status(200).json({ response: replyInAmharic, roomId: room._id });
     } catch (error) {
       console.error("Error:", error);
       res.status(500).json({
@@ -101,9 +101,9 @@ exports.getEnglishResponse = async (req, res) => {
     if (!prompt || typeof prompt !== "string") {
       return res.status(400).json({ error: "Valid prompt is required." });
     }
-    if (roomId && !mongoose.Types.ObjectId.isValid(roomId)) {
-      return res.status(400).json({ message: "Invalid room ID." });
-    }
+    // if (roomId && !mongoose.Types.ObjectId.isValid(roomId)) {
+    //   return res.status(400).json({ message: "Invalid room ID." });
+    // }
 
     try {
       const aiResponse = await herc.question({
@@ -133,7 +133,7 @@ exports.getEnglishResponse = async (req, res) => {
       await saveMessage(room._id, prompt, aiReplyInEnglish);
 
       // Respond with the translated reply
-      res.status(200).json({ response: aiReplyInEnglish });
+      res.status(200).json({ response: aiReplyInEnglish, roomId: room._id });
     } catch (error) {
       console.error("Error processing /gpt request:", error);
       res.status(500).json({
