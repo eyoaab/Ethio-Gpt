@@ -64,7 +64,7 @@ exports.getAmharicResponse = async (req, res) => {
 
       let room;
 
-      if (roomId === "none") {
+      if (!roomId) {
         console.log("Creating new room since the room is none");
 
         room = new ChatRoom({ messages: [], userId: userId });
