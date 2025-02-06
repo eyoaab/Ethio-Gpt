@@ -20,7 +20,7 @@ async function saveMessage(roomId, prompt, replyInAmharic) {
   await message.save();
   await botMessage.save();
   const chatRoom = await ChatRoom.findOne({ roomId });
-  colsoleg.log("before push");
+  console.log("before push");
   console.log(chatRoom.messages);
 
   chatRoom.messages.push(message);
