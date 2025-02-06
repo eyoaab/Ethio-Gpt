@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ethio_gpt/cors/constant/colors.dart';
@@ -24,7 +26,9 @@ class _ShowDailyContainerState extends State<ShowDailyContainer> {
 
   @override
   Widget build(BuildContext context) {
-    final int itemCount = showAll ? widget.listChatRoomEntity.length : 2;
+    final int itemCount = showAll
+        ? widget.listChatRoomEntity.length
+        : min(2, widget.listChatRoomEntity.length);
 
     return SizedBox(
       width: double.infinity,
@@ -59,9 +63,11 @@ class _ShowDailyContainerState extends State<ShowDailyContainer> {
           ),
           Column(
             children: List.generate(itemCount, (index) {
-              return chatHistoryRow(
-                  chatRoomEntity: widget.listChatRoomEntity[index],
-                  context: context);
+              return widget.listChatRoomEntity[index].messages.isEmpty
+                  ? const SizedBox.shrink()
+                  : chatHistoryRow(
+                      chatRoomEntity: widget.listChatRoomEntity[index],
+                      context: context);
             }),
           )
         ],

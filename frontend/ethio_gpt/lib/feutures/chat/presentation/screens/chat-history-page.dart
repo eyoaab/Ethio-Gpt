@@ -1,9 +1,14 @@
+import 'package:ethio_gpt/cors/constant/colors.dart';
 import 'package:ethio_gpt/cors/widgets/bg-box-decoration.dart';
 import 'package:ethio_gpt/cors/widgets/common-app-bar.dart';
 import 'package:ethio_gpt/cors/widgets/common-drawer.dart';
-import 'package:ethio_gpt/dummy-data.dart';
+import 'package:ethio_gpt/feutures/chat/domain/entity/history-entity.dart';
+import 'package:ethio_gpt/feutures/chat/presentation/bloc/chat_bloc.dart';
+import 'package:ethio_gpt/feutures/chat/presentation/bloc/chat_event.dart';
+import 'package:ethio_gpt/feutures/chat/presentation/bloc/chat_state.dart';
 import 'package:ethio_gpt/feutures/chat/presentation/widget/show-daily-history.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ChatHistoryScreen extends StatefulWidget {
@@ -14,54 +19,88 @@ class ChatHistoryScreen extends StatefulWidget {
 }
 
 class _ChatHistoryScreenState extends State<ChatHistoryScreen> {
-  void showSide() {
-    _scaffoldKey.currentState?.openDrawer();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final List<String> days = ["Today", "Yesterday ", "30 Days"];
+  bool isLoading = true;
+  String errorMessage = '';
+  ChatHistoryEntity chatHistoryEntity =
+      ChatHistoryEntity(old: [], today: [], yestarday: []);
+
+  @override
+  void initState() {
+    super.initState();
+    context.read<ChatBloc>().add(ChatHistoryEvent());
   }
 
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  final List<String> days = ["Today", "7 Days", "30 Days"];
+  void showSide() => _scaffoldKey.currentState?.openDrawer();
 
   @override
   Widget build(BuildContext context) {
-    final bool isDarkMod =
-        Theme.of(context).scaffoldBackgroundColor == Colors.black;
+    final bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
     return Scaffold(
       key: _scaffoldKey,
       appBar: commonAppBar(action: showSide, context: context),
       drawer: const CommonDrawer(),
       body: Container(
-        height: double.infinity,
         width: double.infinity,
-        decoration: bgBoxDecoration(isDarkMod),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-          child: SingleChildScrollView(
+        decoration: bgBoxDecoration(isDarkMode),
+        child: BlocListener<ChatBloc, ChatState>(
+          listener: (context, state) {
+            if (state is ChatHistoryLoadingState) {
+              isLoading = true;
+              errorMessage = '';
+            } else if (state is ChatHistoryLoadedState) {
+              isLoading = false;
+              chatHistoryEntity = state.chatHistory;
+            } else if (state is ChatHistoryErrorState) {
+              isLoading = false;
+              errorMessage = state.errorMessage;
+            }
+            setState(() {});
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(15.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Text('Chat History',
-                    textAlign: TextAlign.start,
-                    style: GoogleFonts.inter(
-                      fontSize: 18,
-                      color: Theme.of(context).scaffoldBackgroundColor ==
-                              Colors.black
-                          ? Colors.white
-                          : Colors.black,
-                    )),
+                Text(
+                  'Chat History',
+                  style: GoogleFonts.inter(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: isDarkMode ? Colors.white : Colors.black,
+                  ),
+                ),
                 const SizedBox(height: 10),
-                ShowDailyContainer(
-                    isDarkMod: isDarkMod,
-                    title: days[0],
-                    listChatRoomEntity: dummylistChatRoom),
-                ShowDailyContainer(
-                    isDarkMod: isDarkMod,
-                    title: days[1],
-                    listChatRoomEntity: dummylistChatRoom),
-                ShowDailyContainer(
-                    isDarkMod: isDarkMod,
-                    title: days[2],
-                    listChatRoomEntity: dummylistChatRoom),
+                if (isLoading) const Center(child: CircularProgressIndicator()),
+                if (errorMessage.isNotEmpty)
+                  Center(
+                    child: Text(
+                      errorMessage,
+                      style: const TextStyle(color: Colors.red, fontSize: 16),
+                    ),
+                  ),
+                if (!isLoading && errorMessage.isEmpty) ...[
+                  if (chatHistoryEntity.today.isNotEmpty)
+                    ShowDailyContainer(
+                      isDarkMod: isDarkMode,
+                      title: days[0],
+                      listChatRoomEntity: chatHistoryEntity.today,
+                    ),
+                  if (chatHistoryEntity.yestarday.isNotEmpty)
+                    ShowDailyContainer(
+                      isDarkMod: isDarkMode,
+                      title: days[1],
+                      listChatRoomEntity: chatHistoryEntity.yestarday,
+                    ),
+                  if (chatHistoryEntity.old.isNotEmpty)
+                    ShowDailyContainer(
+                      isDarkMod: isDarkMode,
+                      title: days[2],
+                      listChatRoomEntity: chatHistoryEntity.old,
+                    ),
+                ],
               ],
             ),
           ),

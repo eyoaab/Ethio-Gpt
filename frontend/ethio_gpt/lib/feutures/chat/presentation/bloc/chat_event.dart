@@ -7,3 +7,6 @@ class ChatRequestEvent extends ChatEvent {
 
   ChatRequestEvent({required this.prompt, required this.roomId});
 }
+
+// event to get the chat history
+class ChatHistoryEvent extends ChatEvent {}

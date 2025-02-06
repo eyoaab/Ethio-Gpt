@@ -1,7 +1,9 @@
 import 'package:ethio_gpt/cors/network/network_info.dart';
 import 'package:ethio_gpt/feutures/chat/data/data-source/chat-remote-datasource.dart';
+import 'package:ethio_gpt/feutures/chat/data/data-source/history-remote-data-source.dart';
 import 'package:ethio_gpt/feutures/chat/data/repository/chat-repository-implmentation.dart';
 import 'package:ethio_gpt/feutures/chat/domain/repository/chat-repository.dart';
+import 'package:ethio_gpt/feutures/chat/domain/usecase/get-chat-history-usecase.dart';
 import 'package:ethio_gpt/feutures/chat/domain/usecase/get-chat-usecase.dart';
 import 'package:ethio_gpt/feutures/chat/presentation/bloc/chat_bloc.dart';
 import 'package:ethio_gpt/feutures/feedback/data/repository/feedback-repository-impl.dart';
@@ -50,8 +52,8 @@ Future<void> setUp() async {
       () => FeedbackRemoteDataSourceImpl(locator()));
   locator.registerLazySingleton<ChatResponseRemoteDataSource>(
       () => ChatResponseRemoteDataSourceImpl(locator()));
-
-  // chat and chat history repositories was not registered
+  locator.registerLazySingleton<ChatHistoryRemoteDataSource>(
+      () => ChatHistoryRemoteDataSourceimpl(client: locator()));
 
   //! Repositories
 
@@ -62,7 +64,9 @@ Future<void> setUp() async {
   locator.registerLazySingleton<FaqRepository>(
       () => FaqRepositoryImpl(remoteDataSource: locator()));
   locator.registerLazySingleton<ChatRepository>(() =>
-      ChatResponseRepositoryImpl(chatResponseRemoteDataSource: locator()));
+      ChatResponseRepositoryImpl(
+          chatResponseRemoteDataSource: locator(),
+          chatHistoryRemoteDataSource: locator()));
 
   //! Use Cases
   locator.registerLazySingleton(() => LoginUsecase(userRepository: locator()));
@@ -75,6 +79,8 @@ Future<void> setUp() async {
   locator.registerLazySingleton(() => FaqUsecases(locator()));
   locator.registerLazySingleton(
       () => ChatResponceUseCase(chatRepository: locator()));
+  locator.registerLazySingleton(
+      () => GetChatHistoryUsecase(chatRepository: locator()));
 
   //! BLoC
 
@@ -88,5 +94,6 @@ Future<void> setUp() async {
   locator.registerFactory(() => FaqBloc(loadFaqsUseCase: locator()));
   locator.registerFactory(() => FeedbackBloc(feedBackUseCase: locator()));
 
-  locator.registerFactory(() => ChatBloc(chatResponceUseCase: locator()));
+  locator.registerFactory(() => ChatBloc(
+      chatResponceUseCase: locator(), getChatHistoryUsecase: locator()));
 }

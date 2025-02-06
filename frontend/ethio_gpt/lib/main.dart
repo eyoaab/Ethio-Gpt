@@ -63,7 +63,6 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: state.themeData,
           home: const SplashScreen());
-      // home: ChatScreen());
     });
   }
 }

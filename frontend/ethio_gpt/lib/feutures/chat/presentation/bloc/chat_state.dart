@@ -1,4 +1,5 @@
 import 'package:ethio_gpt/feutures/chat/data/model/chat-response-model.dart';
+import 'package:ethio_gpt/feutures/chat/domain/entity/history-entity.dart';
 
 class ChatState {}
 
@@ -15,4 +16,17 @@ class ChatResponseLoadedState extends ChatState {
 class ChatResponseErrorState extends ChatState {
   String errorMessage;
   ChatResponseErrorState({required this.errorMessage});
+}
+
+//  to the chat history part
+class ChatHistoryLoadingState extends ChatState {}
+
+class ChatHistoryLoadedState extends ChatState {
+  ChatHistoryEntity chatHistory;
+  ChatHistoryLoadedState({required this.chatHistory});
+}
+
+class ChatHistoryErrorState extends ChatState {
+  String errorMessage;
+  ChatHistoryErrorState({required this.errorMessage});
 }

@@ -7,20 +7,25 @@ class ChatHistoryModel extends ChatHistoryEntity {
 
   factory ChatHistoryModel.fromJson(Map<String, dynamic> json) {
     return ChatHistoryModel(
-        old: (json['old'] as List)
+        old: (json['roomsOld'] as List)
             .map((chatRoomModel) =>
                 ChatRoomModel.fromJson(chatRoomModel as Map<String, dynamic>)
                     .toEntity())
             .toList(),
-        today: (json['today'] as List)
+        today: (json['roomsToday'] as List)
             .map((chatRoomModel) =>
                 ChatRoomModel.fromJson(chatRoomModel as Map<String, dynamic>)
                     .toEntity())
             .toList(),
-        yestarday: (json['yesterday'] as List)
+        yestarday: (json['roomsYesterday'] as List)
             .map((chatRoomModel) =>
                 ChatRoomModel.fromJson(chatRoomModel as Map<String, dynamic>)
                     .toEntity())
             .toList());
+  }
+
+  // function to convert the model to entity
+  ChatHistoryEntity toEntity() {
+    return ChatHistoryEntity(old: old, today: today, yestarday: yestarday);
   }
 }

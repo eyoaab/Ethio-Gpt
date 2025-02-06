@@ -6,7 +6,7 @@ class ChatRoomModel extends ChatRoomEntity {
 
   factory ChatRoomModel.fromJson(Map<String, dynamic> json) {
     return ChatRoomModel(
-        id: json['id'],
+        id: json['_id'],
         messages: (json['messages'] as List)
             .map((message) =>
                 MessageModel.fromJson(message as Map<String, dynamic>)
