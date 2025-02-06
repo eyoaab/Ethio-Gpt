@@ -42,7 +42,7 @@ class _FaqCardState extends State<FaqCard> with SingleTickerProviderStateMixin {
   Widget headerWidget() {
     return Text(
       widget.faq.question,
-      textAlign: TextAlign.center,
+      textAlign: TextAlign.left,
       style: GoogleFonts.inter(
           fontSize: 14, color: widget.isDarkMode ? Colors.white : Colors.black),
     );
@@ -61,7 +61,7 @@ class _FaqCardState extends State<FaqCard> with SingleTickerProviderStateMixin {
             child: isExpanded
                 ? Text(
                     widget.faq.answer,
-                    textAlign: TextAlign.center,
+                    textAlign: TextAlign.left,
                     style: GoogleFonts.inter(
                         fontSize: 13,
                         color: widget.isDarkMode ? Colors.white : Colors.black),

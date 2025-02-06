@@ -1,3 +1,4 @@
+import 'package:ethio_gpt/cors/widgets/bg-box-decoration.dart';
 import 'package:ethio_gpt/cors/widgets/common-app-bar.dart';
 import 'package:ethio_gpt/cors/widgets/common-drawer.dart';
 import 'package:ethio_gpt/cors/widgets/common-snackbar.dart';
@@ -43,15 +44,7 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
       body: Container(
         height: double.infinity,
         width: double.infinity,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(
-                Theme.of(context).scaffoldBackgroundColor == Colors.black
-                    ? '/images/backgroun.png'
-                    : '/images/whitebg.png'),
-            fit: BoxFit.cover,
-          ),
-        ),
+        decoration: bgBoxDecoration(isDarkMod),
         child:
             // Content
             Padding(

@@ -8,7 +8,7 @@ abstract class UserRemoteDatasource {
   Future<UserModel> signUpUser(String email, String password);
   Future<UserModel> signInUser(String email, String password);
   Future<bool> updateUser(String email, String password);
-  Future<bool> deleteUser();
+  Future<bool> deleteUser(String token);
   Future<bool> logOut();
 }
 
@@ -85,10 +85,8 @@ class UserRemoteDataSourceImpl implements UserRemoteDatasource {
 
   // delete user
   @override
-  Future<bool> deleteUser() async {
+  Future<bool> deleteUser(String token) async {
     try {
-      String token =
-          ''; // You should retrieve this token from secure storage or another source
       final response = await client.delete(
         Uri.parse('${Url().baseUrl()}user/delete'),
         headers: {

@@ -7,7 +7,7 @@ Widget searchArea(
     required VoidCallback action,
     required bool isDarkMod}) {
   return Container(
-    padding: const EdgeInsets.only(left: 12, right: 12, top: 30, bottom: 15),
+    padding: const EdgeInsets.only(left: 12, right: 12, top: 20, bottom: 15),
     decoration: BoxDecoration(
       color: isDarkMod ? darkGray : Colors.white,
       borderRadius: const BorderRadius.only(

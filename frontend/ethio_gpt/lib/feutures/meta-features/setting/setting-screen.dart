@@ -148,7 +148,12 @@ class _SettingScreenState extends State<SettingScreen> {
                             icon: const Icon(Icons.lock)),
                         settingRow(
                             isDarkMod: isDarkMod,
-                            action: () {},
+                            action: () {
+                              showQuestionDialog(context,
+                                  'Are you Sure To Delete Your Account', () {
+                                context.read<UserBloc>().add(UserDeleteEvent());
+                              });
+                            },
                             label: 'Delete Account',
                             icon: const Icon(Icons.delete)),
                         settingRow(

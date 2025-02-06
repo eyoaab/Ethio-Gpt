@@ -1,6 +1,7 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:ethio_gpt/cors/theme/bloc/theme_bloc.dart';
 import 'package:ethio_gpt/cors/theme/bloc/theme_state.dart';
+import 'package:ethio_gpt/feutures/chat/presentation/screens/make-caht-page.dart';
 import 'package:ethio_gpt/feutures/feedback/presentation/bloc/feedback_bloc.dart';
 import 'package:ethio_gpt/feutures/meta-features/FAQ/presentation/bloc/faq_bloc.dart';
 import 'package:ethio_gpt/feutures/user/presentation/bloc/user_bloc.dart';
@@ -52,15 +53,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ThemeBloc, ThemeState>(builder: (context, state) {
       return MaterialApp(
-        title: 'Ethio-GPT',
-        localizationsDelegates: context.localizationDelegates,
-        supportedLocales: context.supportedLocales,
-        locale: context.locale,
-        builder: DevicePreview.appBuilder,
-        debugShowCheckedModeBanner: false,
-        theme: state.themeData,
-        home: const SplashScreen(),
-      );
+          title: 'Ethio-GPT',
+          localizationsDelegates: context.localizationDelegates,
+          supportedLocales: context.supportedLocales,
+          locale: context.locale,
+          builder: DevicePreview.appBuilder,
+          debugShowCheckedModeBanner: false,
+          theme: state.themeData,
+          // home: const SplashScreen(),
+          home: const ChatScreen());
     });
   }
 }

@@ -82,7 +82,11 @@ class UserRepositoryImpl implements UserRepository {
   // write a delete user function
   Future<Either<Failure, bool>> deleteUser() async {
     try {
-      final response = await remoteDataSource.deleteUser();
+      String? token = await tokenValidation.getToken();
+      if (token == null) {
+        return const Left(CacheFailure('token is empty'));
+      }
+      final response = await remoteDataSource.deleteUser(token);
       return Right(response);
     } catch (e) {
       if (e is ServerException) {

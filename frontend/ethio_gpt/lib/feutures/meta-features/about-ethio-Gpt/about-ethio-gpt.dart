@@ -1,3 +1,4 @@
+import 'package:ethio_gpt/cors/widgets/bg-box-decoration.dart';
 import 'package:ethio_gpt/cors/widgets/common-app-bar.dart';
 import 'package:ethio_gpt/cors/widgets/common-drawer.dart';
 import 'package:ethio_gpt/feutures/meta-features/Privecy-Policy/widget.dart';
@@ -29,15 +30,7 @@ class _AboutEthioGptScreenState extends State<AboutEthioGptScreen> {
       body: Container(
         height: double.infinity,
         width: double.infinity,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(
-                Theme.of(context).scaffoldBackgroundColor == Colors.black
-                    ? '/images/backgroun.png'
-                    : '/images/whitebg.png'),
-            fit: BoxFit.cover,
-          ),
-        ),
+        decoration: bgBoxDecoration(isDarkMod),
         child:
             // whole page
             Padding(

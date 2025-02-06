@@ -1,4 +1,5 @@
 import 'package:ethio_gpt/cors/constant/colors.dart';
+import 'package:ethio_gpt/cors/widgets/bg-box-decoration.dart';
 import 'package:ethio_gpt/cors/widgets/common-app-bar.dart';
 import 'package:ethio_gpt/cors/widgets/common-drawer.dart';
 import 'package:ethio_gpt/feutures/meta-features/FAQ/domain/entiry/faq-entity.dart';
@@ -45,15 +46,10 @@ class _FaqScreenState extends State<FaqScreen> {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(
-                isDarkMode ? '/images/backgroun.png' : '/images/whitebg.png'),
-            fit: BoxFit.cover,
-          ),
-        ),
+        decoration: bgBoxDecoration(isDarkMode),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+          padding: const EdgeInsets.only(
+              left: 16.0, right: 16.0, bottom: 8.0, top: 2),
           child: Column(
             children: [
               // Search Field
@@ -71,7 +67,7 @@ class _FaqScreenState extends State<FaqScreen> {
                 onChanged: (value) =>
                     setState(() => searchQuery = value.trim().toLowerCase()),
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 8),
 
               // FAQ List using BlocBuilder
               Expanded(

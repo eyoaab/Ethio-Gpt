@@ -1,6 +1,7 @@
 import 'package:ethio_gpt/cors/theme/bloc/theme_bloc.dart';
 import 'package:ethio_gpt/cors/theme/bloc/theme_event.dart';
 import 'package:ethio_gpt/cors/theme/bloc/theme_state.dart';
+import 'package:ethio_gpt/cors/widgets/bg-box-decoration.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -13,15 +14,8 @@ AppBar commonAppBar({
       backgroundColor: Colors.transparent,
       elevation: 0,
       flexibleSpace: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(
-                Theme.of(context).scaffoldBackgroundColor == Colors.black
-                    ? '/images/backgroun.png'
-                    : '/images/whitebg.png'),
-            fit: BoxFit.cover,
-          ),
-        ),
+        decoration: bgBoxDecoration(
+            Theme.of(context).scaffoldBackgroundColor == Colors.black),
       ),
       leading: IconButton(
         onPressed: action,
