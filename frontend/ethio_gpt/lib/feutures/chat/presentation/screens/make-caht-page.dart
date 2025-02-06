@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:ethio_gpt/cors/constant/colors.dart';
 import 'package:ethio_gpt/cors/widgets/bg-box-decoration.dart';
 import 'package:ethio_gpt/cors/widgets/common-app-bar.dart';
@@ -60,6 +62,7 @@ class _ChatScreenState extends State<ChatScreen> {
           prompt: userMessage,
           roomId: _roomId,
         ));
+    log('room id ${_roomId.toString()}');
   }
 
   void _showDrawer() {
