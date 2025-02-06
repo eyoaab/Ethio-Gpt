@@ -28,7 +28,7 @@ class _ShowDailyContainerState extends State<ShowDailyContainer> {
   Widget build(BuildContext context) {
     final int itemCount = showAll
         ? widget.listChatRoomEntity.length
-        : min(2, widget.listChatRoomEntity.length);
+        : min(3, widget.listChatRoomEntity.length);
 
     return SizedBox(
       width: double.infinity,
@@ -46,7 +46,7 @@ class _ShowDailyContainerState extends State<ShowDailyContainer> {
                       fontSize: 14,
                       color: widget.isDarkMod ? Colors.white : Colors.black),
                 ),
-                if (widget.listChatRoomEntity.length > 2)
+                if (widget.listChatRoomEntity.length > 3)
                   TextButton(
                     onPressed: () {
                       setState(() {
@@ -63,10 +63,15 @@ class _ShowDailyContainerState extends State<ShowDailyContainer> {
           ),
           Column(
             children: List.generate(itemCount, (index) {
-              return widget.listChatRoomEntity[index].messages.isEmpty
+              return widget
+                      .listChatRoomEntity[
+                          widget.listChatRoomEntity.length - index - 1]
+                      .messages
+                      .isEmpty
                   ? const SizedBox.shrink()
                   : chatHistoryRow(
-                      chatRoomEntity: widget.listChatRoomEntity[index],
+                      chatRoomEntity: widget.listChatRoomEntity[
+                          widget.listChatRoomEntity.length - index - 1],
                       context: context);
             }),
           )

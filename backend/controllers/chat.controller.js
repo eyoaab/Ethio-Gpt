@@ -19,7 +19,7 @@ async function saveMessage(roomId, prompt, replyInAmharic) {
 
   await message.save();
   await botMessage.save();
-  const chatRoom = await ChatRoom.findOne({ roomId });
+  const chatRoom = await ChatRoom.findById(roomId);
   console.log("before push");
   console.log(chatRoom.messages);
 
@@ -76,16 +76,16 @@ exports.getAmharicResponse = async (req, res) => {
         chat = await chat.save();
       } else {
         console.log("Finding room with id:", roomId);
-        chat = await ChatRoom.findOne({ roomId });
+        chat = await ChatRoom.findById(roomId);
 
         if (!chat) {
           return res.status(404).json({ message: "Chat room not found." });
         }
       }
-      // save message
-      await saveMessage(chat.roomId, prompt, replyInAmharic);
+      // save messag
+      await saveMessage(chat._id, prompt, replyInAmharic);
 
-      res.status(200).json({ response: replyInAmharic, roomId: chat.roomId });
+      res.status(200).json({ response: replyInAmharic, roomId: chat._id });
     } catch (error) {
       console.error("Error:", error);
       res.status(500).json({

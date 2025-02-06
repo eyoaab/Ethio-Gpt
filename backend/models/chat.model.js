@@ -3,13 +3,6 @@ const { v4: uuidv4 } = require("uuid");
 
 // ChatRoom Schema
 const chatRoomSchema = new mongoose.Schema({
-  roomId: {
-    type: String,
-    unique: true,
-    default: uuidv4, // Generates a UUID if no roomId is provided
-    trim: true,
-  },
-
   messages: [
     {
       type: mongoose.Schema.Types.ObjectId,
