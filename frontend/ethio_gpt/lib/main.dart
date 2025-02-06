@@ -1,6 +1,7 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:ethio_gpt/cors/theme/bloc/theme_bloc.dart';
 import 'package:ethio_gpt/cors/theme/bloc/theme_state.dart';
+import 'package:ethio_gpt/feutures/chat/presentation/bloc/chat_bloc.dart';
 import 'package:ethio_gpt/feutures/chat/presentation/screens/make-caht-page.dart';
 import 'package:ethio_gpt/feutures/feedback/presentation/bloc/feedback_bloc.dart';
 import 'package:ethio_gpt/feutures/meta-features/FAQ/presentation/bloc/faq_bloc.dart';
@@ -38,6 +39,7 @@ void main() async {
               create: (context) => locator<FeedbackBloc>(),
             ),
             BlocProvider<FaqBloc>(create: (context) => locator<FaqBloc>()),
+            BlocProvider<ChatBloc>(create: (context) => locator<ChatBloc>()),
           ],
           child: const MyApp(),
         ),
@@ -60,8 +62,8 @@ class MyApp extends StatelessWidget {
           builder: DevicePreview.appBuilder,
           debugShowCheckedModeBanner: false,
           theme: state.themeData,
-          // home: const SplashScreen(),
-          home: const ChatScreen());
+          home: const SplashScreen());
+      // home: ChatScreen());
     });
   }
 }

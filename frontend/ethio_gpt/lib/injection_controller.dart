@@ -1,4 +1,9 @@
 import 'package:ethio_gpt/cors/network/network_info.dart';
+import 'package:ethio_gpt/feutures/chat/data/data-source/chat-remote-datasource.dart';
+import 'package:ethio_gpt/feutures/chat/data/repository/chat-repository-implmentation.dart';
+import 'package:ethio_gpt/feutures/chat/domain/repository/chat-repository.dart';
+import 'package:ethio_gpt/feutures/chat/domain/usecase/get-chat-usecase.dart';
+import 'package:ethio_gpt/feutures/chat/presentation/bloc/chat_bloc.dart';
 import 'package:ethio_gpt/feutures/feedback/data/repository/feedback-repository-impl.dart';
 import 'package:ethio_gpt/feutures/feedback/domain/usecase/feedback-repository.dart';
 import 'package:ethio_gpt/feutures/feedback/presentation/bloc/feedback_bloc.dart';
@@ -13,11 +18,8 @@ import 'package:ethio_gpt/feutures/user/domain/usecase/signup-usecase.dart';
 import 'package:ethio_gpt/feutures/user/domain/usecase/update-usecase.dart';
 import 'package:ethio_gpt/feutures/user/presentation/bloc/user_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-// import 'package:ethio_gpt/feutures/chat/data/data-source/chat-remote-datasource.dart';
-// import 'package:ethio_gpt/feutures/chat/data/data-source/history-remote-data-source.dart';
 import 'package:ethio_gpt/feutures/feedback/data/data-source/remote-data-source.dart';
 import 'package:ethio_gpt/feutures/meta-features/FAQ/data/data-source/faq-remote-datasource.dart';
 import 'package:ethio_gpt/feutures/user/data/data-source/remote-data-source.dart';
@@ -46,6 +48,9 @@ Future<void> setUp() async {
       () => FaqRemoteDataSourceImpl(locator()));
   locator.registerLazySingleton<FeedbackRemoteDataSource>(
       () => FeedbackRemoteDataSourceImpl(locator()));
+  locator.registerLazySingleton<ChatResponseRemoteDataSource>(
+      () => ChatResponseRemoteDataSourceImpl(locator()));
+
   // chat and chat history repositories was not registered
 
   //! Repositories
@@ -56,6 +61,8 @@ Future<void> setUp() async {
       () => FeedbackRepositoryImpl(remoteDataSource: locator()));
   locator.registerLazySingleton<FaqRepository>(
       () => FaqRepositoryImpl(remoteDataSource: locator()));
+  locator.registerLazySingleton<ChatRepository>(() =>
+      ChatResponseRepositoryImpl(chatResponseRemoteDataSource: locator()));
 
   //! Use Cases
   locator.registerLazySingleton(() => LoginUsecase(userRepository: locator()));
@@ -66,6 +73,8 @@ Future<void> setUp() async {
   locator.registerLazySingleton(
       () => FeedBackUseCase(feedBackRepository: locator()));
   locator.registerLazySingleton(() => FaqUsecases(locator()));
+  locator.registerLazySingleton(
+      () => ChatResponceUseCase(chatRepository: locator()));
 
   //! BLoC
 
@@ -78,4 +87,6 @@ Future<void> setUp() async {
 
   locator.registerFactory(() => FaqBloc(loadFaqsUseCase: locator()));
   locator.registerFactory(() => FeedbackBloc(feedBackUseCase: locator()));
+
+  locator.registerFactory(() => ChatBloc(chatResponceUseCase: locator()));
 }

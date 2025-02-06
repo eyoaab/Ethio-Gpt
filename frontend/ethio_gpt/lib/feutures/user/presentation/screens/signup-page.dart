@@ -51,8 +51,8 @@ class SignUpScreenState extends State<SignUpScreen> {
             setState(() {
               isLoading = false;
             });
-            Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (context) => const ChatScreen()));
+            Navigator.pushReplacement(
+                context, MaterialPageRoute(builder: (context) => ChatScreen()));
           } else if (state is UserSignUpLoadingState) {
             setState(() {
               isLoading = true;

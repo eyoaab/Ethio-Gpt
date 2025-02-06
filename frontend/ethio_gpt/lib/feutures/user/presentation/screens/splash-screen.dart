@@ -105,7 +105,7 @@ class _SplashScreenState extends State<SplashScreen>
             context,
             MaterialPageRoute(
               builder: (context) => (isTokenSet && token != null)
-                  ? const ChatScreen()
+                  ? ChatScreen()
                   : const LoginScreen(),
             ),
           );
