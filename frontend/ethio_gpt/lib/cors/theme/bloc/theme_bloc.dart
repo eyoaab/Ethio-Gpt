@@ -9,7 +9,7 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
   ThemeBloc()
       : super(
           ThemeState(
-            themeData: EthioGptTheme.darkTheme,
+            themeData: EthioGptTheme.lightTheme,
             isDarkMode: true,
           ),
         ) {

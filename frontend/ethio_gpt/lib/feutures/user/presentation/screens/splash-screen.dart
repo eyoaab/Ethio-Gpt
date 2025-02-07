@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:ethio_gpt/cors/widgets/bg-box-decoration.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ethio_gpt/cors/utility-functions/token-validation.dart';
@@ -50,21 +51,14 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   Widget build(BuildContext context) {
-    final String backgroundImage =
-        Theme.of(context).scaffoldBackgroundColor == Colors.black
-            ? 'assets/images/backgroun.png'
-            : 'assets/images/whitebg.png';
+    final bool isDarkMod =
+        Theme.of(context).scaffoldBackgroundColor == Colors.black;
 
     return Scaffold(
       body: Container(
         height: double.infinity,
         width: double.infinity,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(backgroundImage),
-            fit: BoxFit.cover,
-          ),
-        ),
+        decoration: bgBoxDecoration(isDarkMod),
         child: Center(
           child: AnimatedBuilder(
             animation: _scaleAnimation,
