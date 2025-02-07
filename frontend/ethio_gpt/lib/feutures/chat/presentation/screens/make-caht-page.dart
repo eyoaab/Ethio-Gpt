@@ -76,6 +76,9 @@ class _ChatScreenState extends State<ChatScreen> {
     super.initState();
     _roomId = widget.roomId ?? '';
     _messages = widget.previousMessages ?? [];
+    if (_messages.isNotEmpty) {
+      _messages = _messages.reversed.toList();
+    }
     _scrollToBottom();
     context.read<SettingBloc>().add(CangeSetingEvent(0));
   }

@@ -14,8 +14,7 @@ GestureDetector chatHistoryRow(
             MaterialPageRoute(
                 builder: (context) => ChatScreen(
                       roomId: chatRoomEntity.id,
-                      previousMessages:
-                          chatRoomEntity.messages.reversed.toList(),
+                      previousMessages: chatRoomEntity.messages,
                     )));
       },
       child: Container(
@@ -43,6 +42,7 @@ GestureDetector chatHistoryRow(
                     child: SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Text(
+                        maxLines: 1,
                         chatRoomEntity.messages.isEmpty
                             ? ''
                             : chatRoomEntity.messages[0].content,

@@ -28,7 +28,7 @@ class _ShowDailyContainerState extends State<ShowDailyContainer> {
   Widget build(BuildContext context) {
     final int itemCount = showAll
         ? widget.listChatRoomEntity.length
-        : min(3, widget.listChatRoomEntity.length);
+        : min(5, widget.listChatRoomEntity.length);
 
     return SizedBox(
       width: double.infinity,
@@ -46,7 +46,7 @@ class _ShowDailyContainerState extends State<ShowDailyContainer> {
                       fontSize: 14,
                       color: widget.isDarkMod ? Colors.white : Colors.black),
                 ),
-                if (widget.listChatRoomEntity.length > 3)
+                if (widget.listChatRoomEntity.length > 5)
                   TextButton(
                     onPressed: () {
                       setState(() {

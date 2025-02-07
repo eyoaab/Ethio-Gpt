@@ -48,6 +48,7 @@ Expanded listMessagesWidget({
               mainAxisAlignment: isUserMessage
                   ? MainAxisAlignment.end
                   : MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 if (!isUserMessage) ...[
                   CircleAvatar(
