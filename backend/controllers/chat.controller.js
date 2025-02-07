@@ -20,14 +20,10 @@ async function saveMessage(roomId, prompt, replyInAmharic) {
   await message.save();
   await botMessage.save();
   const chatRoom = await ChatRoom.findById(roomId);
-  console.log("before push");
-  console.log(chatRoom.messages);
 
   chatRoom.messages.push(message);
   chatRoom.messages.push(botMessage);
   await chatRoom.save();
-  console.log("after push");
-  console.log(chatRoom.messages);
 }
 
 exports.getAmharicResponse = async (req, res) => {
@@ -39,16 +35,13 @@ exports.getAmharicResponse = async (req, res) => {
       return res.status(400).json({ message: "ትክክለኛ ጥያቄ ያስፈልጋል" });
     }
 
-    // if (roomId && !mongoose.Types.ObjectId.isValid(roomId)) {
-    //   return res.status(400).json({ message: "Invalid room ID." });
-    // }
-
     try {
       const { translation: englishPrompt } = await translate(
         prompt,
         "am",
         "en"
       );
+      console.log("English prompt:", englishPrompt);
 
       const aiResponse = await herc.question({
         model: "v3",
@@ -60,6 +53,8 @@ exports.getAmharicResponse = async (req, res) => {
       }
 
       const aiReplyInEnglish = aiResponse.reply;
+      console.log("AI reply:", aiResponse);
+      console.log("AI reply in English:", aiReplyInEnglish);
 
       const { translation: replyInAmharic } = await translate(
         aiReplyInEnglish,

@@ -63,15 +63,10 @@ class _ShowDailyContainerState extends State<ShowDailyContainer> {
           ),
           Column(
             children: List.generate(itemCount, (index) {
-              return widget
-                      .listChatRoomEntity[
-                          widget.listChatRoomEntity.length - index - 1]
-                      .messages
-                      .isEmpty
+              return widget.listChatRoomEntity[index].messages.isEmpty
                   ? const SizedBox.shrink()
                   : chatHistoryRow(
-                      chatRoomEntity: widget.listChatRoomEntity[
-                          widget.listChatRoomEntity.length - index - 1],
+                      chatRoomEntity: widget.listChatRoomEntity[index],
                       context: context);
             }),
           )

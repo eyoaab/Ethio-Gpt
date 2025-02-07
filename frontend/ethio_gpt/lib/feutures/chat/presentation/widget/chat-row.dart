@@ -14,7 +14,8 @@ GestureDetector chatHistoryRow(
             MaterialPageRoute(
                 builder: (context) => ChatScreen(
                       roomId: chatRoomEntity.id,
-                      previousMessages: chatRoomEntity.messages,
+                      previousMessages:
+                          chatRoomEntity.messages.reversed.toList(),
                     )));
       },
       child: Container(
@@ -44,9 +45,7 @@ GestureDetector chatHistoryRow(
                       child: Text(
                         chatRoomEntity.messages.isEmpty
                             ? ''
-                            : chatRoomEntity
-                                .messages[chatRoomEntity.messages.length - 1]
-                                .content,
+                            : chatRoomEntity.messages[0].content,
                         style: GoogleFonts.inter(
                           fontSize: 14,
                           color: Colors.white,

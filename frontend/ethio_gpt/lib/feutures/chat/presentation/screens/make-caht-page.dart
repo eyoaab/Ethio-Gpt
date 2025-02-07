@@ -10,6 +10,8 @@ import 'package:ethio_gpt/feutures/chat/presentation/bloc/chat_event.dart';
 import 'package:ethio_gpt/feutures/chat/presentation/bloc/chat_state.dart';
 import 'package:ethio_gpt/feutures/chat/presentation/widget/message-send-widget.dart';
 import 'package:ethio_gpt/feutures/chat/presentation/widget/show-list-of-messages.dart';
+import 'package:ethio_gpt/feutures/meta-features/setting/bloc/setting_bloc.dart';
+import 'package:ethio_gpt/feutures/meta-features/setting/bloc/setting_event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -75,6 +77,7 @@ class _ChatScreenState extends State<ChatScreen> {
     _roomId = widget.roomId ?? '';
     _messages = widget.previousMessages ?? [];
     _scrollToBottom();
+    context.read<SettingBloc>().add(CangeSetingEvent(0));
   }
 
   @override
