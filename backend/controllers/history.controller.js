@@ -41,7 +41,7 @@ exports.getRecentRooms = async (req, res) => {
     })
       .populate({
         path: "messages",
-        options: { sort: { timestamp: -1 } }, // Get only the latest message
+        options: { sort: { timestamp } }, // Get only the latest message
         select: "-timestamp -__v -_id", // Get only the latest message
       })
       .sort({ updatedAt: -1 })
@@ -54,7 +54,7 @@ exports.getRecentRooms = async (req, res) => {
     })
       .populate({
         path: "messages",
-        options: { sort: { timestamp: -1 } },
+        options: { sort: { timestamp } },
         select: "-timestamp -__v -_id", // Get only the latest message
       })
       .sort({ updatedAt: -1 })
@@ -67,7 +67,7 @@ exports.getRecentRooms = async (req, res) => {
     })
       .populate({
         path: "messages",
-        options: { sort: { timestamp: -1 } }, // Get only the latest message
+        options: { sort: { timestamp } }, // Get only the latest message
       })
       .sort({ updatedAt: -1 })
       .skip((page - 1) * limit) // Pagination: skip previous pages
