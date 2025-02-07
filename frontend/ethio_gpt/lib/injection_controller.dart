@@ -3,6 +3,7 @@ import 'package:ethio_gpt/feutures/chat/data/data-source/chat-remote-datasource.
 import 'package:ethio_gpt/feutures/chat/data/data-source/history-remote-data-source.dart';
 import 'package:ethio_gpt/feutures/chat/data/repository/chat-repository-implmentation.dart';
 import 'package:ethio_gpt/feutures/chat/domain/repository/chat-repository.dart';
+import 'package:ethio_gpt/feutures/chat/domain/usecase/delete-chat-usecase.dart';
 import 'package:ethio_gpt/feutures/chat/domain/usecase/get-chat-history-usecase.dart';
 import 'package:ethio_gpt/feutures/chat/domain/usecase/get-chat-usecase.dart';
 import 'package:ethio_gpt/feutures/chat/presentation/bloc/chat_bloc.dart';
@@ -81,6 +82,8 @@ Future<void> setUp() async {
       () => ChatResponceUseCase(chatRepository: locator()));
   locator.registerLazySingleton(
       () => GetChatHistoryUsecase(chatRepository: locator()));
+  locator.registerLazySingleton(
+      () => DeleteChatUsecase(chatRepository: locator()));
 
   //! BLoC
 
@@ -95,5 +98,7 @@ Future<void> setUp() async {
   locator.registerFactory(() => FeedbackBloc(feedBackUseCase: locator()));
 
   locator.registerFactory(() => ChatBloc(
-      chatResponceUseCase: locator(), getChatHistoryUsecase: locator()));
+      chatResponceUseCase: locator(),
+      getChatHistoryUsecase: locator(),
+      deleteChatUsecase: locator()));
 }

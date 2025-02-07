@@ -2,6 +2,7 @@ import 'package:ethio_gpt/cors/constant/colors.dart';
 import 'package:ethio_gpt/cors/widgets/bg-box-decoration.dart';
 import 'package:ethio_gpt/cors/widgets/common-app-bar.dart';
 import 'package:ethio_gpt/cors/widgets/common-drawer.dart';
+import 'package:ethio_gpt/cors/widgets/common-snackbar.dart';
 import 'package:ethio_gpt/feutures/chat/domain/entity/history-entity.dart';
 import 'package:ethio_gpt/feutures/chat/presentation/bloc/chat_bloc.dart';
 import 'package:ethio_gpt/feutures/chat/presentation/bloc/chat_event.dart';
@@ -22,6 +23,7 @@ class _ChatHistoryScreenState extends State<ChatHistoryScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final List<String> days = ["Today", "Yesterday ", "30 Days"];
   bool isLoading = true;
+  bool isDeleting = false;
   String errorMessage = '';
   ChatHistoryEntity chatHistoryEntity =
       ChatHistoryEntity(old: [], today: [], yestarday: []);
@@ -56,6 +58,18 @@ class _ChatHistoryScreenState extends State<ChatHistoryScreen> {
             } else if (state is ChatHistoryErrorState) {
               isLoading = false;
               errorMessage = state.errorMessage;
+            } else if (state is DeleteChatHistoryLoadingState) {
+              isDeleting = true;
+              errorMessage = '';
+            } else if (state is DeleteChatHistoryLoadedState) {
+              isDeleting = false;
+              showCustomSnackBar(
+                  context, 'Chat History Deleted Successfully', true);
+              context.read<ChatBloc>().add(ChatHistoryEvent());
+            } else if (state is DeleteChatHistoryErrorState) {
+              isDeleting = false;
+              showCustomSnackBar(context, state.errorMessage, false);
+              context.read<ChatBloc>().add(ChatHistoryEvent());
             }
             setState(() {});
           },

@@ -30,3 +30,13 @@ class ChatHistoryErrorState extends ChatState {
   String errorMessage;
   ChatHistoryErrorState({required this.errorMessage});
 }
+
+//  to the delete chat history part
+class DeleteChatHistoryLoadingState extends ChatState {}
+
+class DeleteChatHistoryLoadedState extends ChatState {}
+
+class DeleteChatHistoryErrorState extends ChatState {
+  String errorMessage;
+  DeleteChatHistoryErrorState({required this.errorMessage});
+}

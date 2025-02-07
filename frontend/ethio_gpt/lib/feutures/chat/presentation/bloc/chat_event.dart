@@ -10,3 +10,11 @@ class ChatRequestEvent extends ChatEvent {
 
 // event to get the chat history
 class ChatHistoryEvent extends ChatEvent {}
+
+// event to delte a chat history
+
+class DeleteChatHistoryEvent extends ChatEvent {
+  final String roomId;
+
+  DeleteChatHistoryEvent({required this.roomId});
+}

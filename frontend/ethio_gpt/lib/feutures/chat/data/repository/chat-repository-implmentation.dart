@@ -39,4 +39,16 @@ class ChatResponseRepositoryImpl implements ChatRepository {
       return Left(ServerFailure(e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, bool>> deleteChatHistory(String roomId) async {
+    try {
+      final token = await tokenValidation.getToken();
+      final response =
+          await chatHistoryRemoteDataSource.deleteChatHistory(roomId, token!);
+      return Right(response);
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
+  }
 }

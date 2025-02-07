@@ -7,4 +7,5 @@ abstract class ChatRepository {
   Future<Either<Failure, ChatResponseModel>> getChatResponse(
       String prompt, String roomId);
   Future<Either<Failure, ChatHistoryEntity>> getChatHistory();
+  Future<Either<Failure, bool>> deleteChatHistory(String roomId);
 }

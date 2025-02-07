@@ -147,3 +147,28 @@ exports.getEnglishResponse = async (req, res) => {
     });
   }
 };
+
+// function to delete a chat room
+exports.deleteChatRoom = async (req, res) => {
+  try {
+    const { roomId } = req.body;
+    if (!roomId) {
+      return res.status(400).json({ message: "Room ID is required." });
+    }
+    const room = await ChatRoom.findById(roomId);
+    // if room is not found
+
+    if (!room) {
+      return res.status(404).json({ message: "Chat room not found." });
+    }
+    // delete room
+    await room.deleteOne();
+    res.status(200).json({ message: "Chat room deleted successfully." });
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({
+      message:
+        error.message || "An error occurred while processing your request.",
+    });
+  }
+};

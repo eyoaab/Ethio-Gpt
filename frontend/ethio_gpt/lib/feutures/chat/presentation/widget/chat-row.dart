@@ -1,7 +1,11 @@
 import 'package:ethio_gpt/cors/constant/colors.dart';
+import 'package:ethio_gpt/cors/widgets/common-snackbar.dart';
 import 'package:ethio_gpt/feutures/chat/domain/entity/chat-room-entity.dart';
+import 'package:ethio_gpt/feutures/chat/presentation/bloc/chat_bloc.dart';
+import 'package:ethio_gpt/feutures/chat/presentation/bloc/chat_event.dart';
 import 'package:ethio_gpt/feutures/chat/presentation/screens/make-caht-page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 GestureDetector chatHistoryRow(
@@ -58,7 +62,14 @@ GestureDetector chatHistoryRow(
                 ],
               ),
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  showQuestionDialog(
+                      context, 'Are you Sure To Delete The Chat history', () {
+                    context
+                        .read<ChatBloc>()
+                        .add(DeleteChatHistoryEvent(roomId: chatRoomEntity.id));
+                  });
+                },
                 icon: const Icon(Icons.delete, color: Colors.red),
               ),
             ],
