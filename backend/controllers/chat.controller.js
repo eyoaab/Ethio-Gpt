@@ -1,9 +1,12 @@
 const { Hercai } = require("hercai");
+const { GoogleGenerativeAI } = require("@google/generative-ai");
 const { translate } = require("bing-translate-api");
 const ChatRoom = require("../models/chat.model");
 const Message = require("../models/message.model");
+const dotenv = require("dotenv");
 
 const herc = new Hercai();
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 // Function to create and save a message in the database
 async function saveMessage(roomId, prompt, replyInAmharic) {
@@ -43,21 +46,13 @@ exports.getAmharicResponse = async (req, res) => {
       );
       console.log("English prompt:", englishPrompt);
 
-      const aiResponse = await herc.question({
-        model: "v3",
-        content: englishPrompt,
-      });
-
-      if (!aiResponse || !aiResponse.reply) {
-        throw new Error("ትክክለኛ ምላሽ ከ AI ማግኘት አልተሳካም እባክዎ እንደገና ይሞክሩ.");
-      }
-
-      const aiReplyInEnglish = aiResponse.reply;
-      console.log("AI reply:", aiResponse);
-      console.log("AI reply in English:", aiReplyInEnglish);
+      const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+      const result = await model.generateContent(englishPrompt);
+      const response = result.response.text();
+      ///
 
       const { translation: replyInAmharic } = await translate(
-        aiReplyInEnglish,
+        response,
         "en",
         "am"
       );
