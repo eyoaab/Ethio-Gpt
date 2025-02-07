@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:ethio_gpt/cors/constant/colors.dart';
 import 'package:ethio_gpt/cors/widgets/bg-box-decoration.dart';
 import 'package:ethio_gpt/cors/widgets/common-app-bar.dart';
 import 'package:ethio_gpt/cors/widgets/common-drawer.dart';
@@ -14,7 +13,6 @@ import 'package:ethio_gpt/feutures/meta-features/setting/bloc/setting_bloc.dart'
 import 'package:ethio_gpt/feutures/meta-features/setting/bloc/setting_event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class ChatScreen extends StatefulWidget {
   String? roomId;
@@ -76,9 +74,9 @@ class _ChatScreenState extends State<ChatScreen> {
     super.initState();
     _roomId = widget.roomId ?? '';
     _messages = widget.previousMessages ?? [];
-    if (_messages.isNotEmpty) {
-      _messages = _messages.reversed.toList();
-    }
+    // if (_messages.isNotEmpty) {
+    //   _messages = _messages.reversed.toList();
+    // }
     _scrollToBottom();
     context.read<SettingBloc>().add(CangeSetingEvent(0));
   }

@@ -64,7 +64,7 @@ GestureDetector chatHistoryRow(
               IconButton(
                 onPressed: () {
                   showQuestionDialog(
-                      context, 'Are you Sure To Delete The Chat history', () {
+                      context, 'Are you Sure To Delete The Chat History?', () {
                     context
                         .read<ChatBloc>()
                         .add(DeleteChatHistoryEvent(roomId: chatRoomEntity.id));

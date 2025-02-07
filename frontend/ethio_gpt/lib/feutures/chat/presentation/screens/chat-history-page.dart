@@ -87,7 +87,8 @@ class _ChatHistoryScreenState extends State<ChatHistoryScreen> {
                   ),
                 ),
                 const SizedBox(height: 10),
-                if (isLoading) const Center(child: CircularProgressIndicator()),
+                if (isLoading || isDeleting)
+                  const Center(child: CircularProgressIndicator()),
                 if (errorMessage.isNotEmpty)
                   Center(
                     child: Text(
@@ -95,7 +96,7 @@ class _ChatHistoryScreenState extends State<ChatHistoryScreen> {
                       style: const TextStyle(color: Colors.red, fontSize: 16),
                     ),
                   ),
-                if (!isLoading && errorMessage.isEmpty) ...[
+                if (!isLoading && !isDeleting && errorMessage.isEmpty) ...[
                   if (chatHistoryEntity.today.isNotEmpty)
                     ShowDailyContainer(
                       isDarkMod: isDarkMode,

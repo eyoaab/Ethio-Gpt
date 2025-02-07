@@ -66,11 +66,12 @@ void showQuestionDialog(
             child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     question,
                     style: GoogleFonts.inter(
-                      fontSize: 30,
+                      fontSize: 25,
                       fontWeight: FontWeight.w700,
                       color: Theme.of(context).scaffoldBackgroundColor ==
                               Colors.black
