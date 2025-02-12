@@ -3,23 +3,27 @@ import 'package:ethio_gpt/feutures/user/domain/usecase/delete-usecase.dart';
 import 'package:ethio_gpt/feutures/user/domain/usecase/login-usecase.dart';
 import 'package:ethio_gpt/feutures/user/domain/usecase/logout-usecase.dart';
 import 'package:ethio_gpt/feutures/user/domain/usecase/signup-usecase.dart';
+import 'package:ethio_gpt/feutures/user/domain/usecase/update-password.dart';
 import 'package:ethio_gpt/feutures/user/domain/usecase/update-usecase.dart';
 import 'package:ethio_gpt/feutures/user/presentation/bloc/user_event.dart';
 import 'package:ethio_gpt/feutures/user/presentation/bloc/user_state.dart';
 
 class UserBloc extends Bloc<UserEvent, UserState> {
   final UpdateUsecase updateUsecase;
+  final UpdatePasswordUseCase updatePasswordUseCase;
   final DeleteUsecase deleteUsecase;
   final LogoutUsecase logoutUsecase;
   final SigninUsecase signinUsecase;
   final LoginUsecase loginUsecase;
-  UserBloc({
-    required this.updateUsecase,
-    required this.deleteUsecase,
-    required this.logoutUsecase,
-    required this.signinUsecase,
-    required this.loginUsecase,
-  }) : super(UserInitial()) {
+
+  UserBloc(
+      {required this.updateUsecase,
+      required this.deleteUsecase,
+      required this.logoutUsecase,
+      required this.signinUsecase,
+      required this.loginUsecase,
+      required this.updatePasswordUseCase})
+      : super(UserInitial()) {
     // login event
     on<UserLoginEvent>((event, emit) async {
       emit(UserLoginLoadingState());
@@ -70,6 +74,17 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       result.fold(
         (left) => emit(UserDeleteErrorState(left.message)),
         (right) => emit(UserDeleteSuccessState()),
+      );
+    });
+
+    //  update password
+    on<UsesrPasswordUpdateEvent>((event, emit) async {
+      emit(UserPasswordUpdateLoadingState());
+      final result = await updatePasswordUseCase.excute(
+          event.oldPassword, event.newPassword);
+      result.fold(
+        (left) => emit(UserPasswordUpdateErrorState(left.message)),
+        (right) => emit(UserPasswordUpdateSuccessState()),
       );
     });
   }

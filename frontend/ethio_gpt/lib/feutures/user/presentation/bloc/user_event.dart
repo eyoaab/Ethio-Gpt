@@ -35,6 +35,15 @@ class UserUpdateEvent extends UserEvent {
   });
 }
 
+// for user password update
+class UsesrPasswordUpdateEvent extends UserEvent {
+  String oldPassword;
+  String newPassword;
+
+  UsesrPasswordUpdateEvent(
+      {required this.newPassword, required this.oldPassword});
+}
+
 // for delete user
 class UserDeleteEvent extends UserEvent {}
 

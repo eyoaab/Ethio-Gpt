@@ -18,6 +18,7 @@ import 'package:ethio_gpt/feutures/user/domain/usecase/delete-usecase.dart';
 import 'package:ethio_gpt/feutures/user/domain/usecase/login-usecase.dart';
 import 'package:ethio_gpt/feutures/user/domain/usecase/logout-usecase.dart';
 import 'package:ethio_gpt/feutures/user/domain/usecase/signup-usecase.dart';
+import 'package:ethio_gpt/feutures/user/domain/usecase/update-password.dart';
 import 'package:ethio_gpt/feutures/user/domain/usecase/update-usecase.dart';
 import 'package:ethio_gpt/feutures/user/presentation/bloc/user_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -75,6 +76,7 @@ Future<void> setUp() async {
   locator.registerLazySingleton(() => LogoutUsecase(locator()));
   locator.registerLazySingleton(() => SigninUsecase(userRepository: locator()));
   locator.registerLazySingleton(() => UpdateUsecase(userRepository: locator()));
+  locator.registerLazySingleton(() => UpdatePasswordUseCase(locator()));
   locator.registerLazySingleton(
       () => FeedBackUseCase(feedBackRepository: locator()));
   locator.registerLazySingleton(() => FaqUsecases(locator()));
@@ -88,6 +90,7 @@ Future<void> setUp() async {
   //! BLoC
 
   locator.registerFactory(() => UserBloc(
+      updatePasswordUseCase: locator(),
       updateUsecase: locator(),
       deleteUsecase: locator(),
       logoutUsecase: locator(),

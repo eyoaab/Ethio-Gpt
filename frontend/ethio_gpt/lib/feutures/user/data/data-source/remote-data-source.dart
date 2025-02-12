@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:ethio_gpt/cors/error/exception.dart';
 import 'package:ethio_gpt/cors/urls/urls.dart';
+import 'package:ethio_gpt/cors/utility-functions/token-validation.dart';
 import 'package:ethio_gpt/feutures/user/data/model/user-model.dart';
 import 'package:http/http.dart' as http;
 
@@ -8,6 +9,7 @@ abstract class UserRemoteDatasource {
   Future<UserModel> signUpUser(String email, String password);
   Future<UserModel> signInUser(String email, String password);
   Future<bool> updateUser(String email, String password);
+  Future<bool> updatePassword(String oldPassword, String newPassword);
   Future<bool> deleteUser(String token);
   Future<bool> logOut();
 }
@@ -16,6 +18,7 @@ class UserRemoteDataSourceImpl implements UserRemoteDatasource {
   final http.Client client;
 
   UserRemoteDataSourceImpl({required this.client});
+  TokenValidation tokenValidation = TokenValidation();
 
   // login user with email and password
   @override
@@ -67,12 +70,37 @@ class UserRemoteDataSourceImpl implements UserRemoteDatasource {
   Future<bool> updateUser(String email, String password) async {
     try {
       final response = await client.put(
-        Uri.parse('${Url().baseUrl()}user/update'),
+        Uri.parse('${Url().baseUrl()}user/updateEmail'),
         body: jsonEncode({'email': email, 'password': password}),
         headers: {'Content-Type': 'application/json'},
       );
 
       if (response.statusCode == 200) {
+        String token = jsonDecode(response.body)["token"];
+        await tokenValidation.saveToken(token);
+        return true;
+      } else {
+        String errorMessage = jsonDecode(response.body)['message'];
+        throw ServerException(errorMessage);
+      }
+    } catch (e) {
+      throw ServerException(e.toString());
+    }
+  }
+
+  @override
+  Future<bool> updatePassword(String oldPassword, String newPassword) async {
+    try {
+      final response = await client.put(
+        Uri.parse('${Url().baseUrl()}user/updatePassword'),
+        body: jsonEncode(
+            {'oldPassword': oldPassword, 'newPassword': newPassword}),
+        headers: {'Content-Type': 'application/json'},
+      );
+
+      if (response.statusCode == 200) {
+        String token = jsonDecode(response.body)["token"];
+        await tokenValidation.saveToken(token);
         return true;
       } else {
         String errorMessage = jsonDecode(response.body)['message'];

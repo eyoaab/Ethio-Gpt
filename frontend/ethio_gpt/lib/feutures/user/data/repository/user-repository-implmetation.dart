@@ -99,6 +99,24 @@ class UserRepositoryImpl implements UserRepository {
     }
   }
 
+  @override
+  Future<Either<Failure, bool>> updatePassword(
+      String oldPassword, String newPassword) async {
+    try {
+      final response =
+          await remoteDataSource.updatePassword(oldPassword, newPassword);
+      return Right(response);
+    } catch (e) {
+      if (e is ServerException) {
+        return Left(ServerFailure(e.errorMessage));
+      } else if (e is NetworkException) {
+        return const Left(NetworkFailure('No internet connection'));
+      } else {
+        return const Left(ServerFailure('Unexpected error occurred'));
+      }
+    }
+  }
+
   // log outa user
   @override
   // write a fucntion to log out a user

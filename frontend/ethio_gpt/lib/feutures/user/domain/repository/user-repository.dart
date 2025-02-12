@@ -6,6 +6,9 @@ abstract class UserRepository {
   Future<Either<Failure, UserEntity>> logIn(String email, String password);
   Future<Either<Failure, UserEntity>> signUp(String email, String password);
   Future<Either<Failure, bool>> updateUser(String email, String password);
+  Future<Either<Failure, bool>> updatePassword(
+      String oldPassword, String newPassword);
+
   Future<Either<Failure, bool>> logOut();
   Future<Either<Failure, bool>> deleteUser();
 }

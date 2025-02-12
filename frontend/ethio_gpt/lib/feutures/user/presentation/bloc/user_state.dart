@@ -59,3 +59,13 @@ final class UserLogoutErrorState extends UserState {
   final String message;
   UserLogoutErrorState(this.message);
 }
+
+// for update password
+final class UserPasswordUpdateLoadingState extends UserState {}
+
+final class UserPasswordUpdateSuccessState extends UserState {}
+
+final class UserPasswordUpdateErrorState extends UserState {
+  final String message;
+  UserPasswordUpdateErrorState(this.message);
+}
