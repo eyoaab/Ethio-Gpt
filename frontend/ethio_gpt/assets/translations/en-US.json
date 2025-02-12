@@ -58,7 +58,9 @@
   "sureToLogOut": "Are you sure you want to log out?",
 
   "enterNewUsername": "Enter Your New Username",
+  "successOfUpdateUsername": "Username updated successfully",
 
   "enterNewPassword": "Enter Your New Password",
-  "eneterOldPassword": "Enter Your Old Password"
+  "eneterOldPassword": "Enter Your Old Password",
+  "successOfUpdatePassword": "Password Updated Successfully"
 }

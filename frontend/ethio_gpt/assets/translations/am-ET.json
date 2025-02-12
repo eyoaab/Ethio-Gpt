@@ -58,7 +58,9 @@
   "sureToLogOut": "መውጣትህን እርግጠኛ ነህ",
 
   "enterNewUsername": "አዲስ የተጠቃሚ ስም ያስገቡ",
+  "successOfUpdateUsername": "Username updated successfully",
 
   "enterNewPassword": "አዲስ የይለፍ ቃል ያስገቡ",
-  "eneterOldPassword": "የድሮ የይለፍ ቃል አስገባ"
+  "eneterOldPassword": "የድሮ የይለፍ ቃል አስገባ",
+  "successOfUpdatePassword": "Password Updated Successfully"
 }

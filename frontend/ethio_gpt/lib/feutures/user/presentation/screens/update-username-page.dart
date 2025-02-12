@@ -69,7 +69,7 @@ class _UpdateUserNameScreenState extends State<UpdateUserNameScreen> {
                 // clear all fields
                 newUserNameController.clear();
                 passwordController.clear();
-                showCustomSnackBar(context, 'Usename Updated Successfully',
+                showCustomSnackBar(context, 'successOfUpdateUsername'.tr(),
                     true); //translate this one
               } else if (state is UserUpdateErrorState) {
                 setState(() {

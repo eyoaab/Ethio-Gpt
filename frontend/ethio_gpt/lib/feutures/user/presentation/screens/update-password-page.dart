@@ -39,12 +39,10 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
     if (oldnewPasswordController.text.isEmpty ||
         newpasswordController.text.isEmpty ||
         confirmpasswordController.text.isEmpty) {
-      showCustomSnackBar(
-          context, 'Please fill all the fields', false); //translate this one
+      showCustomSnackBar(context, 'fillAllFields'.tr(), false);
       return;
     } else if (newpasswordController.text != confirmpasswordController.text) {
-      showCustomSnackBar(
-          context, 'Please much the Passwords', false); //translate this one
+      showCustomSnackBar(context, 'passwordNotMatch'.tr(), false);
       return;
     }
 
@@ -80,14 +78,13 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
                   newpasswordController.clear();
                   confirmpasswordController.clear();
                 });
-                showCustomSnackBar(context, 'Password Updated Successfully',
+                showCustomSnackBar(context, 'successOfUpdatePassword'.tr(),
                     true); //translate this one
               } else if (state is UserUpdateErrorState) {
                 setState(() {
                   isLoading = false;
                 });
-                showCustomSnackBar(context, 'Password Update Failed',
-                    false); //translate this one
+                showCustomSnackBar(context, state.message, false);
               }
             },
             // Content
