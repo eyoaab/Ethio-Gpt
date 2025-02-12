@@ -18,7 +18,9 @@ class ChatResponseRemoteDataSourceImpl implements ChatResponseRemoteDataSource {
       String prompt, String roomId, String token) async {
     try {
       final response = await client.post(
-        Uri.parse('${Url().baseUrl()}chat/amharic'),
+        // Uri.parse('${Url().baseUrl()}chat/amharic'),
+        Uri.parse('${Url().baseUrl()}chat/english'),
+
         headers: {
           'Content-Type': 'application/json',
           'Authorization': 'Bearer $token',

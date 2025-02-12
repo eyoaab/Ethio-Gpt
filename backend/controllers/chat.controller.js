@@ -1,11 +1,8 @@
-const { Hercai } = require("hercai");
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const { translate } = require("bing-translate-api");
 const ChatRoom = require("../models/chat.model");
 const Message = require("../models/message.model");
-const dotenv = require("dotenv");
 
-const herc = new Hercai();
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 // Function to create and save a message in the database
@@ -97,53 +94,44 @@ exports.getEnglishResponse = async (req, res) => {
     const userId = req.userId;
 
     if (!prompt || typeof prompt !== "string") {
-      return res.status(400).json({ error: "Valid prompt is required." });
+      return res.status(400).json({ message: "proper prompt is required" });
     }
-    // if (roomId && !mongoose.Types.ObjectId.isValid(roomId)) {
-    //   return res.status(400).json({ message: "Invalid room ID." });
-    // }
 
     try {
-      const aiResponse = await herc.question({
-        model: "v3",
-        content: prompt,
-      });
+      const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+      const result = await model.generateContent(prompt);
+      const response = result.response.text();
+      ///
 
-      if (!aiResponse || !aiResponse.reply) {
-        throw new Error("Failed to get a valid response from AI.");
-      }
-      const aiReplyInEnglish = aiResponse.reply;
-
-      let room;
+      let chat;
 
       if (!roomId) {
-        room = new ChatRoom({ messages: [], userId: userId });
-        room = await room.save();
-      } else {
-        room = await ChatRoom.findById(roomId);
+        console.log("Creating new room since the room is none");
 
-        if (!room) {
+        chat = new ChatRoom({ messages: [], userId: userId });
+        chat = await chat.save();
+      } else {
+        console.log("Finding room with id:", roomId);
+        chat = await ChatRoom.findById(roomId);
+
+        if (!chat) {
           return res.status(404).json({ message: "Chat room not found." });
         }
       }
+      // save messag
+      await saveMessage(chat._id, prompt, response);
 
-      // save message
-      await saveMessage(room._id, prompt, aiReplyInEnglish);
-
-      // Respond with the translated reply
-      res.status(200).json({ response: aiReplyInEnglish, roomId: room._id });
+      res.status(200).json({ response: response, roomId: chat._id });
     } catch (error) {
-      console.error("Error processing /gpt request:", error);
+      console.error("Error:", error);
       res.status(500).json({
-        error:
-          error.message || "An error occurred while processing your request.",
+        message: error.message || "Ther is a problem in your please try again.",
       });
     }
   } catch (error) {
-    console.error("Error processing /gpt request:", error);
+    console.error("Error:", error);
     res.status(500).json({
-      error:
-        error.message || "An error occurred while processing your request.",
+      message: error.message || "Ther is a problem in your please try again.",
     });
   }
 };

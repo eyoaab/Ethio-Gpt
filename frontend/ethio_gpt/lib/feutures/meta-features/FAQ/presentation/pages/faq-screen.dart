@@ -2,6 +2,7 @@ import 'package:ethio_gpt/cors/constant/colors.dart';
 import 'package:ethio_gpt/cors/widgets/bg-box-decoration.dart';
 import 'package:ethio_gpt/cors/widgets/common-app-bar.dart';
 import 'package:ethio_gpt/cors/widgets/common-drawer.dart';
+import 'package:ethio_gpt/cors/widgets/shmmer-loading.dart';
 import 'package:ethio_gpt/feutures/meta-features/FAQ/domain/entiry/faq-entity.dart';
 import 'package:ethio_gpt/feutures/meta-features/FAQ/presentation/bloc/faq_bloc.dart';
 import 'package:ethio_gpt/feutures/meta-features/FAQ/presentation/bloc/faq_event.dart';
@@ -12,7 +13,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class FaqScreen extends StatefulWidget {
-  const FaqScreen({Key? key}) : super(key: key);
+  const FaqScreen({super.key});
 
   @override
   _FaqScreenState createState() => _FaqScreenState();
@@ -74,9 +75,7 @@ class _FaqScreenState extends State<FaqScreen> {
                 child: BlocBuilder<FaqBloc, FaqState>(
                   builder: (context, state) {
                     if (state is FaqLoadingState) {
-                      return Center(
-                          child:
-                              CircularProgressIndicator(color: primaryColor));
+                      return const ShimmerLoading();
                     }
                     if (state is FaqErrorState) {
                       return Center(
