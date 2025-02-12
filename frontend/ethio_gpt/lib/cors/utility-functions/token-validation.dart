@@ -55,4 +55,20 @@ class TokenValidation {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.containsKey('theme') && prefs.getString('theme') != null;
   }
+
+  // for the language part
+  Future<void> saveLanguage(String language) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('language', language);
+  }
+
+  Future<String?> getLanguage() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString('language');
+  }
+
+  Future<bool> isLanguageSet() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.containsKey('language') && prefs.getString('language') != null;
+  }
 }

@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ethio_gpt/cors/constant/colors.dart';
+import 'package:ethio_gpt/cors/utility-functions/token-validation.dart';
 import 'package:ethio_gpt/cors/widgets/common-snackbar.dart';
 import 'package:ethio_gpt/cors/widgets/common-submit-button.dart';
 import 'package:ethio_gpt/cors/widgets/drawer-row.dart';
@@ -176,8 +177,21 @@ class CommonDrawer extends StatelessWidget {
                 child: Center(
                   child: changeLanduadge(
                     onPressed: () {
-                      showQuestionDialog(
-                          context, "sureToChangeLanguage".tr(), () {});
+                      TokenValidation tokenValidation = TokenValidation();
+                      showQuestionDialog(context, "sureToChangeLanguage".tr(),
+                          () async {
+                        Locale currentLocale = context.locale;
+                        if (currentLocale.languageCode == 'en') {
+                          context.setLocale(const Locale('am', 'ET'));
+                          Navigator.pop(context);
+                          await tokenValidation.saveLanguage('am');
+                        } else {
+                          context.setLocale(const Locale('en', 'US'));
+                          Navigator.pop(context);
+
+                          await tokenValidation.saveLanguage('en');
+                        }
+                      });
                     },
                     label: 'chageLanguadge'.tr(),
                   ),

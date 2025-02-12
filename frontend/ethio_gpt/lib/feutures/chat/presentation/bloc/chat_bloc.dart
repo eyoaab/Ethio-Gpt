@@ -17,8 +17,8 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     // to send a requiest to the server
     on<ChatRequestEvent>((event, emit) async {
       emit(ChatResponseLoadingState());
-      final result =
-          await chatResponceUseCase.excute(event.prompt, event.roomId);
+      final result = await chatResponceUseCase.excute(
+          event.prompt, event.roomId, event.isAmharic);
       result.fold(
           (faliure) => emit(
               ChatResponseErrorState(errorMessage: faliure.message.toString())),

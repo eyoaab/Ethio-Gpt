@@ -1,6 +1,7 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:ethio_gpt/cors/theme/bloc/theme_bloc.dart';
 import 'package:ethio_gpt/cors/theme/bloc/theme_state.dart';
+import 'package:ethio_gpt/cors/utility-functions/token-validation.dart';
 import 'package:ethio_gpt/feutures/chat/presentation/bloc/chat_bloc.dart';
 import 'package:ethio_gpt/feutures/feedback/presentation/bloc/feedback_bloc.dart';
 import 'package:ethio_gpt/feutures/meta-features/FAQ/presentation/bloc/faq_bloc.dart';
@@ -17,6 +18,9 @@ void main() async {
   await setUp();
   await EasyLocalization.ensureInitialized();
 
+  TokenValidation tokenValidation = TokenValidation();
+  Locale initialLocale = await _getInitialLocale(tokenValidation);
+
   runApp(
     DevicePreview(
       enabled: true,
@@ -27,7 +31,7 @@ void main() async {
         ],
         path: 'assets/translations',
         fallbackLocale: const Locale('en', 'US'),
-        startLocale: const Locale('am', 'ET'),
+        startLocale: initialLocale,
         child: MultiBlocProvider(
           providers: [
             BlocProvider<SettingBloc>(
@@ -48,6 +52,14 @@ void main() async {
   );
 }
 
+Future<Locale> _getInitialLocale(TokenValidation tokenValidation) async {
+  if (await tokenValidation.isLanguageSet() &&
+      await tokenValidation.getLanguage() == 'am') {
+    return const Locale('am', 'ET');
+  }
+  return const Locale('en', 'US');
+}
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -55,14 +67,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ThemeBloc, ThemeState>(builder: (context, state) {
       return MaterialApp(
-          title: 'Ethio-GPT',
-          localizationsDelegates: context.localizationDelegates,
-          supportedLocales: context.supportedLocales,
-          locale: context.locale,
-          builder: DevicePreview.appBuilder,
-          debugShowCheckedModeBanner: false,
-          theme: state.themeData,
-          home: const SplashScreen());
+        title: 'Ethio-GPT',
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
+        builder: DevicePreview.appBuilder,
+        debugShowCheckedModeBanner: false,
+        theme: state.themeData,
+        home: const SplashScreen(),
+      );
     });
   }
 }

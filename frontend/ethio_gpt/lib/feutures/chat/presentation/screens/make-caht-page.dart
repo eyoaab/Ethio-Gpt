@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:ethio_gpt/cors/widgets/bg-box-decoration.dart';
 import 'package:ethio_gpt/cors/widgets/common-app-bar.dart';
 import 'package:ethio_gpt/cors/widgets/common-drawer.dart';
@@ -45,7 +46,7 @@ class _ChatScreenState extends State<ChatScreen> {
   bool _isLoading = false;
   String? _errorMessage;
 
-  void _sendMessage() {
+  void _sendMessage(bool isAmharic) {
     if (_isLoading || _messageController.text.isEmpty) return;
 
     final userMessage = _messageController.text.trim();
@@ -57,10 +58,12 @@ class _ChatScreenState extends State<ChatScreen> {
     });
     _scrollToBottom();
     FocusScope.of(context).unfocus();
+
     // emit the state
     context.read<ChatBloc>().add(ChatRequestEvent(
           prompt: userMessage,
           roomId: _roomId,
+          isAmharic: isAmharic,
         ));
   }
 
@@ -134,7 +137,8 @@ class _ChatScreenState extends State<ChatScreen> {
                   child: searchArea(
                     isDarkMod: isDarkMode,
                     controller: _messageController,
-                    action: _sendMessage,
+                    action: () =>
+                        _sendMessage(context.locale.languageCode == 'am'),
                   ),
                 ),
               ],

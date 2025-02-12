@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 
 abstract class ChatResponseRemoteDataSource {
   Future<ChatResponseModel> getChatResponse(
-      String prompt, String roomId, String token);
+      String prompt, String roomId, String token, bool isAmharic);
 }
 
 class ChatResponseRemoteDataSourceImpl implements ChatResponseRemoteDataSource {
@@ -15,11 +15,13 @@ class ChatResponseRemoteDataSourceImpl implements ChatResponseRemoteDataSource {
   ChatResponseRemoteDataSourceImpl(this.client);
   @override
   Future<ChatResponseModel> getChatResponse(
-      String prompt, String roomId, String token) async {
+      String prompt, String roomId, String token, bool isAmharic) async {
     try {
       final response = await client.post(
-        // Uri.parse('${Url().baseUrl()}chat/amharic'),
-        Uri.parse('${Url().baseUrl()}chat/english'),
+        //
+        !isAmharic
+            ? Uri.parse('${Url().baseUrl()}chat/english')
+            : Uri.parse('${Url().baseUrl()}chat/amharic'),
 
         headers: {
           'Content-Type': 'application/json',

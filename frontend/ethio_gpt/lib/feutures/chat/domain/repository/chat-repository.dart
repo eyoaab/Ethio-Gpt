@@ -5,7 +5,7 @@ import 'package:ethio_gpt/feutures/chat/domain/entity/history-entity.dart';
 
 abstract class ChatRepository {
   Future<Either<Failure, ChatResponseModel>> getChatResponse(
-      String prompt, String roomId);
+      String prompt, String roomId, bool isAmharic);
   Future<Either<Failure, ChatHistoryEntity>> getChatHistory();
   Future<Either<Failure, bool>> deleteChatHistory(String roomId);
 }

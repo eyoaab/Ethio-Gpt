@@ -8,7 +8,7 @@ class ChatResponceUseCase {
   ChatResponceUseCase({required this.chatRepository});
 
   Future<Either<Failure, ChatResponseModel>> excute(
-      String prompt, String roomId) async {
-    return await chatRepository.getChatResponse(prompt, roomId);
+      String prompt, String roomId, bool isAmharic) async {
+    return await chatRepository.getChatResponse(prompt, roomId, isAmharic);
   }
 }

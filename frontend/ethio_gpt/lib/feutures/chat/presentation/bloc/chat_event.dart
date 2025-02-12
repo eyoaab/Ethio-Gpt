@@ -4,8 +4,10 @@ class ChatEvent {}
 class ChatRequestEvent extends ChatEvent {
   final String prompt;
   final String roomId;
+  final bool isAmharic;
 
-  ChatRequestEvent({required this.prompt, required this.roomId});
+  ChatRequestEvent(
+      {required this.prompt, required this.roomId, required this.isAmharic});
 }
 
 // event to get the chat history

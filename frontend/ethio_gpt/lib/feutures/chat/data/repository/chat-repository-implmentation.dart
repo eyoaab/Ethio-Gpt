@@ -17,11 +17,11 @@ class ChatResponseRepositoryImpl implements ChatRepository {
 
   @override
   Future<Either<Failure, ChatResponseModel>> getChatResponse(
-      String prompt, String roomId) async {
+      String prompt, String roomId, bool isAmharic) async {
     try {
       final token = await tokenValidation.getToken();
       final response = await chatResponseRemoteDataSource.getChatResponse(
-          prompt, roomId, token!);
+          prompt, roomId, token!, isAmharic);
       return Right(response);
     } catch (e) {
       return Left(ServerFailure(e.toString()));
