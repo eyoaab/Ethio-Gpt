@@ -1,4 +1,52 @@
 {
   "hello": "ሰላም ለሁሉም!",
-  "welcome": "እንኳን ወደ መተግበሪያችን በደህና መጡ!"
+  "welcome": "እንኳን ወደ መተግበሪያችን በደህና መጡ!",
+  "pleaseLogin": "እባክዎ ወደ መለያዎ ይግቡ",
+  "enterEmail": "ኢሜል ያስገቡ",
+  "enterPassword": "የይለፍ ቃል ያስገቡ",
+  "login": "ግባ",
+  "dontHaveAccount": "መለያ የለዎትም",
+  "signUp": "ይመዝገቡ",
+
+  "confirmPassword": "የይለፍ ቃልዎን ያረጋግጡ",
+  "createAccount": "መለያ ፍጠር",
+  "haveAccount": "መለያ አለህ",
+
+  "chatHistory": "የውይይት መዝገብ",
+  "today": "ዛሬ",
+  "yesterday": "ትላንት",
+  "thisMonth": "በዚህ ወር",
+  "seeMore": "ተጨማሪ ይመልከቱ",
+  "seeLess": "ያነሰ አሳይ",
+
+  "enterPrompt": "እባክዎን ጥያቄዎን እዚህ ያስገቡ...",
+
+  "home": "ዋና ገጽ",
+  "feedback": "አስተያየት",
+  "rateApp": "ደረጃ ይስጡ",
+  "aboutDeveloper": "ስለ ገንቢው",
+  "faqPge": "ጥያቄ ገጽ",
+  "settings": "ማስተካከያ",
+  "chageLanguadge": "ቋንቋውን ይቀይሩ",
+
+  "howTheAppWas": "መተግበሪያ እንዴት ነበር?",
+  "detailFeedback": "አስተያየትዎ ይጠቅመናል ስለዚህ እባክዎን ዝርዝር አስተያየት ለመጻፍ ይሞክሩ",
+  "writeYourFeedback": "እባክዎን አስተያየትዎን እዚህ ይፃፉ....",
+  "submit": "አስገቡ",
+
+  "privacyPolicy": "ህጎች እና መመሪያዎች",
+
+  "accountSettings": "መለያ ማስተካከያ",
+  "changUsername": "መለያ ቀይር",
+  "changePassword": "የይለፍ ቃል ቀይር",
+  "deleteAccount": "መለያዎን ሰርዝ",
+  "logout": "ውጣ",
+  "about": "ስለ",
+  "aboutEthioGpt": "ስለ ኢትዮ GPT",
+  "more": "ተጨማሪ",
+
+  "enterNewUsername": "አዲስ የተጠቃሚ ስም ያስገቡ",
+
+  "enterNewPassword": "አዲስ የይለፍ ቃል ያስገቡ",
+  "eneterOldPassword": "የድሮ የይለፍ ቃል አስገባ"
 }

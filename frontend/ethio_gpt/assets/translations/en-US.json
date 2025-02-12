@@ -1,4 +1,52 @@
 {
   "hello": "Hello World!",
-  "welcome": "Welcome to our app!"
+  "welcome": "Welcome to our app!",
+  "pleaseLogin": "Please Login To Your Account",
+  "enterEmail": "Enter Your Email",
+  "enterPassword": "Enter Your Password",
+  "login": "Login",
+  "dontHaveAccount": "Don’t Have Account",
+  "signUp": "Sign Up",
+
+  "confirmPassword": "Confirm your password",
+  "createAccount": "Create Account",
+  "haveAccount": "Already have an account?",
+
+  "chatHistory": "Chat History",
+  "today": "Today",
+  "yesterday": "Yesterday",
+  "thisMonth": "This Month",
+  "seeMore": "See More",
+  "seeLess": "See Less",
+
+  "enterPrompt": "Please enter your question here...",
+
+  "home": "Home",
+  "feedback": "Feedback",
+  "rateApp": "Rate Our App",
+  "aboutDeveloper": "About Developer",
+  "faqPge": "FAQ Page",
+  "settings": "Settings",
+  "chageLanguadge": "Change Language",
+
+  "howTheAppWas": "How was your experience?",
+  "detailFeedback": "This will help us please try to be more descriptive",
+  "writeYourFeedback": "Add your  feedback's here....... ",
+  "submit": "Submit",
+
+  "privacyPolicy": "Privacy and Policies",
+
+  "accountSettings": "Account Settings",
+  "changUsername": "Change Username",
+  "changePassword": "Change Password",
+  "deleteAccount": "Delete Account",
+  "logout": "Logout",
+  "about": "About",
+  "aboutEthioGpt": "About Ethio GPT",
+  "more": "More",
+
+  "enterNewUsername": "Enter Your New Username",
+
+  "enterNewPassword": "Enter Your New Password",
+  "eneterOldPassword": "Enter Your Old Password"
 }

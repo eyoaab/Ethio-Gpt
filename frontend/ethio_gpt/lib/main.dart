@@ -27,6 +27,7 @@ void main() async {
         ],
         path: 'assets/translations',
         fallbackLocale: const Locale('en', 'US'),
+        startLocale: const Locale('am', 'ET'),
         child: MultiBlocProvider(
           providers: [
             BlocProvider<SettingBloc>(

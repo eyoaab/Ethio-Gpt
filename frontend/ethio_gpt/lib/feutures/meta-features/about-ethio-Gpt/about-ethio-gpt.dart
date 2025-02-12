@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:ethio_gpt/cors/widgets/bg-box-decoration.dart';
 import 'package:ethio_gpt/cors/widgets/common-app-bar.dart';
 import 'package:ethio_gpt/cors/widgets/common-drawer.dart';
@@ -43,7 +44,7 @@ class _AboutEthioGptScreenState extends State<AboutEthioGptScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text('About Ethio-Gpt',
+                Text('aboutEthioGpt'.tr(),
                     style: GoogleFonts.inter(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,

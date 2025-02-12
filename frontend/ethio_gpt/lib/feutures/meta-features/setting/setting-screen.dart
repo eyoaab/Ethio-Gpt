@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:ethio_gpt/cors/constant/colors.dart';
 import 'package:ethio_gpt/cors/utility-functions/token-validation.dart';
+import 'package:ethio_gpt/cors/widgets/bg-box-decoration.dart';
 import 'package:ethio_gpt/cors/widgets/common-app-bar.dart';
 import 'package:ethio_gpt/cors/widgets/common-drawer.dart';
 import 'package:ethio_gpt/cors/widgets/common-snackbar.dart';
@@ -58,13 +60,7 @@ class _SettingScreenState extends State<SettingScreen> {
       body: Container(
         height: double.infinity,
         width: double.infinity,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(
-                isDarkMod ? '/images/backgroun.png' : '/images/whitebg.png'),
-            fit: BoxFit.cover,
-          ),
-        ),
+        decoration: bgBoxDecoration(isDarkMod),
         child:
             // whole page
             SingleChildScrollView(
@@ -116,7 +112,7 @@ class _SettingScreenState extends State<SettingScreen> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(left: 15),
-                          child: Text('Account Settings',
+                          child: Text('accountSettings'.tr(),
                               textAlign: TextAlign.left,
                               style: GoogleFonts.rubik(
                                   fontSize: 18, color: primaryColor)),
@@ -133,7 +129,7 @@ class _SettingScreenState extends State<SettingScreen> {
                                       builder: (context) =>
                                           const UpdateUserNameScreen()));
                             },
-                            label: 'Change Username',
+                            label: 'changUsername'.tr(),
                             icon: const Icon(Icons.person)),
                         settingRow(
                             isDarkMod: isDarkMod,
@@ -144,7 +140,7 @@ class _SettingScreenState extends State<SettingScreen> {
                                       builder: (context) =>
                                           const UpdatePasswordScreen()));
                             },
-                            label: 'Change Password',
+                            label: 'changePassword'.tr(),
                             icon: const Icon(Icons.lock)),
                         settingRow(
                             isDarkMod: isDarkMod,
@@ -154,7 +150,7 @@ class _SettingScreenState extends State<SettingScreen> {
                                 context.read<UserBloc>().add(UserDeleteEvent());
                               });
                             },
-                            label: 'Delete Account',
+                            label: 'deleteAccount'.tr(),
                             icon: const Icon(Icons.delete)),
                         settingRow(
                             isDarkMod: isDarkMod,
@@ -170,14 +166,14 @@ class _SettingScreenState extends State<SettingScreen> {
                                           builder: (context) =>
                                               const LoginScreen())));
                             },
-                            label: 'Logout',
+                            label: 'logout'.tr(),
                             icon: const Icon(Icons.logout_sharp)),
                         const SizedBox(
                           height: 15,
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 15),
-                          child: Text('About',
+                          child: Text('about'.tr(),
                               textAlign: TextAlign.left,
                               style: GoogleFonts.rubik(
                                   fontSize: 18, color: primaryColor)),
@@ -194,7 +190,7 @@ class _SettingScreenState extends State<SettingScreen> {
                                       builder: (context) =>
                                           const AboutEthioGptScreen()));
                             },
-                            label: 'About Ethio-Gpt',
+                            label: 'aboutEthioGpt'.tr(),
                             icon: const Icon(Icons.info)),
                         settingRow(
                             isDarkMod: isDarkMod,
@@ -205,14 +201,14 @@ class _SettingScreenState extends State<SettingScreen> {
                                       builder: (context) =>
                                           const AboutDevelopersScreen()));
                             },
-                            label: 'About Developer',
+                            label: 'aboutDeveloper'.tr(),
                             icon: const Icon(Icons.code)),
                         const SizedBox(
                           height: 15,
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 15),
-                          child: Text('About',
+                          child: Text('more'.tr(),
                               textAlign: TextAlign.left,
                               style: GoogleFonts.rubik(
                                   fontSize: 18, color: primaryColor)),
@@ -226,7 +222,7 @@ class _SettingScreenState extends State<SettingScreen> {
                                       builder: (context) =>
                                           const PrivacyAndPolicyScreen()));
                             },
-                            label: 'Privacy Policy',
+                            label: 'privacyPolicy'.tr(),
                             icon: const Icon(Icons.privacy_tip)),
                       ]))
             ],

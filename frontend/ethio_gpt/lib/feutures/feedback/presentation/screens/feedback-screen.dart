@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:ethio_gpt/cors/widgets/common-app-bar.dart';
 import 'package:ethio_gpt/cors/widgets/common-drawer.dart';
 import 'package:ethio_gpt/cors/widgets/common-snackbar.dart';
@@ -93,7 +94,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                       width: MediaQuery.of(context).size.width * 0.5,
                       child: Text(
                         textAlign: TextAlign.left,
-                        'How was your experience',
+                        'howTheAppWas'.tr(),
                         style: GoogleFonts.inter(
                           fontSize: 24,
                           color: Theme.of(context).scaffoldBackgroundColor ==
@@ -111,7 +112,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                       ),
                     ),
                     const SizedBox(height: 20),
-                    Text('This will help us please try to be more descriptive ',
+                    Text('detailFeedback'.tr(),
                         textAlign: TextAlign.left,
                         style: GoogleFonts.inter(
                           fontSize: 16,
@@ -139,7 +140,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                           submitButton(
                             isLoading: isLoading,
                             onPressed: addFeedback,
-                            label: 'Submit',
+                            label: 'submit'.tr(),
                           ),
                         ])
                   ],

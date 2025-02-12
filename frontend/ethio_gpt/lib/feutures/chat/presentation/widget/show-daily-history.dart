@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:easy_localization/easy_localization.dart';
+import 'package:ethio_gpt/main.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ethio_gpt/cors/constant/colors.dart';
@@ -54,7 +56,7 @@ class _ShowDailyContainerState extends State<ShowDailyContainer> {
                       });
                     },
                     child: Text(
-                      showAll ? 'Show Less' : 'See More',
+                      showAll ? 'seeLess'.tr() : 'seeMore'.tr(),
                       style: GoogleFonts.inter(color: primaryColor),
                     ),
                   ),

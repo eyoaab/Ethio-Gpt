@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:ethio_gpt/cors/constant/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -33,7 +34,7 @@ Widget feedbackForm({
             : Colors.black,
       ),
       decoration: InputDecoration(
-        hintText: 'add your  feedback\'s here.......  ',
+        hintText: 'writeYourFeedback'.tr(),
         hintStyle: GoogleFonts.inter(
           color: abAb,
         ),

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:ethio_gpt/cors/widgets/bg-box-decoration.dart';
 import 'package:ethio_gpt/cors/widgets/common-app-bar.dart';
 import 'package:ethio_gpt/cors/widgets/common-drawer.dart';
@@ -54,7 +55,7 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                'Update Password',
+                'changePassword'.tr(),
                 style: GoogleFonts.inter(
                   fontSize: 24,
                   color:
@@ -76,7 +77,7 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
               commonInputField(
                 isDarkMod: isDarkMod,
                 controller: oldnewPasswordController,
-                hintText: 'Enter Your Email',
+                hintText: 'eneterOldPassword'.tr(),
                 icon: Icons.person,
               ),
               const SizedBox(height: 45),
@@ -85,7 +86,7 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
               commonInputField(
                 isDarkMod: isDarkMod,
                 controller: newpasswordController,
-                hintText: 'Enter Your Password',
+                hintText: 'enterNewPassword'.tr(),
                 icon: Icons.lock,
               ),
               const SizedBox(height: 45),
@@ -94,7 +95,7 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
               commonInputField(
                 isDarkMod: isDarkMod,
                 controller: confirmpasswordController,
-                hintText: 'Confirm Your Password',
+                hintText: 'confirmPassword'.tr(),
                 icon: Icons.lock,
               ),
               // Login Button
@@ -102,7 +103,9 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
               const SizedBox(height: 40),
 
               submitButton(
-                  onPressed: makeUpdate, label: 'Update', isLoading: isLoading),
+                  onPressed: makeUpdate,
+                  label: 'submit'.tr(),
+                  isLoading: isLoading),
             ],
           ),
         ),

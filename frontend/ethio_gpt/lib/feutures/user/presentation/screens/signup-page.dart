@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:ethio_gpt/cors/constant/colors.dart';
 import 'package:ethio_gpt/cors/utility-functions/email-validation.dart';
 import 'package:ethio_gpt/cors/widgets/common-snackbar.dart';
@@ -108,7 +109,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                     ),
                     const SizedBox(height: 10),
                     Text(
-                      'Please Login To Your Account',
+                      'pleaseLogin'.tr(),
                       style: GoogleFonts.inter(fontSize: 14, color: abAb),
                     ),
                     const SizedBox(height: 30),
@@ -155,7 +156,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                     commonInputField(
                       isDarkMod: isDarkMod,
                       controller: emailController,
-                      hintText: 'Enter Your Email',
+                      hintText: 'enterEmail'.tr(),
                       icon: Icons.person,
                     ),
                     const SizedBox(height: 35),
@@ -164,7 +165,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                     commonInputField(
                       isDarkMod: isDarkMod,
                       controller: passwordController,
-                      hintText: 'Enter Your Password',
+                      hintText: 'enterPassword'.tr(),
                       icon: Icons.lock,
                     ),
                     const SizedBox(height: 34),
@@ -172,7 +173,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                     commonInputField(
                       isDarkMod: isDarkMod,
                       controller: confirmController,
-                      hintText: 'Confirm Your Password',
+                      hintText: 'confirmPassword'.tr(),
                       icon: Icons.lock,
                     ),
                     const SizedBox(height: 35),
@@ -193,7 +194,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                             ? const CircularProgressIndicator(
                                 color: Colors.white)
                             : Text(
-                                'SignUp',
+                                'signUp'.tr(),
                                 style: GoogleFonts.inter(
                                   fontSize: 13,
                                   color: Colors.white,
@@ -208,7 +209,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'Already Have Account?',
+                          'haveAccount'.tr(),
                           style: GoogleFonts.inter(
                               color:
                                   Theme.of(context).scaffoldBackgroundColor ==
@@ -224,7 +225,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                                     builder: (context) => const LoginScreen()));
                           },
                           child: Text(
-                            'Login',
+                            'login'.tr(),
                             style: GoogleFonts.inter(
                               color: primaryColor,
                               fontWeight: FontWeight.bold,

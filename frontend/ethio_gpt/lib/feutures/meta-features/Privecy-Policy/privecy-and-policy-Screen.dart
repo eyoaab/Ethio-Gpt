@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:ethio_gpt/cors/widgets/common-app-bar.dart';
 import 'package:ethio_gpt/cors/widgets/common-drawer.dart';
 import 'package:ethio_gpt/feutures/meta-features/Privecy-Policy/widget.dart';
@@ -38,7 +39,7 @@ class _PrivacyAndPolicyScreenState extends State<PrivacyAndPolicyScreen> {
         child: ListView(
           children: [
             Text(
-              'Privacy and Policies',
+              'privacyPolicy'.tr(),
               style: GoogleFonts.inter(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,

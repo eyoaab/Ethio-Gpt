@@ -1,8 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:ethio_gpt/cors/constant/colors.dart';
 import 'package:ethio_gpt/cors/widgets/bg-box-decoration.dart';
 import 'package:ethio_gpt/cors/widgets/common-app-bar.dart';
 import 'package:ethio_gpt/cors/widgets/common-drawer.dart';
 import 'package:ethio_gpt/feutures/meta-features/Privecy-Policy/widget.dart';
+import 'package:ethio_gpt/main.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -43,7 +45,7 @@ class _AboutDevelopersScreenState extends State<AboutDevelopersScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text('About Gevelopers',
+                Text('aboutDeveloper'.tr(),
                     style: GoogleFonts.inter(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,

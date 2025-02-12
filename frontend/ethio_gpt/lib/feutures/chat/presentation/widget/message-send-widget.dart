@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:ethio_gpt/cors/constant/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -32,7 +33,7 @@ Widget searchArea(
             style: GoogleFonts.inter(
                 color: isDarkMod ? Colors.white : Colors.black),
             decoration: InputDecoration(
-              hintText: 'Write your question here...',
+              hintText: 'enterPrompt'.tr(),
               hintStyle: GoogleFonts.inter(
                   color: isDarkMod ? Colors.white30 : Colors.white60),
               border: OutlineInputBorder(

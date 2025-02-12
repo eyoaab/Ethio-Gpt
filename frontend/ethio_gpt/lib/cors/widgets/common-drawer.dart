@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:ethio_gpt/cors/constant/colors.dart';
 import 'package:ethio_gpt/cors/widgets/common-submit-button.dart';
 import 'package:ethio_gpt/cors/widgets/drawer-row.dart';
@@ -10,6 +11,7 @@ import 'package:ethio_gpt/feutures/meta-features/setting/bloc/setting_bloc.dart'
 import 'package:ethio_gpt/feutures/meta-features/setting/bloc/setting_event.dart';
 import 'package:ethio_gpt/feutures/meta-features/setting/bloc/setting_state.dart';
 import 'package:ethio_gpt/feutures/meta-features/setting/setting-screen.dart';
+import 'package:ethio_gpt/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -100,14 +102,14 @@ class CommonDrawer extends StatelessWidget {
                         children: [
                           commonListTile(
                             context: context,
-                            title: 'Home',
+                            title: 'home'.tr(),
                             icon: Icons.home,
                             onTap: () => _onTapItem(context, 0, ChatScreen()),
                             isSelected: state.index == 0,
                           ),
                           commonListTile(
                             context: context,
-                            title: 'Feedback',
+                            title: 'feedback'.tr(),
                             icon: Icons.feedback_outlined,
                             onTap: () =>
                                 _onTapItem(context, 1, const FeedbackScreen()),
@@ -115,7 +117,7 @@ class CommonDrawer extends StatelessWidget {
                           ),
                           commonListTile(
                             context: context,
-                            title: 'Chat History',
+                            title: 'chatHistory'.tr(),
                             icon: Icons.chat_outlined,
                             onTap: () => _onTapItem(
                                 context, 2, const ChatHistoryScreen()),
@@ -123,7 +125,7 @@ class CommonDrawer extends StatelessWidget {
                           ),
                           commonListTile(
                             context: context,
-                            title: 'Rate Our App',
+                            title: 'rateApp'.tr(),
                             icon: Icons.rate_review_outlined,
                             onTap: () => _onTapItem(context, 3,
                                 ChatScreen()), // should be fixed later
@@ -131,7 +133,7 @@ class CommonDrawer extends StatelessWidget {
                           ),
                           commonListTile(
                             context: context,
-                            title: 'About Developer',
+                            title: 'aboutDeveloper'.tr(),
                             icon: Icons.code,
                             onTap: () => _onTapItem(
                                 context, 4, const AboutDevelopersScreen()),
@@ -139,7 +141,7 @@ class CommonDrawer extends StatelessWidget {
                           ),
                           commonListTile(
                             context: context,
-                            title: 'FAQ Page',
+                            title: 'faqPge'.tr(),
                             icon: Icons.question_answer_outlined,
                             onTap: () =>
                                 _onTapItem(context, 5, const FaqScreen()),
@@ -147,7 +149,7 @@ class CommonDrawer extends StatelessWidget {
                           ),
                           commonListTile(
                             context: context,
-                            title: 'Settings',
+                            title: 'settings'.tr(),
                             icon: Icons.settings,
                             onTap: () =>
                                 _onTapItem(context, 6, const SettingScreen()),
@@ -174,7 +176,7 @@ class CommonDrawer extends StatelessWidget {
                 child: Center(
                   child: changeLanduadge(
                     onPressed: () {},
-                    label: 'Change Language',
+                    label: 'chageLanguadge'.tr(),
                   ),
                 ),
               ),

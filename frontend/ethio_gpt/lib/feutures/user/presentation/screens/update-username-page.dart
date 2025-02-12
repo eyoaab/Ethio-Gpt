@@ -1,8 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:ethio_gpt/cors/widgets/bg-box-decoration.dart';
 import 'package:ethio_gpt/cors/widgets/common-app-bar.dart';
 import 'package:ethio_gpt/cors/widgets/common-drawer.dart';
 import 'package:ethio_gpt/cors/widgets/common-submit-button.dart';
 import 'package:ethio_gpt/feutures/user/presentation/widget/common-widgets.dart';
+import 'package:ethio_gpt/main.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -44,7 +46,7 @@ class _UpdateUserNameScreenState extends State<UpdateUserNameScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                'Update UserName',
+                'changUsername'.tr(),
                 style: GoogleFonts.inter(
                   fontSize: 24,
                   color:
@@ -66,7 +68,7 @@ class _UpdateUserNameScreenState extends State<UpdateUserNameScreen> {
               commonInputField(
                 isDarkMod: isDarkMod,
                 controller: newUserNameController,
-                hintText: 'Enter Your New Email',
+                hintText: 'enterNewUsername'.tr(),
                 icon: Icons.person,
               ),
               const SizedBox(height: 45),
@@ -75,7 +77,7 @@ class _UpdateUserNameScreenState extends State<UpdateUserNameScreen> {
               commonInputField(
                 isDarkMod: isDarkMod,
                 controller: passwordController,
-                hintText: 'Enter Your Password',
+                hintText: 'enterPassword'.tr(),
                 icon: Icons.lock,
               ),
               const SizedBox(height: 45),
@@ -86,7 +88,7 @@ class _UpdateUserNameScreenState extends State<UpdateUserNameScreen> {
               const SizedBox(height: 40),
 
               submitButton(
-                  onPressed: () {}, label: 'Update', isLoading: isLoading),
+                  onPressed: () {}, label: 'submit'.tr(), isLoading: isLoading),
             ],
           ),
         ),

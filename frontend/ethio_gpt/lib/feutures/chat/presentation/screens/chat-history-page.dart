@@ -1,4 +1,4 @@
-import 'package:ethio_gpt/cors/constant/colors.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:ethio_gpt/cors/widgets/bg-box-decoration.dart';
 import 'package:ethio_gpt/cors/widgets/common-app-bar.dart';
 import 'package:ethio_gpt/cors/widgets/common-drawer.dart';
@@ -22,7 +22,7 @@ class ChatHistoryScreen extends StatefulWidget {
 
 class _ChatHistoryScreenState extends State<ChatHistoryScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  final List<String> days = ["Today", "Yesterday ", "30 Days"];
+  final List<String> days = ["today".tr(), "yesterday".tr(), "thisMonth".tr()];
   bool isLoading = true;
   bool isDeleting = false;
   String errorMessage = '';
@@ -82,7 +82,7 @@ class _ChatHistoryScreenState extends State<ChatHistoryScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Chat History',
+                      'chatHistory'.tr(),
                       style: GoogleFonts.inter(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -94,7 +94,7 @@ class _ChatHistoryScreenState extends State<ChatHistoryScreen> {
                       // wrap the following with single chileded scroll view
                       children: [
                         if (isLoading || isDeleting)
-                          Center(child: ShimmerLoading()),
+                          const Center(child: ShimmerLoading()),
                         if (errorMessage.isNotEmpty)
                           Center(
                             child: Text(

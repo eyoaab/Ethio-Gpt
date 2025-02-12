@@ -10,6 +10,7 @@ import 'package:ethio_gpt/feutures/user/presentation/widget/common-widgets.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -103,7 +104,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     const SizedBox(height: 10),
                     Text(
-                      'Please Login To Your Account',
+                      "pleaseLogin".tr(),
                       style: GoogleFonts.inter(fontSize: 14, color: abAb),
                     ),
                     const SizedBox(height: 30),
@@ -150,7 +151,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     commonInputField(
                       isDarkMod: isDarkMod,
                       controller: emailController,
-                      hintText: 'Enter Your Email',
+                      hintText: 'enterEmail'.tr(),
                       icon: Icons.person,
                     ),
                     const SizedBox(height: 45),
@@ -159,7 +160,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     commonInputField(
                       isDarkMod: isDarkMod,
                       controller: passwordController,
-                      hintText: 'Enter Your Password',
+                      hintText: 'enterPassword'.tr(),
                       icon: Icons.lock,
                     ),
                     const SizedBox(height: 45),
@@ -181,7 +182,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ? const CircularProgressIndicator(
                                 color: Colors.white)
                             : Text(
-                                'Login',
+                                'login'.tr(),
                                 style: GoogleFonts.inter(
                                   fontSize: 13,
                                   color: Colors.white,
@@ -196,7 +197,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'Don\'t have an account?',
+                          'dontHaveAccount'.tr(),
                           style: GoogleFonts.inter(
                               color:
                                   Theme.of(context).scaffoldBackgroundColor ==
@@ -213,7 +214,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         const SignUpScreen()));
                           },
                           child: Text(
-                            'Sign Up',
+                            'signUp'.tr(),
                             style: GoogleFonts.inter(
                               color: primaryColor,
                               fontWeight: FontWeight.bold,
