@@ -62,7 +62,6 @@ class _ChatScreenState extends State<ChatScreen> {
           prompt: userMessage,
           roomId: _roomId,
         ));
-    log('room id ${_roomId.toString()}');
   }
 
   void _showDrawer() {

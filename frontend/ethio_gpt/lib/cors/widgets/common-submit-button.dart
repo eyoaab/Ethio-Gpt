@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 Widget changeLanduadge({
@@ -71,7 +72,7 @@ Widget submitButton({
         shadowColor: Colors.transparent, // Remove shadow
       ),
       child: isLoading
-          ? const CircularProgressIndicator(color: Colors.white)
+          ? const SpinKitWave(color: Colors.white, size: 20.0)
           : Text(
               label,
               style: GoogleFonts.inter(

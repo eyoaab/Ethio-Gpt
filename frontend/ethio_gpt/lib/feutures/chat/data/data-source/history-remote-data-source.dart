@@ -26,7 +26,6 @@ class ChatHistoryRemoteDataSourceimpl implements ChatHistoryRemoteDataSource {
         },
       );
       if (response.statusCode == 200) {
-        log(response.body.toString());
         return ChatHistoryModel.fromJson(jsonDecode(response.body));
       } else if (response.statusCode == 403 ||
           response.statusCode == 401 ||

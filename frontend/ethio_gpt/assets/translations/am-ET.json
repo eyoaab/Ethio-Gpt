@@ -1,16 +1,23 @@
 {
   "hello": "ሰላም ለሁሉም!",
   "welcome": "እንኳን ወደ መተግበሪያችን በደህና መጡ!",
+  "yes": "አዎ",
+  "no": "አይ",
+
   "pleaseLogin": "እባክዎ ወደ መለያዎ ይግቡ",
   "enterEmail": "ኢሜል ያስገቡ",
   "enterPassword": "የይለፍ ቃል ያስገቡ",
   "login": "ግባ",
   "dontHaveAccount": "መለያ የለዎትም",
   "signUp": "ይመዝገቡ",
+  "fillAllFields": "እባክዎ ሁሉንም መስኮች ይሙሉ",
+  "enterValidEmail": "እባክዎ ትክክለኛ ኢሜይል ያስገቡ",
+  "or": "ወይም",
 
   "confirmPassword": "የይለፍ ቃልዎን ያረጋግጡ",
   "createAccount": "መለያ ፍጠር",
   "haveAccount": "መለያ አለህ",
+  "passwordNotMatch": "እባክዎ የይለፍ ቃሎቹን ተመሳሳይ ያድርጉት",
 
   "chatHistory": "የውይይት መዝገብ",
   "today": "ዛሬ",
@@ -18,6 +25,7 @@
   "thisMonth": "በዚህ ወር",
   "seeMore": "ተጨማሪ ይመልከቱ",
   "seeLess": "ያነሰ አሳይ",
+  "deletSuccess": "የውይይት ታሪክ በተሳካ ሁኔታ ተሰርዟል!",
 
   "enterPrompt": "እባክዎን ጥያቄዎን እዚህ ያስገቡ...",
 
@@ -28,11 +36,13 @@
   "faqPge": "ጥያቄ ገጽ",
   "settings": "ማስተካከያ",
   "chageLanguadge": "ቋንቋውን ይቀይሩ",
+  "sureToChangeLanguage": "እርግጠኛ ነህ ቋንቋውን መቀየር ትፈልጋለህ",
 
   "howTheAppWas": "መተግበሪያ እንዴት ነበር?",
   "detailFeedback": "አስተያየትዎ ይጠቅመናል ስለዚህ እባክዎን ዝርዝር አስተያየት ለመጻፍ ይሞክሩ",
   "writeYourFeedback": "እባክዎን አስተያየትዎን እዚህ ይፃፉ....",
   "submit": "አስገቡ",
+  "feedbackSuccess": "አስተያየትዎን በተሳካ ሁኔታ አክለዋል እናመሰግናለን",
 
   "privacyPolicy": "ህጎች እና መመሪያዎች",
 
@@ -44,6 +54,8 @@
   "about": "ስለ",
   "aboutEthioGpt": "ስለ ኢትዮ GPT",
   "more": "ተጨማሪ",
+  "sureToDelete": "እርግጠኛለሁ ይሄን መለያዎን መሰርዝ ይፈልጋሉ?",
+  "sureToLogOut": "መውጣትህን እርግጠኛ ነህ",
 
   "enterNewUsername": "አዲስ የተጠቃሚ ስም ያስገቡ",
 

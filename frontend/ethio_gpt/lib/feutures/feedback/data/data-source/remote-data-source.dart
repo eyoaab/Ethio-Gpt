@@ -33,7 +33,6 @@ class FeedbackRemoteDataSourceImpl implements FeedbackRemoteDataSource {
         },
         body: jsonEncode({'content': feedback.content.toString()}),
       );
-      log('Response: ${response.body}');
       if (response.statusCode == 200 || response.statusCode == 201) {
         return true;
       } else if (response.statusCode == 400 ||

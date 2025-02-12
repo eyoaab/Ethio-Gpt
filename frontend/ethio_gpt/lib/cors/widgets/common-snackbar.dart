@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:ethio_gpt/cors/constant/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -95,7 +96,7 @@ void showQuestionDialog(
                               horizontal: 30, vertical: 10),
                         ),
                         child: Text(
-                          'No',
+                          'no'.tr(),
                           style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
@@ -118,9 +119,9 @@ void showQuestionDialog(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 30, vertical: 10),
                         ),
-                        child: const Text(
-                          'Yes',
-                          style: TextStyle(
+                        child: Text(
+                          'yes'.tr(),
+                          style: const TextStyle(
                               fontSize: 16, fontWeight: FontWeight.bold),
                         ),
                       ),

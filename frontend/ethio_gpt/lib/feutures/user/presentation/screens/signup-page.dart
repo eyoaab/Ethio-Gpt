@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ethio_gpt/cors/constant/colors.dart';
 import 'package:ethio_gpt/cors/utility-functions/email-validation.dart';
+import 'package:ethio_gpt/cors/widgets/bg-box-decoration.dart';
 import 'package:ethio_gpt/cors/widgets/common-snackbar.dart';
 import 'package:ethio_gpt/feutures/chat/presentation/screens/make-caht-page.dart';
 import 'package:ethio_gpt/feutures/user/presentation/bloc/user_bloc.dart';
@@ -10,6 +11,7 @@ import 'package:ethio_gpt/feutures/user/presentation/screens/login-page.dart';
 import 'package:ethio_gpt/feutures/user/presentation/widget/common-widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -28,12 +30,19 @@ class SignUpScreenState extends State<SignUpScreen> {
 
   void makeSignUp() {
     if (isLoading) return;
+    if (passwordController.text.isEmpty ||
+        confirmController.text.isEmpty ||
+        emailController.text.isEmpty) {
+      showCustomSnackBar(context, 'fillAllFields'.tr(), false);
+      return;
+    }
+
     if (passwordController.text != confirmController.text) {
-      showCustomSnackBar(context, 'Please much the Passwords', false);
+      showCustomSnackBar(context, 'passwordNotMatch'.tr(), false);
       return;
     }
     if (!validateEmail.isValidEmail(emailController.text)) {
-      showCustomSnackBar(context, 'Please Enter Valid Email', false);
+      showCustomSnackBar(context, 'enterValidEmail'.tr(), false);
       return;
     }
     BlocProvider.of<UserBloc>(context).add(UserSignUpEvent(
@@ -69,15 +78,7 @@ class SignUpScreenState extends State<SignUpScreen> {
           body: Container(
             height: double.infinity,
             width: double.infinity,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(
-                    Theme.of(context).scaffoldBackgroundColor == Colors.black
-                        ? '/images/backgroun.png'
-                        : '/images/whitebg.png'),
-                fit: BoxFit.cover,
-              ),
-            ),
+            decoration: bgBoxDecoration(isDarkMod),
             child:
                 // Content
                 Padding(
@@ -137,7 +138,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                           height: 1,
                           color: abAb,
                         ),
-                        Text('OR',
+                        Text('or'.tr(),
                             style: GoogleFonts.inter(
                               color: abAb,
                             )),
@@ -191,8 +192,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                           ),
                         ),
                         child: isLoading
-                            ? const CircularProgressIndicator(
-                                color: Colors.white)
+                            ? const SpinKitWave(color: Colors.white, size: 20.0)
                             : Text(
                                 'signUp'.tr(),
                                 style: GoogleFonts.inter(

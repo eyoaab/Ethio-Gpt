@@ -23,8 +23,6 @@ Expanded listMessagesWidget({
                 children: [
                   SpinKitWave(color: primaryColor, size: 20.0),
                   const SizedBox(width: 10),
-                  const Text("ረዳትዎ  እየጻፈ ነው....",
-                      style: TextStyle(fontSize: 16)),
                   if (errorMessage != null) ...[
                     const SizedBox(width: 10),
                     const Icon(Icons.error, color: Colors.red),

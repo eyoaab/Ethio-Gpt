@@ -145,8 +145,8 @@ class _SettingScreenState extends State<SettingScreen> {
                         settingRow(
                             isDarkMod: isDarkMod,
                             action: () {
-                              showQuestionDialog(context,
-                                  'Are you Sure To Delete Your Account', () {
+                              showQuestionDialog(context, 'sureToDelete'.tr(),
+                                  () {
                                 context.read<UserBloc>().add(UserDeleteEvent());
                               });
                             },
@@ -159,7 +159,7 @@ class _SettingScreenState extends State<SettingScreen> {
                               context.read<UserBloc>().add(UserLogoutEvent());
                               showQuestionDialog(
                                   context,
-                                  'Are you Sure To Log Out',
+                                  'sureToLogOut'.tr(),
                                   () => Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(

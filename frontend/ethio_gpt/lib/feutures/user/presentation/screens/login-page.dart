@@ -1,5 +1,6 @@
 import 'package:ethio_gpt/cors/constant/colors.dart';
 import 'package:ethio_gpt/cors/utility-functions/email-validation.dart';
+import 'package:ethio_gpt/cors/widgets/bg-box-decoration.dart';
 import 'package:ethio_gpt/cors/widgets/common-snackbar.dart';
 import 'package:ethio_gpt/feutures/chat/presentation/screens/make-caht-page.dart';
 import 'package:ethio_gpt/feutures/user/presentation/bloc/user_bloc.dart';
@@ -9,6 +10,7 @@ import 'package:ethio_gpt/feutures/user/presentation/screens/signup-page.dart';
 import 'package:ethio_gpt/feutures/user/presentation/widget/common-widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -28,11 +30,11 @@ class _LoginScreenState extends State<LoginScreen> {
   void makeLogin() {
     if (isLoading) return;
     if (emailController.text.isEmpty || passwordController.text.isEmpty) {
-      showCustomSnackBar(context, 'Please Fill All Fields', false);
+      showCustomSnackBar(context, 'fillAllFields'.tr(), false);
       return;
     }
     if (!validateEmail.isValidEmail(emailController.text)) {
-      showCustomSnackBar(context, 'Please Enter Valid Email', false);
+      showCustomSnackBar(context, 'enterValidEmail'.tr(), false);
       return;
     }
     BlocProvider.of<UserBloc>(context).add(UserLoginEvent(
@@ -66,15 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
           body: Container(
             height: double.infinity,
             width: double.infinity,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(
-                    Theme.of(context).scaffoldBackgroundColor == Colors.black
-                        ? '/images/backgroun.png'
-                        : '/images/whitebg.png'),
-                fit: BoxFit.cover,
-              ),
-            ),
+            decoration: bgBoxDecoration(isDarkMod),
             child:
                 // Content
                 Padding(
@@ -132,7 +126,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           height: 1,
                           color: abAb,
                         ),
-                        Text('OR',
+                        Text('or'.tr(),
                             style: GoogleFonts.inter(
                               color: abAb,
                             )),
@@ -179,8 +173,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                         child: isLoading
-                            ? const CircularProgressIndicator(
-                                color: Colors.white)
+                            ? const SpinKitWave(color: Colors.white, size: 20.0)
                             : Text(
                                 'login'.tr(),
                                 style: GoogleFonts.inter(

@@ -1,16 +1,23 @@
 {
   "hello": "Hello World!",
   "welcome": "Welcome to our app!",
+  "yes": "Yes",
+  "no": "No",
+
   "pleaseLogin": "Please Login To Your Account",
   "enterEmail": "Enter Your Email",
   "enterPassword": "Enter Your Password",
   "login": "Login",
   "dontHaveAccount": "Don’t Have Account",
   "signUp": "Sign Up",
+  "fillAllFields": "Please fill all fields",
+  "enterValidEmail": "Please enter a valid email",
+  "or": "OR",
 
   "confirmPassword": "Confirm your password",
   "createAccount": "Create Account",
   "haveAccount": "Already have an account?",
+  "passwordNotMatch": "PPlease much your passwords",
 
   "chatHistory": "Chat History",
   "today": "Today",
@@ -18,6 +25,7 @@
   "thisMonth": "This Month",
   "seeMore": "See More",
   "seeLess": "See Less",
+  "deletSuccess": "Chat history deleted successfully!",
 
   "enterPrompt": "Please enter your question here...",
 
@@ -28,11 +36,13 @@
   "faqPge": "FAQ Page",
   "settings": "Settings",
   "chageLanguadge": "Change Language",
+  "sureToChangeLanguage": "Are you sure you want to change the language?",
 
   "howTheAppWas": "How was your experience?",
   "detailFeedback": "This will help us please try to be more descriptive",
   "writeYourFeedback": "Add your  feedback's here....... ",
   "submit": "Submit",
+  "feedbackSuccess": "Feedback submitted successfully Thank you!",
 
   "privacyPolicy": "Privacy and Policies",
 
@@ -44,6 +54,8 @@
   "about": "About",
   "aboutEthioGpt": "About Ethio GPT",
   "more": "More",
+  "sureToDelete": "Are you sure you want to delete this account?",
+  "sureToLogOut": "Are you sure you want to log out?",
 
   "enterNewUsername": "Enter Your New Username",
 

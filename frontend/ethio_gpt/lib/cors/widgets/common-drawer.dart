@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ethio_gpt/cors/constant/colors.dart';
+import 'package:ethio_gpt/cors/widgets/common-snackbar.dart';
 import 'package:ethio_gpt/cors/widgets/common-submit-button.dart';
 import 'package:ethio_gpt/cors/widgets/drawer-row.dart';
 import 'package:ethio_gpt/feutures/chat/presentation/screens/chat-history-page.dart';
@@ -11,7 +12,6 @@ import 'package:ethio_gpt/feutures/meta-features/setting/bloc/setting_bloc.dart'
 import 'package:ethio_gpt/feutures/meta-features/setting/bloc/setting_event.dart';
 import 'package:ethio_gpt/feutures/meta-features/setting/bloc/setting_state.dart';
 import 'package:ethio_gpt/feutures/meta-features/setting/setting-screen.dart';
-import 'package:ethio_gpt/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -175,7 +175,10 @@ class CommonDrawer extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 child: Center(
                   child: changeLanduadge(
-                    onPressed: () {},
+                    onPressed: () {
+                      showQuestionDialog(
+                          context, "sureToChangeLanguage".tr(), () {});
+                    },
                     label: 'chageLanguadge'.tr(),
                   ),
                 ),
