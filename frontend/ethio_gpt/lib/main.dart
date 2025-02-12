@@ -1,5 +1,6 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:ethio_gpt/cors/theme/bloc/theme_bloc.dart';
+import 'package:ethio_gpt/cors/theme/bloc/theme_event.dart';
 import 'package:ethio_gpt/cors/theme/bloc/theme_state.dart';
 import 'package:ethio_gpt/cors/utility-functions/token-validation.dart';
 import 'package:ethio_gpt/feutures/chat/presentation/bloc/chat_bloc.dart';
@@ -65,6 +66,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Future<void> _isLight(TokenValidation tokenValidation) async {
+      if (await tokenValidation.isThemeSet() &&
+          await tokenValidation.getTheme() == 'light') {
+        context.read<ThemeBloc>().add(ToggleThemeEvent());
+      }
+    }
+
+    _isLight(TokenValidation());
+
     return BlocBuilder<ThemeBloc, ThemeState>(builder: (context, state) {
       return MaterialApp(
         title: 'Ethio-GPT',

@@ -96,16 +96,37 @@ exports.updateUserEmail = async (req, res) => {
   try {
     const oldEmail = req.email;
     const newEmail = req.body.email;
+    const password = req.body.password;
     const user = await User.findOne({ email: oldEmail });
     if (!user) {
       return res.status(400).json({
         message: "User with this email does not exist.",
       });
     }
+
+    const user2 = await User.findOne({ email: newEmail });
+    if (user2) {
+      return res.status(400).json({
+        message: "User with this email already exist",
+      });
+    }
+    //  compare ther password here
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+      return res.status(401).json({
+        message: "Password is not correct please try again",
+      });
+    }
     user.email = newEmail;
     await user.save();
+    const token = jwt.sign(
+      { id: user._id, email: user.email },
+      process.env.JWT_SECRET
+    );
+
     res.status(200).json({
       message: "Email updated successfully.",
+      token: token,
     });
   } catch (error) {
     console.error("Error updating user email:", error);
@@ -123,7 +144,7 @@ exports.updateUserPassword = async (req, res) => {
     const { oldPassword, newPassword } = req.body;
 
     // Validate input
-    if (!email || !oldPassword || !newPassword) {
+    if (!oldPassword || !newPassword) {
       return res.status(400).json({
         message: "Email, old password, and new password are required.",
       });
@@ -151,9 +172,14 @@ exports.updateUserPassword = async (req, res) => {
     // Update the user's password
     user.password = hashedPassword;
     await user.save();
+    const token = jwt.sign(
+      { id: user._id, email: user.email },
+      process.env.JWT_SECRET
+    );
 
     res.status(200).json({
       message: "Password updated successfully.",
+      token: token,
     });
   } catch (error) {
     console.error("Error updating user password:", error.message);
