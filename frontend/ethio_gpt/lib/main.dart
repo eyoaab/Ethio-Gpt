@@ -66,14 +66,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Future<void> _isLight(TokenValidation tokenValidation) async {
+    Future<void> isLight(TokenValidation tokenValidation) async {
       if (await tokenValidation.isThemeSet() &&
           await tokenValidation.getTheme() == 'light') {
         context.read<ThemeBloc>().add(ToggleThemeEvent());
       }
     }
 
-    _isLight(TokenValidation());
+    isLight(TokenValidation());
 
     return BlocBuilder<ThemeBloc, ThemeState>(builder: (context, state) {
       return MaterialApp(

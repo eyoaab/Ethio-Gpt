@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:ethio_gpt/cors/error/exception.dart';
+import 'package:ethio_gpt/cors/network/network_info.dart';
 import 'package:ethio_gpt/cors/urls/urls.dart';
 import 'package:ethio_gpt/cors/utility-functions/token-validation.dart';
 import 'package:ethio_gpt/feutures/feedback/domain/entity/feedback-entity.dart';
@@ -15,10 +16,15 @@ TokenValidation tokenValidation = TokenValidation();
 
 class FeedbackRemoteDataSourceImpl implements FeedbackRemoteDataSource {
   final http.Client client;
+  final NetworkInfo networkInfo;
 
-  FeedbackRemoteDataSourceImpl(this.client);
+  FeedbackRemoteDataSourceImpl(this.client, this.networkInfo);
   @override
   Future<bool> addFeedback(FeedbackEntity feedback) async {
+    final isConnected = await networkInfo.isConnected;
+    if (!isConnected) {
+      throw NetworkException('No Internet Connection');
+    }
     try {
       String token = '';
       token = (await tokenValidation.getToken())!;

@@ -104,14 +104,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     const SizedBox(height: 30),
 
                     // Social Authentication
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        commomSocialIcon('G', isDarkMod), // Google Icon
-                        commomSocialIcon('F', isDarkMod), // Facebook Icon
-                        commomSocialIcon('A', isDarkMod), // Apple Icon
-                      ],
+                    SizedBox(
+                      child:
+                          commomSocialIcon('Google', isDarkMod), // Google Icon,
                     ),
+
                     const SizedBox(height: 20),
 
                     // OR Divider

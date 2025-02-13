@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:ethio_gpt/cors/error/exception.dart';
+import 'package:ethio_gpt/cors/network/network_info.dart';
 import 'package:ethio_gpt/cors/urls/urls.dart';
 import 'package:ethio_gpt/feutures/chat/data/model/chat-response-model.dart';
 import 'package:http/http.dart' as http;
@@ -12,11 +13,17 @@ abstract class ChatResponseRemoteDataSource {
 
 class ChatResponseRemoteDataSourceImpl implements ChatResponseRemoteDataSource {
   final http.Client client;
-  ChatResponseRemoteDataSourceImpl(this.client);
+  final NetworkInfo networkInfo;
+
+  ChatResponseRemoteDataSourceImpl(this.client, this.networkInfo);
   @override
   Future<ChatResponseModel> getChatResponse(
       String prompt, String roomId, String token, bool isAmharic) async {
     try {
+      final isConnected = await networkInfo.isConnected;
+      if (!isConnected) {
+        throw NetworkException('No Internet Connection');
+      }
       final response = await client.post(
         //
         !isAmharic

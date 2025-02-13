@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:ethio_gpt/cors/error/exception.dart';
+import 'package:ethio_gpt/cors/network/network_info.dart';
 import 'package:ethio_gpt/cors/urls/urls.dart';
 import 'package:ethio_gpt/cors/utility-functions/token-validation.dart';
 import 'package:ethio_gpt/feutures/user/data/model/user-model.dart';
@@ -16,14 +17,19 @@ abstract class UserRemoteDatasource {
 
 class UserRemoteDataSourceImpl implements UserRemoteDatasource {
   final http.Client client;
+  final NetworkInfo networkInfo;
 
-  UserRemoteDataSourceImpl({required this.client});
+  UserRemoteDataSourceImpl({required this.client, required this.networkInfo});
   TokenValidation tokenValidation = TokenValidation();
 
   // login user with email and password
   @override
   Future<UserModel> signInUser(String email, String password) async {
     try {
+      final isConnected = await networkInfo.isConnected;
+      if (!isConnected) {
+        throw NetworkException('No Internet Connection');
+      }
       final response = await client.post(
         Uri.parse('${Url().baseUrl()}user/login'),
         body: jsonEncode({'email': email, 'password': password}),
@@ -47,6 +53,10 @@ class UserRemoteDataSourceImpl implements UserRemoteDatasource {
   @override
   Future<UserModel> signUpUser(String email, String password) async {
     try {
+      final isConnected = await networkInfo.isConnected;
+      if (!isConnected) {
+        throw NetworkException('No Internet Connection');
+      }
       final response = await client.post(
         Uri.parse('${Url().baseUrl()}user/register'),
         body: jsonEncode({'email': email, 'password': password}),
@@ -69,6 +79,10 @@ class UserRemoteDataSourceImpl implements UserRemoteDatasource {
   @override
   Future<bool> updateUser(String email, String password) async {
     try {
+      final isConnected = await networkInfo.isConnected;
+      if (!isConnected) {
+        throw NetworkException('No Internet Connection');
+      }
       final response = await client.put(
         Uri.parse('${Url().baseUrl()}user/updateEmail'),
         body: jsonEncode({'email': email, 'password': password}),
@@ -91,6 +105,10 @@ class UserRemoteDataSourceImpl implements UserRemoteDatasource {
   @override
   Future<bool> updatePassword(String oldPassword, String newPassword) async {
     try {
+      final isConnected = await networkInfo.isConnected;
+      if (!isConnected) {
+        throw NetworkException('No Internet Connection');
+      }
       final response = await client.put(
         Uri.parse('${Url().baseUrl()}user/updatePassword'),
         body: jsonEncode(
@@ -115,6 +133,10 @@ class UserRemoteDataSourceImpl implements UserRemoteDatasource {
   @override
   Future<bool> deleteUser(String token) async {
     try {
+      final isConnected = await networkInfo.isConnected;
+      if (!isConnected) {
+        throw NetworkException('No Internet Connection');
+      }
       final response = await client.delete(
         Uri.parse('${Url().baseUrl()}user/delete'),
         headers: {
@@ -138,6 +160,10 @@ class UserRemoteDataSourceImpl implements UserRemoteDatasource {
   @override
   Future<bool> logOut() async {
     try {
+      final isConnected = await networkInfo.isConnected;
+      if (!isConnected) {
+        throw NetworkException('No Internet Connection');
+      }
       String response = ''; // You should retrieve this from session management
 
       if (response.isEmpty) {

@@ -23,6 +23,7 @@ import 'package:ethio_gpt/feutures/user/domain/usecase/update-usecase.dart';
 import 'package:ethio_gpt/feutures/user/presentation/bloc/user_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ethio_gpt/feutures/feedback/data/data-source/remote-data-source.dart';
 import 'package:ethio_gpt/feutures/meta-features/FAQ/data/data-source/faq-remote-datasource.dart';
@@ -43,19 +44,21 @@ Future<void> setUp() async {
 
   /*******/
   locator.registerLazySingleton(() => http.Client());
-  // locator.registerLazySingleton(() => InternetConnectionChecker());
+  locator
+      .registerLazySingleton(() => InternetConnectionChecker.createInstance());
 
   //! Data Sources
-  locator.registerLazySingleton<UserRemoteDataSourceImpl>(
-      () => UserRemoteDataSourceImpl(client: locator()));
+  locator.registerLazySingleton<UserRemoteDataSourceImpl>(() =>
+      UserRemoteDataSourceImpl(client: locator(), networkInfo: locator()));
   locator.registerLazySingleton<FaqRemoteDataSource>(
-      () => FaqRemoteDataSourceImpl(locator()));
+      () => FaqRemoteDataSourceImpl(locator(), locator()));
   locator.registerLazySingleton<FeedbackRemoteDataSource>(
-      () => FeedbackRemoteDataSourceImpl(locator()));
+      () => FeedbackRemoteDataSourceImpl(locator(), locator()));
   locator.registerLazySingleton<ChatResponseRemoteDataSource>(
-      () => ChatResponseRemoteDataSourceImpl(locator()));
-  locator.registerLazySingleton<ChatHistoryRemoteDataSource>(
-      () => ChatHistoryRemoteDataSourceimpl(client: locator()));
+      () => ChatResponseRemoteDataSourceImpl(locator(), locator()));
+  locator.registerLazySingleton<ChatHistoryRemoteDataSource>(() =>
+      ChatHistoryRemoteDataSourceimpl(
+          client: locator(), networkInfo: locator()));
 
   //! Repositories
 

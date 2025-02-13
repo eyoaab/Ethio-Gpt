@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:ethio_gpt/cors/error/exception.dart';
+import 'package:ethio_gpt/cors/network/network_info.dart';
 import 'package:ethio_gpt/cors/urls/urls.dart';
 import 'package:ethio_gpt/feutures/chat/data/model/history-model.dart';
 import 'package:http/http.dart' as http;
@@ -13,11 +14,18 @@ abstract class ChatHistoryRemoteDataSource {
 
 class ChatHistoryRemoteDataSourceimpl implements ChatHistoryRemoteDataSource {
   final http.Client client;
+  final NetworkInfo networkInfo;
 
-  ChatHistoryRemoteDataSourceimpl({required this.client});
+  ChatHistoryRemoteDataSourceimpl(
+      {required this.client, required this.networkInfo});
 
+  @override
   Future<ChatHistoryModel> getChatHistory(String token) async {
     try {
+      final isConnected = await networkInfo.isConnected;
+      if (!isConnected) {
+        throw NetworkException('No Internet Connection');
+      }
       final response = await client.get(
         Uri.parse('${Url().baseUrl()}history/recent'),
         headers: {
