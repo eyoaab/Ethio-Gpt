@@ -5,14 +5,14 @@
 **Ethio-Gpt** : is an AI-powered chatbot designed to facilitate seamless conversations in both Amharic and English, catering to users' language preferences. The project aims to provide an interactive and intelligent chat experience, allowing users to engage in meaningful discussions, ask questions, and receive responses in their chosen language. With a focus on natural language processing and localization, Ethio-GPT ensures accurate and context-aware replies, making AI-driven communication more accessible for Amharic-speaking users while maintaining full functionality in English.
 
 Features
-- Enables users to chat with ai in amharic or english.
-- Enables ussers to see there chat history they made in some intervals like,today,yesterday this month.
+- Allows users to chat with AI in Amharic or English.
+- Enables users to view their chat history based on time intervals such as today, yesterday, or this month.
 - Lets users to toggle the theme of the app.
-- Allows users landuadge of the app
-- Allow the user to refresh the page if they need a new update
-- Enables users to get Faqs
-- Enables users to add a Feedback.
-- Enables users to made a crude oporation with ther account.
+- Allows users to change the app's language.
+- Provides a refresh option for users to update the page when needed.
+- Offers a section for frequently asked questions (FAQs).
+- Enables users to submit feedback.
+- Allows users to perform CRUD (Create, Read, Update, Delete) operations on their accounts.
   
 
 ## Demo
@@ -44,12 +44,12 @@ Here are some screenshots showing Ethio-Gpt in action:
 
 The technologies and tools I used while developing this project are
 
-- **Flutter**: A powerful UI toolkit that enables the development of natively compiled applications for mobile, web, and desktop platforms using a single codebase. Flutter provides a rich set of pre-designed widgets and a fast development experience with its hot-reload feature.
+- **Flutter**: A powerful UI toolkit for developing natively compiled applications across mobile, web, and desktop platforms using a single codebase. Flutter offers a rich set of pre-designed widgets and a fast development experience with its hot-reload feature.
 - **Dart**:The programming language that powers Flutter applications. Dart is optimized for building fast, scalable apps across multiple platforms and provides strong typing, async support, and modern syntax.
 - **BLoC (Business Logic Component)**: A design pattern and state management solution that helps keep the business logic of an application separate from its presentation layer. By using BLoC, the app maintains a clean architecture, making the code more testable, scalable, and easier to maintain
 - **FIGMA**: A collaborative design tool used to create the app's user interface (UI) and user experience (UX) before implementation. Figma helps visualize the app’s layout and interactions, ensuring consistency and improving the overall design workflow.
-- **MONGO DB**: A non reletional data base made to save some informations.
-- **Node js**: A backed that lets to made the backend
+- **MONGO DB**: A NoSQL database used to store application data efficiently. It offers scalability, flexibility, and high performance for handling structured and unstructured data.
+- **Node js**:A backend runtime environment that enables building scalable and efficient server-side applications. It handles API requests, database interactions, and real-time communication.
   
 
 
@@ -58,11 +58,11 @@ Step-by-step instructions on how to get the development environment running.
 
 ```bash
 # Clone this repository
-git clone https://github.com/eyoaab/abissinia_software_project.git
+git clone https://github.com/eyoaab/Ethio-Gpt.git
 ```
 ```bash
 # Navigate into the repository
-cd abissinia_mobile_project
+cd ethio_gpt
 ```
 ```bash
 # Install dependencies
