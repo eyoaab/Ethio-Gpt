@@ -82,6 +82,6 @@ npm install
 ```
 ```bash
 # Run the app
-flutter run
+node  server.js
 ```
 > Please feel free to ask questions or reach out.
