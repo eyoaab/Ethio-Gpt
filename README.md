@@ -1,5 +1,5 @@
 # Ethio-Gpt
-<img src="https://github.com/user-attachments/assets/5182025b-168f-4099-aa5c-de5b0b22e8ae" alt="logo1" height="200" width="200" >
+<img src="https://github.com/user-attachments/assets/c94d8724-cb12-44c4-83f5-7a4b692346f0" alt="products" height="550" width="300">
 
 ## Description
 **Ethio-Gpt** : is an AI-powered chatbot designed to facilitate seamless conversations in both Amharic and English, catering to users' language preferences. The project aims to provide an interactive and intelligent chat experience, allowing users to engage in meaningful discussions, ask questions, and receive responses in their chosen language. With a focus on natural language processing and localization, Ethio-GPT ensures accurate and context-aware replies, making AI-driven communication more accessible for Amharic-speaking users while maintaining full functionality in English.
@@ -41,7 +41,7 @@ The technologies and tools I used while developing this project are
   
 
 
-## Installation
+## Installation of the Front End
 Step-by-step instructions on how to get the development environment running.
 
 ```bash
@@ -50,11 +50,35 @@ git clone https://github.com/eyoaab/Ethio-Gpt.git
 ```
 ```bash
 # Navigate into the repository
-cd ethio_gpt
+cd frontend/ethio_gpt
 ```
 ```bash
 # Install dependencies
 flutter pub get
+```
+```bash
+# Run the app
+flutter run
+```
+## Installation of the Back End
+Step-by-step instructions on how to get the development environment running the backend.
+
+```bash
+# Clone this repository
+git clone https://github.com/eyoaab/Ethio-Gpt.git
+```
+```bash
+# Navigate into the repository
+cd backend/
+```
+```bash
+# create .env file and add the essential files
+touch .env
+```
+
+```bash
+# Install dependencies
+npm install
 ```
 ```bash
 # Run the app
