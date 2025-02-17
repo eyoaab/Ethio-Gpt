@@ -69,3 +69,29 @@ final class UserPasswordUpdateErrorState extends UserState {
   final String message;
   UserPasswordUpdateErrorState(this.message);
 }
+
+//  google user login state
+final class GoogleUserLoginLoadingState extends UserState {}
+
+final class GoogleUserLoginSuccessState extends UserState {
+  final UserEntity user;
+  GoogleUserLoginSuccessState(this.user);
+}
+
+final class GoogleUserLoginErrorState extends UserState {
+  final String message;
+  GoogleUserLoginErrorState(this.message);
+}
+
+// google user sign up state
+final class GoogleUserSignUpLoadingState extends UserState {}
+
+final class GoogleUserSignUpSuccessState extends UserState {
+  final UserEntity user;
+  GoogleUserSignUpSuccessState(this.user);
+}
+
+final class GoogleUserSignUpErrorState extends UserState {
+  final String message;
+  GoogleUserSignUpErrorState(this.message);
+}

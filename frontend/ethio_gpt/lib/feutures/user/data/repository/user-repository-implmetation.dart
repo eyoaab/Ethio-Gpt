@@ -3,6 +3,7 @@ import 'package:ethio_gpt/cors/error/exception.dart';
 import 'package:ethio_gpt/cors/error/faliure.dart';
 import 'package:ethio_gpt/feutures/user/data/data-source/remote-data-source.dart';
 import 'package:ethio_gpt/feutures/user/data/model/user-model.dart';
+import 'package:ethio_gpt/feutures/user/domain/entity/user-entity.dart';
 import 'package:ethio_gpt/feutures/user/domain/repository/user-repository.dart';
 import 'package:ethio_gpt/cors/utility-functions/token-validation.dart';
 
@@ -11,6 +12,45 @@ class UserRepositoryImpl implements UserRepository {
 
   UserRepositoryImpl({required this.remoteDataSource});
   final TokenValidation tokenValidation = TokenValidation();
+
+  // google user login
+  @override
+  Future<Either<Failure, UserEntity>> googleLogIn(String email) async {
+    try {
+      final token = await remoteDataSource.gooleSignInUser(email);
+      await tokenValidation.saveToken(token.token);
+      return Right(token);
+    } catch (e) {
+      if (e is ServerException) {
+        return Left(ServerFailure(e.errorMessage));
+      } else if (e is NetworkException) {
+        return const Left(NetworkFailure('No internet connection'));
+      } else {
+        return const Left(ServerFailure('Unexpected error occurred'));
+      }
+    }
+  }
+
+  // for google sign up
+  @override
+  Future<Either<Failure, UserEntity>> googleSignUp(String email) async {
+    try {
+      final token = await remoteDataSource.googleSignUpUser(
+        email,
+      );
+      await tokenValidation.saveToken(token.token);
+
+      return Right(token);
+    } catch (e) {
+      if (e is ServerException) {
+        return Left(ServerFailure(e.errorMessage));
+      } else if (e is NetworkException) {
+        return const Left(NetworkFailure('No internet connection'));
+      } else {
+        return const Left(ServerFailure('Unexpected error occurred'));
+      }
+    }
+  }
 
   // login a user
   @override

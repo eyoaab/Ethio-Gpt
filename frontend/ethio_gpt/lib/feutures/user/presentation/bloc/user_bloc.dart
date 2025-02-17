@@ -1,5 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:ethio_gpt/feutures/user/domain/usecase/delete-usecase.dart';
+import 'package:ethio_gpt/feutures/user/domain/usecase/google-login-usecase.dart';
+import 'package:ethio_gpt/feutures/user/domain/usecase/google-signup.dart';
 import 'package:ethio_gpt/feutures/user/domain/usecase/login-usecase.dart';
 import 'package:ethio_gpt/feutures/user/domain/usecase/logout-usecase.dart';
 import 'package:ethio_gpt/feutures/user/domain/usecase/signup-usecase.dart';
@@ -15,6 +17,8 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   final LogoutUsecase logoutUsecase;
   final SigninUsecase signinUsecase;
   final LoginUsecase loginUsecase;
+  final GoogleLoginUsecase googleLoginUsecase;
+  final GoogleSigninUsecase googleSigninUsecase;
 
   UserBloc(
       {required this.updateUsecase,
@@ -22,8 +26,29 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       required this.logoutUsecase,
       required this.signinUsecase,
       required this.loginUsecase,
+      required this.googleLoginUsecase,
+      required this.googleSigninUsecase,
       required this.updatePasswordUseCase})
       : super(UserInitial()) {
+    // google user login event
+    on<GoogleUserLogInEvent>((event, emit) async {
+      emit(GoogleUserLoginLoadingState());
+      final result = await googleLoginUsecase.excute(event.email);
+      result.fold(
+        (left) => emit(GoogleUserLoginErrorState(left.message.toString())),
+        (right) => emit(GoogleUserLoginSuccessState(right)),
+      );
+    });
+    // google user signup event
+    on<GoogleUserSignUpEvent>((event, emit) async {
+      emit(GoogleUserSignUpLoadingState());
+      final result = await googleSigninUsecase.excute(event.email);
+      result.fold(
+        (left) => emit(GoogleUserSignUpErrorState(left.message)),
+        (right) => emit(GoogleUserSignUpSuccessState(right)),
+      );
+    });
+
     // login event
     on<UserLoginEvent>((event, emit) async {
       emit(UserLoginLoadingState());

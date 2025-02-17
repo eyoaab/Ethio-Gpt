@@ -9,6 +9,8 @@ import 'package:http/http.dart' as http;
 abstract class UserRemoteDatasource {
   Future<UserModel> signUpUser(String email, String password);
   Future<UserModel> signInUser(String email, String password);
+  Future<UserModel> googleSignUpUser(String email);
+  Future<UserModel> gooleSignInUser(String email);
   Future<bool> updateUser(String email, String password);
   Future<bool> updatePassword(String oldPassword, String newPassword);
   Future<bool> deleteUser(String token);
@@ -21,6 +23,61 @@ class UserRemoteDataSourceImpl implements UserRemoteDatasource {
 
   UserRemoteDataSourceImpl({required this.client, required this.networkInfo});
   TokenValidation tokenValidation = TokenValidation();
+
+  // google sign up user with email and password
+  @override
+  Future<UserModel> googleSignUpUser(String email) async {
+    try {
+      final isConnected = await networkInfo.isConnected;
+      if (!isConnected) {
+        throw NetworkException('No Internet Connection');
+      }
+      final response = await client.post(
+        Uri.parse('${Url().baseUrl()}user/registerGoogle'),
+        body: jsonEncode({'email': email}),
+        headers: {'Content-Type': 'application/json'},
+      );
+
+      if (response.statusCode == 201) {
+        return UserModel.fromJson(jsonDecode(response.body));
+      } else {
+        String errorMessage = jsonDecode(response.body)['message'];
+
+        throw ServerException(errorMessage);
+      }
+    } catch (e) {
+      throw ServerException(e.toString());
+    }
+  }
+
+  // login google user with email and password
+  @override
+  Future<UserModel> gooleSignInUser(
+    String email,
+  ) async {
+    try {
+      final isConnected = await networkInfo.isConnected;
+      if (!isConnected) {
+        throw NetworkException('No Internet Connection');
+      }
+      final response = await client.post(
+        Uri.parse('${Url().baseUrl()}user/loginGoogle'),
+        body: jsonEncode({'email': email}),
+        headers: {'Content-Type': 'application/json'},
+      );
+
+      if (response.statusCode == 200) {
+        String token = jsonDecode(response.body)['token'];
+        return UserModel(token: token);
+      } else {
+        String errorMessage = jsonDecode(response.body)['message'];
+
+        throw ServerException(errorMessage.toString());
+      }
+    } catch (e) {
+      throw ServerException(e.toString());
+    }
+  }
 
   // login user with email and password
   @override

@@ -15,6 +15,8 @@ import 'package:ethio_gpt/feutures/meta-features/FAQ/domain/use-cases/get-faqs-u
 import 'package:ethio_gpt/feutures/meta-features/FAQ/presentation/bloc/faq_bloc.dart';
 import 'package:ethio_gpt/feutures/user/data/repository/user-repository-implmetation.dart';
 import 'package:ethio_gpt/feutures/user/domain/usecase/delete-usecase.dart';
+import 'package:ethio_gpt/feutures/user/domain/usecase/google-login-usecase.dart';
+import 'package:ethio_gpt/feutures/user/domain/usecase/google-signup.dart';
 import 'package:ethio_gpt/feutures/user/domain/usecase/login-usecase.dart';
 import 'package:ethio_gpt/feutures/user/domain/usecase/logout-usecase.dart';
 import 'package:ethio_gpt/feutures/user/domain/usecase/signup-usecase.dart';
@@ -81,6 +83,10 @@ Future<void> setUp() async {
   locator.registerLazySingleton(() => UpdateUsecase(userRepository: locator()));
   locator.registerLazySingleton(() => UpdatePasswordUseCase(locator()));
   locator.registerLazySingleton(
+      () => GoogleLoginUsecase(userRepository: locator()));
+  locator.registerLazySingleton(
+      () => GoogleSigninUsecase(userRepository: locator()));
+  locator.registerLazySingleton(
       () => FeedBackUseCase(feedBackRepository: locator()));
   locator.registerLazySingleton(() => FaqUsecases(locator()));
   locator.registerLazySingleton(
@@ -98,6 +104,8 @@ Future<void> setUp() async {
       deleteUsecase: locator(),
       logoutUsecase: locator(),
       signinUsecase: locator(),
+      googleLoginUsecase: locator(),
+      googleSigninUsecase: locator(),
       loginUsecase: locator()));
 
   locator.registerFactory(() => FaqBloc(loadFaqsUseCase: locator()));

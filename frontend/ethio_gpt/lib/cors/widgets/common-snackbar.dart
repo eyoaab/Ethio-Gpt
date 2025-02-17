@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ethio_gpt/cors/constant/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void showCustomSnackBar(BuildContext context, String message, bool isSuccess) {
@@ -27,7 +28,7 @@ void showCustomLoading(BuildContext context, String messange) {
       return AlertDialog(
         content: Row(
           children: [
-            CircularProgressIndicator(color: primaryColor),
+            SpinKitWave(color: primaryColor),
             const SizedBox(width: 16),
             Text(messange),
           ],

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ethio_gpt/cors/constant/colors.dart';
 import 'package:ethio_gpt/cors/utility-functions/email-validation.dart';
@@ -9,10 +11,12 @@ import 'package:ethio_gpt/feutures/user/presentation/bloc/user_event.dart';
 import 'package:ethio_gpt/feutures/user/presentation/bloc/user_state.dart';
 import 'package:ethio_gpt/feutures/user/presentation/screens/login-page.dart';
 import 'package:ethio_gpt/feutures/user/presentation/widget/common-widgets.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -27,6 +31,32 @@ class SignUpScreenState extends State<SignUpScreen> {
   TextEditingController confirmController = TextEditingController();
   ValidateEmail validateEmail = ValidateEmail();
   bool isLoading = false;
+
+  final GoogleSignIn _googleSignIn = GoogleSignIn(
+    scopes: ['email'],
+    clientId: (defaultTargetPlatform == TargetPlatform.android)
+        ? "199108539875-eriel7b0ph51gl2pk79dvs6sf720dlsm.apps.googleusercontent.com"
+        : "199108539875-eriel7b0ph51gl2pk79dvs6sf720dlsm.apps.googleusercontent.com",
+  );
+
+  Future<void> signUpWithGoogle() async {
+    if (isLoading) {
+      return;
+    }
+    try {
+      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+      if (googleUser == null) return; // User canceled sign-in
+
+      final String userEmail = googleUser.email;
+
+      log(userEmail);
+      BlocProvider.of<UserBloc>(context).add(GoogleUserSignUpEvent(
+        email: userEmail,
+      ));
+    } catch (error) {
+      log("Error signing in with Google: $error");
+    }
+  }
 
   void makeSignUp() {
     if (isLoading) return;
@@ -57,17 +87,24 @@ class SignUpScreenState extends State<SignUpScreen> {
         Theme.of(context).scaffoldBackgroundColor == Colors.black;
     return BlocListener<UserBloc, UserState>(
         listener: (context, state) {
-          if (state is UserSignUpSuccessState) {
+          if (state is UserSignUpSuccessState ||
+              state is GoogleUserSignUpSuccessState) {
             setState(() {
               isLoading = false;
             });
             Navigator.pushReplacement(
                 context, MaterialPageRoute(builder: (context) => ChatScreen()));
-          } else if (state is UserSignUpLoadingState) {
+          } else if (state is UserSignUpLoadingState ||
+              state is GoogleUserSignUpLoadingState) {
             setState(() {
               isLoading = true;
             });
           } else if (state is UserSignUpErrorState) {
+            setState(() {
+              isLoading = false;
+            });
+            showCustomSnackBar(context, state.message, false);
+          } else if (state is GoogleUserSignUpErrorState) {
             setState(() {
               isLoading = false;
             });
@@ -116,15 +153,12 @@ class SignUpScreenState extends State<SignUpScreen> {
                     const SizedBox(height: 30),
 
                     // Social Authentication
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        commomSocialIcon('G', isDarkMod), // Google Icon
-                        commomSocialIcon('F', isDarkMod), // Facebook Icon
-                        commomSocialIcon('A', isDarkMod), // Apple Icon
-                      ],
+                    SizedBox(
+                      child: GestureDetector(
+                          onTap: signUpWithGoogle,
+                          child: commomSocialIcon(
+                              'Google', isDarkMod)), // Google Icon,
                     ),
-                    const SizedBox(height: 20),
 
                     // OR Divider
                     Row(

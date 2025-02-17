@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:ethio_gpt/cors/constant/colors.dart';
 import 'package:ethio_gpt/cors/utility-functions/email-validation.dart';
 import 'package:ethio_gpt/cors/widgets/bg-box-decoration.dart';
@@ -8,11 +10,13 @@ import 'package:ethio_gpt/feutures/user/presentation/bloc/user_event.dart';
 import 'package:ethio_gpt/feutures/user/presentation/bloc/user_state.dart';
 import 'package:ethio_gpt/feutures/user/presentation/screens/signup-page.dart';
 import 'package:ethio_gpt/feutures/user/presentation/widget/common-widgets.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -26,6 +30,31 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController passwordController = TextEditingController();
   bool isLoading = false;
   ValidateEmail validateEmail = ValidateEmail();
+  final GoogleSignIn _googleSignIn = GoogleSignIn(
+    scopes: ['email'],
+    clientId: (defaultTargetPlatform == TargetPlatform.android)
+        ? "199108539875-eriel7b0ph51gl2pk79dvs6sf720dlsm.apps.googleusercontent.com"
+        : "199108539875-eriel7b0ph51gl2pk79dvs6sf720dlsm.apps.googleusercontent.com",
+  );
+
+  Future<void> loginWithGoogle() async {
+    if (isLoading) {
+      return;
+    }
+    try {
+      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+      if (googleUser == null) return; // User canceled sign-in
+
+      final String userEmail = googleUser.email;
+
+      log(userEmail);
+      BlocProvider.of<UserBloc>(context).add(GoogleUserLogInEvent(
+        email: userEmail,
+      ));
+    } catch (error) {
+      log("Error signing in with Google: $error");
+    }
+  }
 
   void makeLogin() {
     if (isLoading) return;
@@ -47,17 +76,24 @@ class _LoginScreenState extends State<LoginScreen> {
         Theme.of(context).scaffoldBackgroundColor == Colors.black;
     return BlocListener<UserBloc, UserState>(
         listener: (context, state) {
-          if (state is UserLoginSuccessState) {
+          if (state is UserLoginSuccessState ||
+              state is GoogleUserLoginSuccessState) {
             setState(() {
               isLoading = false;
             });
             Navigator.pushReplacement(
                 context, MaterialPageRoute(builder: (context) => ChatScreen()));
-          } else if (state is UserLoginLoadingState) {
+          } else if (state is UserLoginLoadingState ||
+              state is GoogleUserLoginLoadingState) {
             setState(() {
               isLoading = true;
             });
           } else if (state is UserLoginErrorState) {
+            setState(() {
+              isLoading = false;
+            });
+            showCustomSnackBar(context, state.message, false);
+          } else if (state is GoogleUserLoginErrorState) {
             setState(() {
               isLoading = false;
             });
@@ -105,8 +141,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
                     // Social Authentication
                     SizedBox(
-                      child:
-                          commomSocialIcon('Google', isDarkMod), // Google Icon,
+                      child: GestureDetector(
+                          onTap: loginWithGoogle,
+                          child: commomSocialIcon(
+                              'Google', isDarkMod)), // Google Icon,
                     ),
 
                     const SizedBox(height: 20),

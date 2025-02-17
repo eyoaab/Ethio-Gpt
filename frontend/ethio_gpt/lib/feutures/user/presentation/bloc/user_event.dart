@@ -53,3 +53,15 @@ class EmitUserLoginState extends UserEvent {
 
   EmitUserLoginState({required this.userEntity});
 }
+
+// to sign in with google
+
+class GoogleUserSignUpEvent extends UserEvent {
+  String email;
+  GoogleUserSignUpEvent({required this.email});
+}
+
+class GoogleUserLogInEvent extends UserEvent {
+  String email;
+  GoogleUserLogInEvent({required this.email});
+}

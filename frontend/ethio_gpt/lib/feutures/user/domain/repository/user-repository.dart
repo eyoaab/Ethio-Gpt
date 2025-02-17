@@ -11,4 +11,8 @@ abstract class UserRepository {
 
   Future<Either<Failure, bool>> logOut();
   Future<Either<Failure, bool>> deleteUser();
+
+  // for google sign up
+  Future<Either<Failure, UserEntity>> googleLogIn(String email);
+  Future<Either<Failure, UserEntity>> googleSignUp(String email);
 }
