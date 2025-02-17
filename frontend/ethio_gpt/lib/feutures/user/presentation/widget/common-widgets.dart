@@ -1,10 +1,11 @@
 import 'package:ethio_gpt/cors/constant/colors.dart';
+import 'package:ethio_gpt/feutures/user/presentation/screens/google-signin.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 Widget commomSocialIcon(String label, bool isDarkMod) {
   return GestureDetector(
-    onTap: () {},
+    onTap: signInWithGoogle,
     child: Container(
       height: 50,
       width: double.infinity,

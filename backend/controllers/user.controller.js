@@ -2,6 +2,85 @@ const User = require("../models/user.model");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 
+// function to save user with google
+exports.createGooogleUser = async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    if (!email) {
+      return res.status(400).json({
+        message: "Email is required.",
+      });
+    }
+
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({
+        message: "A user with this email already exists.",
+      });
+    }
+
+    const hashedPassword = await bcrypt.hash(email, 10);
+
+    const user = new User({ email, password: hashedPassword });
+
+    await user.save();
+
+    const token = jwt.sign(
+      { id: user._id, email: user.email },
+      process.env.JWT_SECRET
+    );
+
+    res.status(201).json({
+      message: "User registered successfully!",
+      token,
+    });
+  } catch (error) {
+    console.error("Error creating user:", error.message);
+    res.status(500).json({
+      message: "An error occurred while creating the user.",
+      error: error.message,
+    });
+  }
+};
+// login a google user
+exports.loginGoogleUser = async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    // Validate input
+    if (!email) {
+      return res.status(400).json({
+        message: "Email is required.",
+      });
+    }
+
+    // Find the user by email
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(400).json({
+        message: "User with this email does not exist.",
+      });
+    }
+    // Generate a JWT token
+    const token = jwt.sign(
+      { id: user._id, email: user.email },
+      process.env.JWT_SECRET
+    );
+
+    res.status(200).json({
+      message: "User logged in successfully.",
+      token,
+    });
+  } catch (error) {
+    console.error("Error logging in user:", error);
+    res.status(500).json({
+      message: "An error occurred while logging in the user.",
+      error: error.message,
+    });
+  }
+};
+
 // Function to create a new user
 exports.createUser = async (req, res) => {
   try {

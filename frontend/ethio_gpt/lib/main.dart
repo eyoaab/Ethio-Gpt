@@ -23,34 +23,60 @@ void main() async {
   Locale initialLocale = await _getInitialLocale(tokenValidation);
 
   runApp(
-    DevicePreview(
-      enabled: true,
-      builder: (context) => EasyLocalization(
-        supportedLocales: const [
-          Locale('en', 'US'),
-          Locale('am', 'ET'),
+    EasyLocalization(
+      supportedLocales: const [
+        Locale('en', 'US'),
+        Locale('am', 'ET'),
+      ],
+      path: 'assets/translations',
+      fallbackLocale: const Locale('en', 'US'),
+      startLocale: initialLocale,
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider<SettingBloc>(
+            create: (context) => SettingBloc(),
+          ),
+          BlocProvider(create: (context) => ThemeBloc()),
+          BlocProvider<UserBloc>(create: (context) => locator<UserBloc>()),
+          BlocProvider<FeedbackBloc>(
+            create: (context) => locator<FeedbackBloc>(),
+          ),
+          BlocProvider<FaqBloc>(create: (context) => locator<FaqBloc>()),
+          BlocProvider<ChatBloc>(create: (context) => locator<ChatBloc>()),
         ],
-        path: 'assets/translations',
-        fallbackLocale: const Locale('en', 'US'),
-        startLocale: initialLocale,
-        child: MultiBlocProvider(
-          providers: [
-            BlocProvider<SettingBloc>(
-              create: (context) => SettingBloc(),
-            ),
-            BlocProvider(create: (context) => ThemeBloc()),
-            BlocProvider<UserBloc>(create: (context) => locator<UserBloc>()),
-            BlocProvider<FeedbackBloc>(
-              create: (context) => locator<FeedbackBloc>(),
-            ),
-            BlocProvider<FaqBloc>(create: (context) => locator<FaqBloc>()),
-            BlocProvider<ChatBloc>(create: (context) => locator<ChatBloc>()),
-          ],
-          child: const MyApp(),
-        ),
+        child: const MyApp(),
       ),
     ),
   );
+  // runApp(
+  //   DevicePreview(
+  //     enabled: true,
+  //     builder: (context) => EasyLocalization(
+  //       supportedLocales: const [
+  //         Locale('en', 'US'),
+  //         Locale('am', 'ET'),
+  //       ],
+  //       path: 'assets/translations',
+  //       fallbackLocale: const Locale('en', 'US'),
+  //       startLocale: initialLocale,
+  //       child: MultiBlocProvider(
+  //         providers: [
+  //           BlocProvider<SettingBloc>(
+  //             create: (context) => SettingBloc(),
+  //           ),
+  //           BlocProvider(create: (context) => ThemeBloc()),
+  //           BlocProvider<UserBloc>(create: (context) => locator<UserBloc>()),
+  //           BlocProvider<FeedbackBloc>(
+  //             create: (context) => locator<FeedbackBloc>(),
+  //           ),
+  //           BlocProvider<FaqBloc>(create: (context) => locator<FaqBloc>()),
+  //           BlocProvider<ChatBloc>(create: (context) => locator<ChatBloc>()),
+  //         ],
+  //         child: const MyApp(),
+  //       ),
+  //     ),
+  //   ),
+  // );
 }
 
 Future<Locale> _getInitialLocale(TokenValidation tokenValidation) async {

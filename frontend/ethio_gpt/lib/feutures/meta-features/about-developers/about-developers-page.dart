@@ -62,7 +62,7 @@ class _AboutDevelopersScreenState extends State<AboutDevelopersScreen> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(100),
                     image: const DecorationImage(
-                      image: AssetImage('/images/eyob.png'),
+                      image: AssetImage('/assets/images/eyob.png'),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -95,7 +95,7 @@ class _AboutDevelopersScreenState extends State<AboutDevelopersScreen> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(100),
                     image: const DecorationImage(
-                      image: AssetImage('/images/eyob.png'),
+                      image: AssetImage('/assets/images/eyob.png'),
                       fit: BoxFit.cover,
                     ),
                   ),

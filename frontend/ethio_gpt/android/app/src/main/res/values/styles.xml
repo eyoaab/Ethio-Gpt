@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <resources>
+ <!-- Google Sign-In Web Client ID -->
+    <string name="default_web_client_id">199108539875-eriel7b0ph51gl2pk79dvs6sf720dlsm.apps.googleusercontent.com</string>
+
     <!-- Theme applied to the Android Window while the process is starting when the OS's Dark Mode setting is off -->
     <style name="LaunchTheme" parent="@android:style/Theme.Light.NoTitleBar">
         <!-- Show a splash screen on the activity. Automatically removed when

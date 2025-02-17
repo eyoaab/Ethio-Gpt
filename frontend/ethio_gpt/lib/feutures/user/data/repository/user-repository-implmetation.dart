@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dartz/dartz.dart';
 import 'package:ethio_gpt/cors/error/exception.dart';
 import 'package:ethio_gpt/cors/error/faliure.dart';
@@ -99,12 +97,14 @@ class UserRepositoryImpl implements UserRepository {
     }
   }
 
+  // log outa user
   @override
-  Future<Either<Failure, bool>> updatePassword(
-      String oldPassword, String newPassword) async {
+  // write a fucntion to log out a user
+  Future<Either<Failure, bool>> logOut() async {
     try {
-      final response =
-          await remoteDataSource.updatePassword(oldPassword, newPassword);
+      final response = await remoteDataSource.logOut();
+      await tokenValidation.removeToken();
+
       return Right(response);
     } catch (e) {
       if (e is ServerException) {
@@ -117,14 +117,12 @@ class UserRepositoryImpl implements UserRepository {
     }
   }
 
-  // log outa user
   @override
-  // write a fucntion to log out a user
-  Future<Either<Failure, bool>> logOut() async {
+  Future<Either<Failure, bool>> updatePassword(
+      String oldPassword, String newPassword) async {
     try {
-      final response = await remoteDataSource.logOut();
-      await tokenValidation.removeToken();
-
+      final response =
+          await remoteDataSource.updatePassword(oldPassword, newPassword);
       return Right(response);
     } catch (e) {
       if (e is ServerException) {
