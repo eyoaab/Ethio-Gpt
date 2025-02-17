@@ -18,28 +18,16 @@ Features
 ## Demo
 Here are some screenshots showing Ethio-Gpt in action:
 
-<img src="https://github.com/user-attachments/assets/5d018f83-bfa1-40ea-8519-0cfeffa11474" alt="addBlog" height="550" width="300">
-<img src="https://github.com/user-attachments/assets/058114d0-74f9-4696-ae38-bd972f8d23d7" alt="addFaq" height="550" width="300">
-<img src="https://github.com/user-attachments/assets/7dd7d4e7-c358-49b0-acf5-57ec9c4f7eb5" alt="adminBlog" height="550" width="300">
-<img src="https://github.com/user-attachments/assets/c4451209-ad2b-427c-aae0-142b99c45280" alt="adminBlog2" height="550" width="300">
-<img src="https://github.com/user-attachments/assets/6781d7a9-0433-42a0-8e14-930348408f79" alt="adminFaq" height="550" width="300">
-<img src="https://github.com/user-attachments/assets/c6812c79-f976-4423-b663-28e7632cebea" alt="adminFaq2" height="550" width="300">
-<img src="https://github.com/user-attachments/assets/caf67579-1cf5-457c-b491-9af3612bccca" alt="adminTestimony" height="550" width="300">
-<img src="https://github.com/user-attachments/assets/f2e15691-4b7b-47e7-b28f-41fee93fa9e0" alt="confirmLogout" height="550" width="300">
-<img src="https://github.com/user-attachments/assets/543aa082-11a7-4d81-9d1e-298aa56e143a" alt="login" height="550" width="300">
-<img src="https://github.com/user-attachments/assets/c20c8c7f-5c5f-420e-a756-f59c66215287" alt="products" height="550" width="300">
-<img src="https://github.com/user-attachments/assets/15e4eae7-bd0a-469a-918a-03be9f8f8bcd" alt="Productsdetail" height="550" width="300">
-<img src="https://github.com/user-attachments/assets/00bc1a38-8b82-4ec0-8568-f0a3b205dc48" alt="searchblog" height="550" width="300">
-<img src="https://github.com/user-attachments/assets/4801daa2-2b78-4066-acaf-ced2d427f44a" alt="signUp" height="550" width="300">
-<img src="https://github.com/user-attachments/assets/25418a8d-7b6f-43f0-a0a0-e0d4582d3bae" alt="updateProduct" height="550" width="300">
-<img src="https://github.com/user-attachments/assets/7caf5da8-2c10-478a-9751-6af6658131d2" alt="updateTestimony" height="550" width="300">
-<img src="https://github.com/user-attachments/assets/ba691e3c-9156-41fc-982a-b07c0708072f" alt="updatingTestimony" height="550" width="300">
-<img src="https://github.com/user-attachments/assets/7f3b5224-9f36-4918-9ed9-5df1beffd16c" alt="userBlog" height="550" width="300">
-<img src="https://github.com/user-attachments/assets/a75bd185-50c7-4088-8ead-ca3e66408cdf" alt="userBlog2" height="550" width="300">
-<img src="https://github.com/user-attachments/assets/7d414f99-b765-40f5-8025-376a659a40b8" alt="userFaq" height="550" width="300">
-<img src="https://github.com/user-attachments/assets/9b797134-86d7-4f18-9576-6b2be964bc00" alt="userFqpage2" height="550" width="300">
-<img src="https://github.com/user-attachments/assets/500eecde-2ba9-44a8-b181-5c2282aec24c" alt="userserchFaq" height="550" width="300">
-<img src="https://github.com/user-attachments/assets/0209db1e-570a-4530-abba-b83bd24f4f83" alt="userTestimony" height="550" width="300"><br>
+<img src="https://github.com/user-attachments/assets/c94d8724-cb12-44c4-83f5-7a4b692346f0" alt="products" height="550" width="300">
+<img src="https://github.com/user-attachments/assets/b3ba48d6-2c41-47e8-8d8e-243364648efc" alt="addBlog" height="550" width="300">
+<img src="https://github.com/user-attachments/assets/6e969527-c93a-4c19-a737-41c0f0ad2bd9" alt="addFaq" height="550" width="300">
+<img src="https://github.com/user-attachments/assets/5b445968-a4bd-4213-bf25-9bd9273558e3" alt="adminBlog2" height="550" width="300">
+<img src="https://github.com/user-attachments/assets/f53b8617-94e4-4f04-9f66-adeaaaf1e7e1" alt="adminFaq" height="550" width="300">
+<img src="https://github.com/user-attachments/assets/d435df43-aa35-4f82-bbff-a877f08cdacd" alt="adminFaq2" height="550" width="300">
+<img src="https://github.com/user-attachments/assets/118dce14-76ae-420a-9049-24ffff155110" alt="adminTestimony" height="550" width="300">
+<img src="https://github.com/user-attachments/assets/bc59a3d9-053e-4e2f-80fa-987659a857e6" alt="confirmLogout" height="550" width="300">
+<img src="https://github.com/user-attachments/assets/66d451d1-35a7-4837-b8fc-cceea2711bc6" alt="login" height="550" width="300">
+<img src="https://github.com/user-attachments/assets/507e7676-e7e5-4df1-aac5-8c955ab8b992" alt="userTestimony" height="550" width="300"><br>
 
 
 The technologies and tools I used while developing this project are
