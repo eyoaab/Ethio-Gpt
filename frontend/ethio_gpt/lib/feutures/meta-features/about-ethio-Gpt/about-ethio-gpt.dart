@@ -53,16 +53,16 @@ class _AboutEthioGptScreenState extends State<AboutEthioGptScreen> {
                             ? Colors.white
                             : Colors.black)),
                 textRow(
-                    'Your privacy is important to us. It is Brainstorming\'s policy to respect your privacy regarding any information we may collect from you across our website, and other sites we own and operate.',
+                    'Ethio GPT is a mobile application designed to enable users to interact with AI in their preferred language, including Amharic and English. Developed by software engineer Eyob Tariku, the app was created with the vision of making AI accessible to individuals who may face challenges due to language barriers',
                     isDarkMod),
                 textRow(
-                    'We only ask for personal information when we truly need it to provide a service to you. We collect it by fair and lawful means, with your knowledge and consent. We also let you know why we’re collecting it and how it will be used.',
+                    'Recognizing that many people are unable to take full advantage of AI technology because it primarily operates in widely spoken languages, Eyob built this app to bridge that gap.',
                     isDarkMod),
                 textRow(
-                    'We only retain collected information for as long as necessary to provide you with your requested service. What data we store, we’ll protect within commercially acceptable means to prevent loss and theft, as well as unauthorized access, disclosure, copying, use or modification.',
+                    'Ethio GPT empowers users by providing an intuitive and seamless AI experience in their native language, ensuring they can access information, assistance, and various AI-powered features without limitations.',
                     isDarkMod),
                 textRow(
-                    'We don’t share any personally identifying information publicly or with third-parties, except when required to by law.',
+                    'This app aims to enhance accessibility and inclusivity, making AI technology more useful and beneficial for a broader audience.',
                     isDarkMod),
               ],
             ),

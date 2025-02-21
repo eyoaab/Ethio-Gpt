@@ -80,47 +80,47 @@ class _AboutDevelopersScreenState extends State<AboutDevelopersScreen> {
                   height: 15,
                 ),
                 textRow(
-                    'Your privacy is important to us. It is Brainstorming\'s policy to respect your privacy regarding any information we may collect from you across our website, and other sites we own and operate.',
+                    'Eyob Tariku is a software engineer with a client-first approach. He develop mobile apps and websites to make peoples lives easier by helping them complete their tasks efficiently and securely.',
                     isDarkMod),
                 textRow(
-                    'We only ask for personal information when we truly need it to provide a service to you. We collect it by fair and lawful means, with your knowledge and consent. We also let you know why we’re collecting it and how it will be used.',
+                    'Feel free to contact him you have any questions or need services such as website and mobile app development tailored to your requirements',
                     isDarkMod),
                 const SizedBox(
                   height: 30,
                 ),
-                Container(
-                  height: 150,
-                  width: 150,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(100),
-                    image: const DecorationImage(
-                      image: AssetImage('assets/images/eyob.png'),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                Text(
-                  'Eyob Tariku',
-                  style: GoogleFonts.inter(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: primaryColor),
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                textRow(
-                    'Your privacy is important to us. It is Brainstorming\'s policy to respect your privacy regarding any information we may collect from you across our website, and other sites we own and operate.',
-                    Theme.of(context).scaffoldBackgroundColor == Colors.black),
-                textRow(
-                    'We only ask for personal information when we truly need it to provide a service to you. We collect it by fair and lawful means, with your knowledge and consent. We also let you know why we’re collecting it and how it will be used.',
-                    Theme.of(context).scaffoldBackgroundColor == Colors.black),
-                const SizedBox(
-                  height: 30,
-                ),
+                // Container(
+                //   height: 150,
+                //   width: 150,
+                //   decoration: BoxDecoration(
+                //     borderRadius: BorderRadius.circular(100),
+                //     image: const DecorationImage(
+                //       image: AssetImage('assets/images/eyob.png'),
+                //       fit: BoxFit.cover,
+                //     ),
+                //   ),
+                // ),
+                // const SizedBox(
+                //   height: 15,
+                // ),
+                // Text(
+                //   'Eyob Tariku',
+                //   style: GoogleFonts.inter(
+                //       fontSize: 20,
+                //       fontWeight: FontWeight.bold,
+                //       color: primaryColor),
+                // ),
+                // const SizedBox(
+                //   height: 15,
+                // ),
+                // textRow(
+                //     'Your privacy is important to us. It is Brainstorming\'s policy to respect your privacy regarding any information we may collect from you across our website, and other sites we own and operate.',
+                //     Theme.of(context).scaffoldBackgroundColor == Colors.black),
+                // textRow(
+                //     'We only ask for personal information when we truly need it to provide a service to you. We collect it by fair and lawful means, with your knowledge and consent. We also let you know why we’re collecting it and how it will be used.',
+                //     Theme.of(context).scaffoldBackgroundColor == Colors.black),
+                // const SizedBox(
+                //   height: 30,
+                // ),
               ],
             ),
           ),

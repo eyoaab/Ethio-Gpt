@@ -47,16 +47,59 @@ class _PrivacyAndPolicyScreenState extends State<PrivacyAndPolicyScreen> {
             ),
             const SizedBox(height: 20),
             textRow(
-                'Your privacy is important to us. It is Brainstorming\'s policy to respect your privacy regarding any information we may collect from you across our website, and other sites we own and operate.',
+                'Ethio GPT is a mobile application designed to help non-English speakers interact with AI in their native language, such as Amharic or other local languages. Your privacy is important to us, and this policy explains how we collect, use, and protect your information',
                 isDarkMod),
+            Text(
+              '1.Information We Collect',
+              style: GoogleFonts.inter(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color:
+                      Theme.of(context).scaffoldBackgroundColor == Colors.black
+                          ? Colors.white
+                          : Colors.black),
+            ),
             textRow(
-                'We only ask for personal information when we truly need it to provide a service to you. We collect it by fair and lawful means, with your knowledge and consent. We also let you know why we’re collecting it and how it will be used.',
+                'We may collect basic user data such as name, email, and language preference.The app may collect usage data to improve user experience.We do not store or share any conversations you have with the AI.',
                 isDarkMod),
+            Text(
+              '2. How We Use Your Information',
+              style: GoogleFonts.inter(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color:
+                      Theme.of(context).scaffoldBackgroundColor == Colors.black
+                          ? Colors.white
+                          : Colors.black),
+            ),
             textRow(
-                'We only retain collected information for as long as necessary to provide you with your requested service. What data we store, we’ll protect within commercially acceptable means to prevent loss and theft, as well as unauthorized access, disclosure, copying, use or modification.',
+                'To enhance AI interactions based on user preferences.To improve app performance and provide better services.We do not sell or share user data with third parties.',
                 isDarkMod),
+            Text(
+              '3. Data Security',
+              style: GoogleFonts.inter(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color:
+                      Theme.of(context).scaffoldBackgroundColor == Colors.black
+                          ? Colors.white
+                          : Colors.black),
+            ),
             textRow(
-                'We don’t share any personally identifying information publicly or with third parties, except when required to by law.',
+                'We take appropriate security measures to protect user data.No sensitive personal information is required to use the app.',
+                isDarkMod),
+            Text(
+              '4.  User Rights',
+              style: GoogleFonts.inter(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color:
+                      Theme.of(context).scaffoldBackgroundColor == Colors.black
+                          ? Colors.white
+                          : Colors.black),
+            ),
+            textRow(
+                'Users can request data deletion at any time.Users can update their language preferences within the app.',
                 isDarkMod),
           ],
         ),
