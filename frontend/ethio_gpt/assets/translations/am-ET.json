@@ -62,5 +62,7 @@
 
   "enterNewPassword": "አዲስ የይለፍ ቃል ያስገቡ",
   "eneterOldPassword": "የድሮ የይለፍ ቃል አስገባ",
-  "successOfUpdatePassword": "Password Updated Successfully"
+  "successOfUpdatePassword": "Password Updated Successfully",
+
+  "contactMe": "ከኢትዮ gpt ገንቢዎች ጋር ተነጋገሩ"
 }

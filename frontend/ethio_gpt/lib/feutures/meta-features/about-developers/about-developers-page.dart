@@ -3,9 +3,11 @@ import 'package:ethio_gpt/cors/constant/colors.dart';
 import 'package:ethio_gpt/cors/widgets/bg-box-decoration.dart';
 import 'package:ethio_gpt/cors/widgets/common-app-bar.dart';
 import 'package:ethio_gpt/cors/widgets/common-drawer.dart';
+import 'package:ethio_gpt/cors/widgets/common-submit-button.dart';
 import 'package:ethio_gpt/feutures/meta-features/Privecy-Policy/widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AboutDevelopersScreen extends StatefulWidget {
   const AboutDevelopersScreen({super.key});
@@ -17,6 +19,15 @@ class AboutDevelopersScreen extends StatefulWidget {
 class _AboutDevelopersScreenState extends State<AboutDevelopersScreen> {
   void showSide() {
     _scaffoldKey.currentState?.openDrawer();
+  }
+
+  Future<void> _launchURL(String url) async {
+    final Uri uri = Uri.parse(url);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -86,7 +97,11 @@ class _AboutDevelopersScreenState extends State<AboutDevelopersScreen> {
                     'Feel free to contact him you have any questions or need services such as website and mobile app development tailored to your requirements',
                     isDarkMod),
                 const SizedBox(
-                  height: 30,
+                  height: 20,
+                ),
+                changeLanduadge(
+                  onPressed: () => _launchURL('https://www.eyobtariku.tech'),
+                  label: 'contactMe'.tr(),
                 ),
                 // Container(
                 //   height: 150,

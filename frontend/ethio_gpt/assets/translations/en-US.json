@@ -62,5 +62,7 @@
 
   "enterNewPassword": "Enter Your New Password",
   "eneterOldPassword": "Enter Your Old Password",
-  "successOfUpdatePassword": "Password Updated Successfully"
+  "successOfUpdatePassword": "Password Updated Successfully",
+
+  "contactMe": "Contact Developer"
 }
