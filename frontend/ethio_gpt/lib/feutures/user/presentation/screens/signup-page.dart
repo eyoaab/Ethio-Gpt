@@ -150,7 +150,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                       'pleaseLogin'.tr(),
                       style: GoogleFonts.inter(fontSize: 14, color: abAb),
                     ),
-                    const SizedBox(height: 30),
+                    const SizedBox(height: 20),
 
                     // Social Authentication
                     SizedBox(
@@ -159,6 +159,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                           child: commomSocialIcon(
                               'Google', isDarkMod)), // Google Icon,
                     ),
+                    const SizedBox(height: 10),
 
                     // OR Divider
                     Row(

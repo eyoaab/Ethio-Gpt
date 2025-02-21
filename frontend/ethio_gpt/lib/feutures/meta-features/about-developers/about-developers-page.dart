@@ -4,7 +4,6 @@ import 'package:ethio_gpt/cors/widgets/bg-box-decoration.dart';
 import 'package:ethio_gpt/cors/widgets/common-app-bar.dart';
 import 'package:ethio_gpt/cors/widgets/common-drawer.dart';
 import 'package:ethio_gpt/feutures/meta-features/Privecy-Policy/widget.dart';
-import 'package:ethio_gpt/main.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -62,7 +61,7 @@ class _AboutDevelopersScreenState extends State<AboutDevelopersScreen> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(100),
                     image: const DecorationImage(
-                      image: AssetImage('/assets/images/eyob.png'),
+                      image: AssetImage('assets/images/eyob.png'),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -95,7 +94,7 @@ class _AboutDevelopersScreenState extends State<AboutDevelopersScreen> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(100),
                     image: const DecorationImage(
-                      image: AssetImage('/assets/images/eyob.png'),
+                      image: AssetImage('assets/images/eyob.png'),
                       fit: BoxFit.cover,
                     ),
                   ),
