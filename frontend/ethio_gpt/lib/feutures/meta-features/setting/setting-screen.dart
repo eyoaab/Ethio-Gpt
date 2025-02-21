@@ -74,11 +74,10 @@ class _SettingScreenState extends State<SettingScreen> {
                 width: 80,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(100),
-                  image: const DecorationImage(
-                    image: AssetImage('assets/images/eyob.png'),
-                    fit: BoxFit.cover,
-                  ),
                 ),
+                // slice the first letter
+
+                child: Text(email.isNotEmpty ? email.substring(0, 1) : ''),
               ),
               const SizedBox(
                 height: 5,
