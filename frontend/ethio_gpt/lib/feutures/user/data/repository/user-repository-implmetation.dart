@@ -99,10 +99,9 @@ class UserRepositoryImpl implements UserRepository {
   Future<Either<Failure, bool>> updateUser(
       String email, String password) async {
     try {
-      final response = await remoteDataSource.updateUser(
-        email,
-        password,
-      );
+      String? token = await tokenValidation.getToken();
+      final response =
+          await remoteDataSource.updateUser(email, password, token!);
       return Right(response);
     } catch (e) {
       if (e is ServerException) {
@@ -161,8 +160,10 @@ class UserRepositoryImpl implements UserRepository {
   Future<Either<Failure, bool>> updatePassword(
       String oldPassword, String newPassword) async {
     try {
-      final response =
-          await remoteDataSource.updatePassword(oldPassword, newPassword);
+      String? token = await tokenValidation.getToken();
+
+      final response = await remoteDataSource.updatePassword(
+          oldPassword, newPassword, token!);
       return Right(response);
     } catch (e) {
       if (e is ServerException) {

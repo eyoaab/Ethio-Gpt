@@ -26,7 +26,10 @@ class _FaqScreenState extends State<FaqScreen> {
   @override
   void initState() {
     super.initState();
-    context.read<FaqBloc>().add(LoadFaqsEvent());
+    if (context.read<FaqBloc>().state is FaqLoadedState) {
+    } else {
+      context.read<FaqBloc>().add(LoadFaqsEvent());
+    }
   }
 
   void showSide() {

@@ -76,6 +76,7 @@ flutter:
     - assets/translations/
     - assets/images/backgroun.png
     - assets/images/logo.png
+    - assets/images/eyob.png
 
   #   - images/a_dot_ham.jpeg
 

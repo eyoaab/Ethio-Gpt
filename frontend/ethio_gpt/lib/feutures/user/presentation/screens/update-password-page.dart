@@ -67,11 +67,11 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
           decoration: bgBoxDecoration(isDarkMod),
           child: BlocListener<UserBloc, UserState>(
             listener: (context, state) {
-              if (state is UserUpdateLoadingState) {
+              if (state is UserPasswordUpdateLoadingState) {
                 setState(() {
                   isLoading = true;
                 });
-              } else if (state is UserUpdateSuccessState) {
+              } else if (state is UserPasswordUpdateSuccessState) {
                 setState(() {
                   isLoading = false;
                   oldnewPasswordController.clear();
@@ -80,7 +80,7 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
                 });
                 showCustomSnackBar(context, 'successOfUpdatePassword'.tr(),
                     true); //translate this one
-              } else if (state is UserUpdateErrorState) {
+              } else if (state is UserPasswordUpdateErrorState) {
                 setState(() {
                   isLoading = false;
                 });

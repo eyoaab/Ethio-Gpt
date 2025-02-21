@@ -11,8 +11,9 @@ abstract class UserRemoteDatasource {
   Future<UserModel> signInUser(String email, String password);
   Future<UserModel> googleSignUpUser(String email);
   Future<UserModel> gooleSignInUser(String email);
-  Future<bool> updateUser(String email, String password);
-  Future<bool> updatePassword(String oldPassword, String newPassword);
+  Future<bool> updateUser(String email, String password, String token);
+  Future<bool> updatePassword(
+      String oldPassword, String newPassword, String token);
   Future<bool> deleteUser(String token);
   Future<bool> logOut();
 }
@@ -134,7 +135,7 @@ class UserRemoteDataSourceImpl implements UserRemoteDatasource {
 
   // update user with email and password
   @override
-  Future<bool> updateUser(String email, String password) async {
+  Future<bool> updateUser(String email, String password, String token) async {
     try {
       final isConnected = await networkInfo.isConnected;
       if (!isConnected) {
@@ -143,7 +144,10 @@ class UserRemoteDataSourceImpl implements UserRemoteDatasource {
       final response = await client.put(
         Uri.parse('${Url().baseUrl()}user/updateEmail'),
         body: jsonEncode({'email': email, 'password': password}),
-        headers: {'Content-Type': 'application/json'},
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token',
+        },
       );
 
       if (response.statusCode == 200) {
@@ -160,7 +164,8 @@ class UserRemoteDataSourceImpl implements UserRemoteDatasource {
   }
 
   @override
-  Future<bool> updatePassword(String oldPassword, String newPassword) async {
+  Future<bool> updatePassword(
+      String oldPassword, String newPassword, String token) async {
     try {
       final isConnected = await networkInfo.isConnected;
       if (!isConnected) {
@@ -170,7 +175,10 @@ class UserRemoteDataSourceImpl implements UserRemoteDatasource {
         Uri.parse('${Url().baseUrl()}user/updatePassword'),
         body: jsonEncode(
             {'oldPassword': oldPassword, 'newPassword': newPassword}),
-        headers: {'Content-Type': 'application/json'},
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token',
+        },
       );
 
       if (response.statusCode == 200) {

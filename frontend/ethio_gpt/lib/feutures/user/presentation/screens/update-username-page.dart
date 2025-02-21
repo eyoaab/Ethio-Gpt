@@ -129,9 +129,7 @@ class _UpdateUserNameScreenState extends State<UpdateUserNameScreen> {
                   const SizedBox(height: 40),
 
                   submitButton(
-                      onPressed: () {
-                        updateUserame;
-                      },
+                      onPressed: updateUserame,
                       label: 'submit'.tr(),
                       isLoading: isLoading),
                 ],

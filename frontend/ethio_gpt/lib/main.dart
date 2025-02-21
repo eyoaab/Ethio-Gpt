@@ -48,7 +48,7 @@ void main() async {
       ),
     ),
   );
-  // runApp(
+  // runApp(`
   //   DevicePreview(
   //     enabled: true,
   //     builder: (context) => EasyLocalization(
