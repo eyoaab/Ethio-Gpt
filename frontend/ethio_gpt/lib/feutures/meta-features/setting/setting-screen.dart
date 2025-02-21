@@ -74,10 +74,16 @@ class _SettingScreenState extends State<SettingScreen> {
                 width: 80,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(100),
+                  border: Border.all(color: primaryColor, width: 2),
                 ),
                 // slice the first letter
 
-                child: Text(email.isNotEmpty ? email.substring(0, 1) : ''),
+                child: Center(
+                  child: Text(
+                    email.isNotEmpty ? email.substring(0, 1).toUpperCase() : '',
+                    style: const TextStyle(fontSize: 35),
+                  ),
+                ),
               ),
               const SizedBox(
                 height: 5,
