@@ -66,7 +66,7 @@ class CommonDrawer extends StatelessWidget {
                       decoration: const BoxDecoration(
                         shape: BoxShape.circle,
                         image: DecorationImage(
-                          image: AssetImage('/images/small.png'),
+                          image: AssetImage('assets/images/small.png'),
                           fit: BoxFit.cover,
                         ),
                       ),

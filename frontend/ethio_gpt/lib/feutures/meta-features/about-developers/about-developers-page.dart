@@ -103,6 +103,9 @@ class _AboutDevelopersScreenState extends State<AboutDevelopersScreen> {
                   onPressed: () => _launchURL('https://www.eyobtariku.tech'),
                   label: 'contactMe'.tr(),
                 ),
+                const SizedBox(
+                  height: 30,
+                ),
                 // Container(
                 //   height: 150,
                 //   width: 150,
